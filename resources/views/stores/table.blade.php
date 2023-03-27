@@ -64,9 +64,9 @@
                                 <div class="input-group">
                                     <select name="region_name" class="form-control">
                                         <option value="">-all-</option>
-                                        @foreach(\App\Constant\LayoutRegionConstant::ALL as $layoutRegion)
-                                            <option value="{{$layoutRegion}}" {{ old('region_name') == $layoutRegion ? 'selected' : '' }}>{{$layoutRegion}}</option>
-                                        @endforeach
+                                        {{--@foreach(\App\Constant\LayoutRegionConstant::ALL as $layoutRegion)--}}
+                                            {{--<option value="{{$layoutRegion}}" {{ old('region_name') == $layoutRegion ? 'selected' : '' }}>{{$layoutRegion}}</option>--}}
+                                        {{--@endforeach--}}
                                     </select>
                                 </div>
                             </div>

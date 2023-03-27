@@ -19,4 +19,6 @@ Route::get('/', function () {
 Route::get('/tables',function () {
     return view('stores.table');
 })->name('web.index.createTable');
-//    'TableController@createTable')->name('web.index.createTable')
+Route::prefix('/warehouse')->group(function () {
+    Route::get('/vehicles', 'VehiclesController@showVehicles')->name('warehouse.tab_content_vehicles');
+});

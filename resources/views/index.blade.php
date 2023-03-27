@@ -26,47 +26,23 @@
     <div class="nav1 slide-tab " id="try">
         <ul class="op" id="non">
             <li class="active">
-                <a class="brick" href="#" onclick="getTabContent('dashboard')">Dashboard</a>
+                <a class="brick" href="{{ route('warehouse.tab_content_vehicles') }}" >Vehicles</a>
             </li>
             <li>
-                <a class="brick" href="#" onclick="getTabContent('pages')">Pages</a>
+                <a class="brick" href="#productCategories">Product cateories</a>
             </li>
             <li>
-                <a class="brick" href="#" onclick="getTabContent('navigation')">Navigation</a>
+                <a class="brick" href="#tab3">Navigation</a>
             </li>
             <li>
-                <a class="brick" href="#" onclick="getTabContent('users')">Users</a>
+                <a class="brick" href="#tab4">Users</a>
             </li>
             <li>
-                <a class="brick" href="#" onclick="getTabContent('settings')">Website Settings</a>
+                <a class="brick" href="#tab5">Website Settings</a>
             </li>
         </ul>
     </div>
-    <div class="container center">
-        <div class="tab-content">
-            <div id="tab1"  class="content-pane is-active">
-                <p>Tab 1 DASHBOARD</p>
-            </div>
-            <!-- /#tab1 -->
-
-            <div id="tab2" class="content-pane">
-                <p>Tab PAGES</p>
-            </div>
-            <!-- /#tab2 -->
-            <div id="tab3" class="content-pane">
-                <p>Tab 3 NAVIGATION</p>
-            </div>
-            <!-- /#tab3 -->
-            <div id="tab4" class="content-pane">
-                <p>Tab 4 USERS</p>
-            </div>
-            <!-- /#tab4 -->
-            <div id="tab5" class="content-pane">
-                <p>Tab 5 WEBSITE SETTINGS</p>
-            </div>
-            <!-- /#tab5 -->
-        </div>
-    </div>
+    @include('components.tabs_content')
 
     <h1>McLaughlin Autoparts</h1>
     <h3>Great Parts for Great Drivers!</h3>
@@ -146,9 +122,10 @@
     function getTabContent(tab) {
         $.ajax({
             type: "GET",
-            url: "/tables",
+            url: "warehouse/vehicles",
             success: function(data) {
-                $('.tab-content').html(data);
+                console.log(data)
+;                $('.tab-content').html(data);
             }
         });
     }

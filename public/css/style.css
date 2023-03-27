@@ -116,7 +116,7 @@ body #headline {
 @media only screen and (min-width: 768px) {
     .aboutSection {
         text-align: center;
-        height: 270px;
+        height: 150px;
         margin: auto;
         width: 100%;
     }
