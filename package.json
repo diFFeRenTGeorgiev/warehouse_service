@@ -18,5 +18,24 @@
     "resolve-url-loader": "^3.1.0",
     "sass": "^1.15.2",
     "sass-loader": "^8.0.0"
-  }
+  },
+  "name": "warehouse_service",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+  "version": "1.0.0",
+  "main": "jquery-3.6.0.min.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diFFeRenTGeorgiev/warehouse_service.local.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diFFeRenTGeorgiev/warehouse_service.local/issues"
+  },
+  "homepage": "https://github.com/diFFeRenTGeorgiev/warehouse_service.local#readme"
 }

@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/tables',function () {
+Route::get('tables/',function () {
     return view('stores.table');
 })->name('web.index.createTable');
-Route::prefix('/warehouse')->group(function () {
-    Route::get('/vehicles', 'VehiclesController@showVehicles')->name('warehouse.tab_content_vehicles');
+Route::prefix('warehouse/')->group(function () {
+    Route::get('vehicles/', 'VehiclesController@showVehicles')->name('tab_content_vehicles');
 });

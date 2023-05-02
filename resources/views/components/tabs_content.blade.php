@@ -1,6 +1,6 @@
 <div class="container center">
     <div class="tab-content">
-        @include('vehicles')
+        {{--@include('vehicles')--}}
         @include('product_categories')
         <div id="tab3" class="content-pane">
             <p>Tab 3 NAVIGATION</p>
