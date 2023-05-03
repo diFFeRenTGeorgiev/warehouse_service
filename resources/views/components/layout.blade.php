@@ -1,6 +1,6 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <head>
-    <title>@yield('title', 'McLaughlin Autoparts')</title>
+    <title>McLaughlin Autoparts</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{ asset('css/style.css') }}">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -23,63 +23,32 @@
 
 </head>
 <body>
+<div id="grid-container">
+    <div id="box-1">
     @section('left_navigation')
         @include('components.left_navigation')
     @show
-
+    </div>
+        <div id="homePage" class="container">
 @section('header')
     @include('components.header')
 @show
     <!-- begin:: Content -->
-    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
-        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="col-11" style="background-color:green;">
             <!-- begin:: body_content section -->
         @yield('content')
         <!-- end:: body_content section -->
-        </div>
-    </div>
     <!-- end:: Content -->
+    </div>
     @section('footer')
         @include('components.footer')
     @show
-@section('page_js')
-<script>
-    $(document).ready(function () {
-        // $("#sidebar").niceScroll({
-        //     cursorcolor: '#53619d',
-        //     cursorwidth: 4,
-        //     cursorborder: 'none'
-        // });
-
-        $('#title').on('click', function () {
-            $('#sidebarCollapse').addClass('active');
-            $('#sidebar').removeClass('active');
-            $('#viewport').fadeOut();
-        });
-
-        $('#sidebarCollapse').on('click', function () {
-            if($(this).hasClass('active')){
-                $(this).removeClass('active');
-                $('#sidebar').addClass('active');
-                $('#viewport').fadeIn();
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            }
-        });
-    });
-    function getTabContent(tab) {
-        $.ajax({
-            type: "GET",
-            url: "warehouse/vehicles",
-            success: function(data) {
-                $('.tab-content').html(data);
-            }
-        });
-    }
-</script>
-@show
+        </div>
+    </div>
 <!--end::Page Scripts -->
 </body>    <!--begin::Page Custom Styles(used by this page) -->
+@yield('page_js')
+
 @yield('page_css')
 <!--end::Page Custom Styles -->
 
@@ -87,6 +56,81 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
+    .header {
+        overflow: hidden;
+        background-color: #f1f1f1;
+        height: 52px;
+        /*padding: 20px 10px;*/
+    }
+    #homePage{
+        width: 146%;
+        margin-right: 102px;
+    }
+
+    .header a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 25px;
+        border-radius: 4px;
+    }
+
+    .header a.logo {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .header a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .header a.active {
+        background-color: dodgerblue;
+        color: white;
+    }
+
+    .header-right {
+        float: right;
+    }
+
+    @media screen and (max-width: 500px) {
+        .header a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+
+        .header-right {
+            float: none;
+        }
+    }
+    footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background-color: #4C4;*/
+        height: 30px;
+    }
+    #grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        /*grid-gap: 8px;*/
+    }
+    #grid-container div {
+        text-align: center;
+    }
+    #box-1 {
+        grid-row-start: 1;
+        grid-row-end: 7;
+        height: 200px;
+        position: sticky;
+        top: 0px;
+    }
     body {
         overflow-x: hidden;
         font-family: 'Roboto', sans-serif;
@@ -112,6 +156,9 @@
         font-family: 'Glyphicons Halflings', serif;
         font-size: 0.6em;
     }
+.nav{
+    text-align: center;
+}
 
     a[aria-expanded="true"] {
         content: '\e260';
@@ -273,9 +320,9 @@
         color: #ECEFF1;
     }
 
-    #sidebar .nav a i{
-        margin-right: 16px;
-    }
+    /*#sidebar .nav a i{*/
+        /*margin-right: 16px;*/
+    /*}*/
     #sidebar ul li a, #sidebar ul li a:hover, #sidebar ul li.active>a, a[aria-expanded="true"]
     {
         border-left: none;

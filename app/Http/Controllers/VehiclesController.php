@@ -12,7 +12,6 @@ class VehiclesController extends Controller
         FROM vehicles
         left join models on models.id = vehicles.model_id
         ");
-
         return view('vehicles',['vehicles' => $allVehicles]);
     }
 }

@@ -6,7 +6,7 @@
             <a href="#" id="title">McLaughlin autoparts!</a>
         </header>
         <ul class="nav">
-            <li class="active">
+            <li >
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
                     Dashboard
                 </a>
@@ -46,11 +46,49 @@
                     <i class="zmdi zmdi-comment-more"></i> Contact
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    <i class="zmdi zmdi-comment-more"></i> end
+                </a>
+            </li>
         </ul>
     </nav>
-    <!-- Content -->
 </div>
+@section('page_js')
+<script>
+    $(document).ready(function () {
+        // $("#sidebar").niceScroll({
+        //     cursorcolor: '#53619d',
+        //     cursorwidth: 4,
+        //     cursorborder: 'none'
+        // });
 
+        $('#title').on('click', function () {
+            $('#sidebarCollapse').addClass('active');
+            $('#sidebar').removeClass('active');
+            $('#viewport').fadeOut();
+        });
 
+        $('#sidebarCollapse').on('click', function () {
+            if($(this).hasClass('active')){
+                $(this).removeClass('active');
+                $('#sidebar').addClass('active');
+                $('#viewport').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            }
+        });
+    });
+    function getTabContent(tab) {
+        $.ajax({
+            type: "GET",
+            url: "warehouse/vehicles",
+            success: function(data) {
+                $('.tab-content').html(data);
+            }
+        });
+    }
+</script>
+    @show
 
 
