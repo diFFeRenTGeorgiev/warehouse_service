@@ -8,12 +8,12 @@
         <ul class="nav">
             <li >
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                    Dashboard
+                    Категории
                 </a>
                 <ul class="nav collapse list-unstyled" id="homeSubmenu">
-                    <li ><a href="{{route('tab_content_vehicles') }}" ><span>Vehicles</span></a></li>
-                    <li ><a href="#">Home 2</a></li>
-                    <li><a href="#">Home 3</a></li>
+                    <li ><a href="{{route('tab_content_vehicles') }}" ><span>Автомобили</span></a></li>
+                    <li ><a href="#">Авточасти</a></li>
+                    <li><a href="#">Производители</a></li>
                 </ul>
             </li>
             <li>

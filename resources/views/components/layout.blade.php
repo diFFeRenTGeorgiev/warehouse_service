@@ -108,6 +108,17 @@
             float: none;
         }
     }
+    #sidebar ul li a:hover {
+        border-left: 3px solid #009688!important;
+        color: #1d2129!important;
+        background: #fff !important;
+    }
+    #sidebar ul li.active>a, a[aria-expanded="true"] {
+        border-left: 3px solid #009688!important;
+        color: #1d2129!important;
+        background-color: #fff!important;
+    }
+
     footer {
         position: absolute;
         left: 0;
