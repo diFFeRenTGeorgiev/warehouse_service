@@ -3,7 +3,7 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <header>
-            <a href="#" id="title">McLaughlin autoparts!</a>
+            <a href="#" id="title">McLaughlin furniture!</a>
         </header>
         <ul class="nav">
             <li >
@@ -11,44 +11,50 @@
                     Категории
                 </a>
                 <ul class="nav collapse list-unstyled" id="homeSubmenu">
-                    <li ><a href="{{route('tab_content_vehicles') }}" ><span>Автомобили</span></a></li>
-                    <li ><a href="#">Авточасти</a></li>
-                    <li><a href="#">Производители</a></li>
+                    <li ><a href="{{route('tab_content_vehicles') }}" ><span>Продукти</span></a></li>
+                    <li ><a href="#">Поръчки</a></li>
+                    <li><a href="#submenu_suppliers" data-toggle="collapse" aria-expanded="false">Доставчици</a>
+                        <ul class="nav collapse list-unstyled" id="submenu_suppliers">
+                            <li ><a href="" ><span>Шофьори</span></a></li>
+                            <li ><a href="#">Графици</a></li>
+                            <li><a href="#">Доставчици</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-link"></i> Shortcuts
+                    <i class="zmdi zmdi-link"></i> Поръчки
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-widgets"></i> Overview
+                    <i class="zmdi zmdi-widgets"></i> Рекламации
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-calendar"></i> Events
+                    <i class="zmdi zmdi-calendar"></i> Отчети
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-info-outline"></i> About
+                    <i class="zmdi zmdi-info-outline"></i> Продажби
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-settings"></i> Services
+                    <i class="zmdi zmdi-settings"></i> Справки
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-comment-more"></i> Contact
+                    <i class="zmdi zmdi-comment-more"></i> Дистрибуции
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-comment-more"></i> end
+                    <i class="zmdi zmdi-comment-more"></i> Доставки
                 </a>
             </li>
         </ul>
