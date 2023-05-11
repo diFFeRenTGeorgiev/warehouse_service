@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3381fde-5bbb-4f07-ae06-3e2b88dfbe33" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/products/add_product_form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/vehicles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/vehicles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehiclesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/left_navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/left_navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehicles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehicles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehicles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products_table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="87e2be18-6726-4c08-a243-9e71ad2d1127" name="local" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,20 +44,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/components/footer.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#footer#0;n#!!top" expanded="true" />
-              </folding>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -66,22 +52,8 @@
       <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/components/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="68" column="19" lean-forward="true" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/bootstrap.min.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="VehiclesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VehiclesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+            <state relative-caret-position="4594">
+              <caret line="348" column="27" lean-forward="true" selection-start-line="348" selection-start-column="27" selection-end-line="348" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -89,34 +61,46 @@
       <file leaf-file-name="left_navigation.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/components/left_navigation.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="19" column="54" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="54" />
+            <state relative-caret-position="150">
+              <caret line="13" column="67" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/components/header.blade.php">
+      <file leaf-file-name="add_product_form.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/products/add_product_form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="300" column="17" lean-forward="true" selection-start-line="300" selection-start-column="17" selection-end-line="300" selection-end-column="17" />
+            <state relative-caret-position="285">
+              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vehicles.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/vehicles.blade.php">
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="42" />
+            <state relative-caret-position="338">
+              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products_table.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/products_table.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="130" selection-start-line="16" selection-start-column="114" selection-end-line="16" selection-end-column="130" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="32" />
               <folding>
-                <element signature="e#34925#35255#2#HTML" expanded="true" />
-                <element signature="e#35539#35872#2#HTML" expanded="true" />
-                <element signature="e#36089#36422#2#HTML" expanded="true" />
-                <element signature="e#36566#36899#2#HTML" expanded="true" />
-                <element signature="e#38987#39278#2#HTML" expanded="true" />
-                <element signature="e#39838#40132#2#HTML" expanded="true" />
-                <element signature="e#40451#40745#2#HTML" expanded="true" />
+                <element signature="e#40#63#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,17 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>td</find>
-      <find>thead-light</find>
-      <find>table-hover</find>
-      <find>table-striped</find>
-      <find>nav1</find>
-      <find>bootstrap</find>
-      <find>body</find>
-      <find>navbar</find>
-      <find>navbar-default</find>
-      <find>headbar</find>
-      <find>navbar header</find>
       <find>z-</find>
       <find>sub-menu</find>
       <find>zmdi</find>
@@ -155,14 +128,25 @@
       <find>&lt;!--end::Form--&gt;</find>
       <find>box-1</find>
       <find>section section-campany-baners</find>
-      <find>container</find>
       <find>cont</find>
       <find>filter-btn</find>
       <find>filter_dropdown</find>
       <find>jsFilter</find>
       <find>modeSwitch.addEventListener</find>
-      <find>grid</find>
       <find>mode-switc</find>
+      <find>app-content-actions</find>
+      <find>app-content-actions-wrapper</find>
+      <find>filter-button-wrapper</find>
+      <find>search-bar</find>
+      <find>action-button grid</find>
+      <find>grid</find>
+      <find>products-area-wrapper</find>
+      <find>main</find>
+      <find>body</find>
+      <find>container</find>
+      <find>row</find>
+      <find>sidebar he</find>
+      <find>app-container</find>
     </findStrings>
     <replaceStrings>
       <replace>cont</replace>
@@ -199,14 +183,20 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/components/search_bar.blade.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VehiclesController.php" />
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/header.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2023_05_11_192139_create_product_translations_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2023_05_11_192056_create_products_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2023_05_11_192219_create_product_files_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VehiclesController.php" />
         <option value="$PROJECT_DIR$/resources/views/vehicles.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/components/left_navigation.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/components/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
+        <option value="$PROJECT_DIR$/resources/views/components/left_navigation.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/products_table.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/products/add_product_form.blade.php" />
       </list>
     </option>
   </component>
@@ -344,6 +334,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -359,38 +350,12 @@
             <path>
               <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
               <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Console" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
               <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
@@ -402,19 +367,11 @@
               <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="warehouse_service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warehouse_service" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -499,7 +456,8 @@
       <workItem from="1683134920315" duration="10676000" />
       <workItem from="1683227622497" duration="6674000" />
       <workItem from="1683649474447" duration="12894000" />
-      <workItem from="1683741200506" duration="11665000" />
+      <workItem from="1683741200506" duration="11751000" />
+      <workItem from="1683820800978" duration="14609000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1679512164023</created>
@@ -536,11 +494,18 @@
       <option name="project" value="LOCAL" />
       <updated>1683234269801</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="changeFromAutopartsToFurniture">
+      <created>1683752903332</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683752903332</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207293000" />
+    <option name="totallyTimeSpent" value="221988000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -556,17 +521,16 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32869565" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51363635" side_tool="true" visible="true" weight="0.3252174" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.4121212" side_tool="true" visible="true" weight="0.19130434" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.6515151" weight="0.22782609" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32869565" />
       <window_info id="npm" order="2" sideWeight="0.503876" side_tool="true" weight="0.32272726" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.48636365" visible="true" weight="0.3252174" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67783505" visible="true" weight="0.24469697" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58787876" visible="true" weight="0.19130434" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6752688" visible="true" weight="0.16742425" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32954547" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32869565" />
-      <window_info id="Structure" order="1" sideWeight="0.32216495" side_tool="true" visible="true" weight="0.24469697" />
+      <window_info id="Structure" order="1" sideWeight="0.32473117" side_tool="true" visible="true" weight="0.16742425" />
       <window_info id="Favorites" order="3" sideWeight="0.503876" side_tool="true" weight="0.32272726" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986711" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -576,6 +540,7 @@
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32869565" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,53 +580,10 @@
     <MESSAGE value="demoTEST" />
     <MESSAGE value="fixSidebar and header" />
     <MESSAGE value="addBackgroundOnActiveMenuInSidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="addBackgroundOnActiveMenuInSidebar" />
+    <MESSAGE value="changeFromAutopartsToFurniture" />
+    <option name="LAST_COMMIT_MESSAGE" value="changeFromAutopartsToFurniture" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170340">
@@ -859,13 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/share/applications/firefox.desktop">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -897,61 +812,98 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#footer#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VehiclesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/components/header.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="300" column="17" lean-forward="true" selection-start-line="300" selection-start-column="17" selection-end-line="300" selection-end-column="17" />
+        <state relative-caret-position="4500">
+          <caret line="300" column="17" selection-start-line="300" selection-start-column="17" selection-end-line="300" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2023_05_11_192056_create_products_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2023_05_11_192139_create_product_translations_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Product_translation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2023_05_11_192219_create_product_files_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Product_translation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Product_file.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/components/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4594">
+          <caret line="348" column="27" lean-forward="true" selection-start-line="348" selection-start-column="27" selection-end-line="348" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="32" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/components/left_navigation.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="19" column="54" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="54" />
+        <state relative-caret-position="150">
+          <caret line="13" column="67" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/components/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/products_table.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="68" column="19" lean-forward="true" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+        <state relative-caret-position="240">
+          <caret line="16" column="130" selection-start-line="16" selection-start-column="114" selection-end-line="16" selection-end-column="130" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vehicles.blade.php">
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="42" />
-          <folding>
-            <element signature="e#34925#35255#2#HTML" expanded="true" />
-            <element signature="e#35539#35872#2#HTML" expanded="true" />
-            <element signature="e#36089#36422#2#HTML" expanded="true" />
-            <element signature="e#36566#36899#2#HTML" expanded="true" />
-            <element signature="e#38987#39278#2#HTML" expanded="true" />
-            <element signature="e#39838#40132#2#HTML" expanded="true" />
-            <element signature="e#40451#40745#2#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="338">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/products/add_product_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
         </state>
       </provider>
     </entry>

@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('tables/',function () {
     return view('stores.table');
 })->name('web.index.createTable');
-Route::prefix('warehouse/')->group(function () {
-    Route::get('vehicles/', 'VehiclesController@showVehicles')->name('tab_content_vehicles');
-});
+Route::get('products/', 'ProductController@showProducts')->name('tab_all_products');
+Route::get('add_product/',function(){
+    return view('products.add_product_form');
+})->name('new_product_form');

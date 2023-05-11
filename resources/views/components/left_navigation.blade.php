@@ -11,21 +11,16 @@
                     Категории
                 </a>
                 <ul class="nav collapse list-unstyled" id="homeSubmenu">
-                    <li ><a href="{{route('tab_content_vehicles') }}" ><span>Продукти</span></a></li>
+                    <li ><a href="{{route('tab_all_products') }}" ><span>Продукти</span></a></li>
                     <li ><a href="#">Поръчки</a></li>
                     <li><a href="#submenu_suppliers" data-toggle="collapse" aria-expanded="false">Доставчици</a>
                         <ul class="nav collapse list-unstyled" id="submenu_suppliers">
                             <li ><a href="" ><span>Шофьори</span></a></li>
                             <li ><a href="#">Графици</a></li>
-                            <li><a href="#">Доставчици</a></li>
+                            <li><a href="#">Наличности</a></li>
                         </ul>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="zmdi zmdi-link"></i> Поръчки
-                </a>
             </li>
             <li>
                 <a href="#">

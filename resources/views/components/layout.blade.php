@@ -11,16 +11,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
 <!-- bootstrap-select component -->
-{{--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">--}}
+    {{--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">--}}
 <!-- Optional theme -->
-{{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">--}}
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">--}}
 <!-- Latest compiled and minified JavaScript -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    {{--@laravelViewsStyles--}}
 </head>
 <body>
 <div id="grid-container">
@@ -36,19 +36,22 @@
             @show
         </div>
         <!-- begin:: Content -->
-        <div id="main" class="row container" >
+        <div id="main" class="row container justify-content-center">
             <!-- begin:: body_content section -->
         @yield('content')
         <!-- end:: body_content section -->
             <!-- end:: Content -->
         </div>
+        <div id="footer-fot">
             @section('footer')
                 @include('components.footer')
             @show
         </div>
     </div>
 </div>
+</div>
 <!--end::Page Scripts -->
+{{--@laravelViewsScripts--}}
 </body>    <!--begin::Page Custom Styles(used by this page) -->
 @yield('page_js')
 
@@ -58,6 +61,11 @@
 @section('style')
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+        #main {
+            min-height: 100vh;
+            overflow: hidden;
+        }
 
         .header {
             overflow: hidden;
@@ -161,11 +169,11 @@
             position: sticky;
             top: 0px;
         }
-
         body {
-            overflow-x: hidden;
+            overflow: hidden;
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
+            height:100%;
         }
 
         #sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -210,7 +218,7 @@
         #viewport {
             position: fixed;
             width: 100vw;
-            height: 100vh;
+            /*height: 100vh;*/
             /*background: rgba(0, 0, 0, 0.7);*/
             z-index: 998;
             /*display: none;*/
@@ -334,7 +342,7 @@
         #sidebar header {
             background-color: #263238;
             font-size: 20px;
-            line-height: 52px;
+            line-height: 49px;
             text-align: center;
         }
 

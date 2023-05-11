@@ -14,13 +14,15 @@
                         <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
                     </svg>
                 </button>
-                <button class="app-content-headerButton">Add Product</button>
+                <button class="app-content-headerButton" data-toggle="modal" id="btnAddProduct"><a href="{{route('new_product_form') }}" >Add Product</a></button>
             </div>
             <div class="app-content-actions">
                 <input class="search-bar" placeholder="Search..." type="text">
                 <div class="app-content-actions-wrapper">
                     <div class="filter-button-wrapper">
-                        <button class="action-button filter jsFilter"><span>Filter</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+                        <button class="action-button filter jsFilter"><span>Filter</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
                         <div class="filter-menu">
                             <label>Category</label>
                             <select>
@@ -45,10 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <button class="action-button list active" title="List View">
+                    <button class="action-button list active" title="List View" id="buttonList">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
                     </button>
-                    <button class="action-button grid" onclick="gridView()" id="grid" title="Grid View" type="button">
+                    <button class="action-button grid"  id="grid" title="Grid View" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     </button>
                 </div>
@@ -302,14 +304,53 @@
         </div>
     </div>
 @endsection
+@section('page_js')
+    <script>
+
+        document.querySelector(".jsFilter").addEventListener("click", function () {
+            document.querySelector(".filter-menu").classList.toggle("active");
+        });
+
+        document.querySelector(".grid").addEventListener("click", function () {
+            document.querySelector(".list").classList.remove("active");
+            document.querySelector(".grid").classList.add("active");
+            document.querySelector(".products-area-wrapper").classList.add("gridView");
+            document
+                .querySelector(".products-area-wrapper")
+                .classList.remove("tableView");
+        });
+
+        document.querySelector(".list").addEventListener("click", function () {
+            document.querySelector(".list").classList.add("active");
+            document.querySelector(".grid").classList.remove("active");
+            document.querySelector(".products-area-wrapper").classList.remove("gridView");
+            document.querySelector(".products-area-wrapper").classList.add("tableView");
+        });
+
+        var modeSwitch = document.querySelector('.mode-switch');
+        modeSwitch.addEventListener('click', function () {                      document.documentElement.classList.toggle('light');
+            modeSwitch.classList.toggle('active');
+        });
+    </script>
+
+    @endsection
 @section('page_css')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
         * {
             box-sizing: border-box;
         }
+        #grid{
+            position: relative;
+        }
+        #buttonList{
+            position: relative;
+        }
+        #btnAddProduct{
+            position: relative;
+        }
         :root {
-            --app-bg: #ddd;
+            --app-bg: #151e2f;
             --sidebar: #151e2f;
             --sidebar-main-color: #fff;
             --table-border: #1a2131;
@@ -351,13 +392,13 @@
         .app-container {
             border-radius: 4px;
             width: 100%;
-            height: 100%;
-            max-height: 100%;
+            height: 100vh;
+            /*max-height: 100%;*/
             max-width: 1280px;
             display: flex;
-            overflow: hidden;
+            overflow: scroll !important;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            max-width: 2000px;
+            /*max-width: 2000px;*/
             margin: 0 auto;
         }
         .sidebar {
@@ -425,6 +466,7 @@
             margin-left: auto;
             margin-right: 8px;
             cursor: pointer;
+            position: relative;
         }
         .mode-switch .moon {
             fill: var(--app-content-main-color);
@@ -526,11 +568,11 @@
             }
             .app-content-actions .search-bar {
                 max-width: 100%;
-                order: 2;
+                /*order: 2;*/
             }
             .app-content-actions .app-content-actions-wrapper {
                 padding-bottom: 16px;
-                order: 1;
+                /*order: 1;*/
             }
         }
         .search-bar {
@@ -549,6 +591,7 @@
             width: 100%;
             max-width: 320px;
             transition: 0.2s;
+            position: relative;
         }
         .light .search-bar {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231f1c2e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
@@ -678,8 +721,8 @@
         }
         .products-area-wrapper {
             width: 100%;
-            max-height: 100%;
-            overflow: auto;
+            /*min-height: 700px;*/
+            /*overflow: auto;*/
             padding: 0 4px;
         }
         .tableView .products-header {
