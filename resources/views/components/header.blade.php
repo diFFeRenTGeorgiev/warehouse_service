@@ -2,71 +2,57 @@
     <a href="#" class="logo">McLaughlin warehouse</a>
     <div class="header-right">
         <a class="active" href="#">Home</a>
-        <a href="#">Contact</a>
-        <a href="#">About</a>
+
+        <a data-toggle="modal" data-target="#myModal" id="logBtn" href="#">Login</a>
+        <a href="#">Register</a>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-    {{--<div class="cont">--}}
-        {{--<header class="top-bar">--}}
-            {{--<div class="dropdown">--}}
-                {{--<a id="icon">--}}
-                    {{--<button class="menu-btn">--}}
-                        {{--<i class="fas fa-bars"></i>--}}
-                    {{--</button></a>--}}
-                {{--<div class="dropdown-content" >--}}
-                    {{--<div class="dropdown-form">--}}
-                        {{--Form--}}
-                    {{--</div><hr class="white-hr"/>--}}
-                    {{--<div class="dropdown-products">--}}
-                        {{--Products--}}
-                    {{--</div><hr class="white-hr"/>--}}
-                    {{--<div class="dropdown-cart">--}}
-                        {{--Cart--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<span class="welcome-text">CoderHouse eCommerce</span>--}}
-            {{--<button class="login-btn">Sign up/Login</button>--}}
-        {{--</header>--}}
-        {{--<section>--}}
-            {{--<h5 style="color:black;">Products List</h5><hr class="black-hr"/>--}}
-            {{--<div class="view-cont">--}}
-                {{--<div class="filter-section">--}}
-                    {{--<div class="results">--}}
-                        {{--Showing 0 of 0 results.--}}
-                    {{--</div>--}}
-                    {{--<div class="filters">--}}
-                        {{--<button class="filter-btn btn btn-primary btn-lg">Filters</button>--}}
-                        {{--<div class="filter-dropdown">--}}
-                            {{--<form class="filter-form">--}}
-                                {{--<label for="name" id="filter-label">Name:</label><br/>--}}
-                                {{--<input type="text" class="filter-text" id="name" name="name"--}}
-                                       {{--placeholder="Type a name..."/>--}}
-
-
-                                {{--<label for="code" id="filter-label">Code:</label><br/>--}}
-                                {{--<input type="text" class="filter-text" id="code" name="code"--}}
-                                       {{--placeholder="Type a code..."/>--}}
-
-
-                                {{--<label for="price" id="filter-label">Price:</label><br/>--}}
-                                {{--<input type="range" min="0.01" step="0.01" max="10000" class="filter-range">--}}
-
-
-                                {{--<label for="stock" id="filter-label" >Stock:</label><br/>--}}
-                                {{--<input type="range" min="0" step="1" class="filter-range">--}}
-
-                            {{--</form>--}}
-                        {{--</div>--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</section>--}}
-    {{--</div>--}}
+            <!-- Modal content-->
+                    @include('auth.register_form')
+        </div>
+    </div>
 </div>
+<script>
+    $("#close").on('click',function () {
+        $('.modal').hide()
+    });
+</script>
+    {{--$(document).ready(function(){--}}
+        {{--function alignModal(){--}}
+            {{--var modalDialog = $(this).find(".modal-dialog");--}}
+{{--console.log(modalDialog);--}}
+            {{--// Applying the top margin on modal to align it vertically center--}}
+            {{--modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));--}}
+        {{--}--}}
+        {{--// Align modal when it is displayed--}}
+        {{--$(".modal").on("show", alignModal);--}}
+
+        {{--// Align modal when user resize the window--}}
+        {{--$(window).on("resize", function(){--}}
+            {{--$(".modal:visible").each(alignModal);--}}
+        {{--});--}}
+    {{--});--}}
+{{--</script>--}}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        align: middle;
+
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        vertical-align: middle;
+        opacity: 10!important;
+    }
+
     body {
         background-color: #EBEBEB;
         font-family: 'Open Sans', sans-serif;

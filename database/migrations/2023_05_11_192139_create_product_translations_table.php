@@ -18,7 +18,6 @@ class CreateProductTranslationsTable extends Migration
             $table->integer('product_id')->nullable();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
-            $table->string('color_name')->nullable();
             $table->integer('warranty')->nullable();
             $table->double('regular_price')->nullable();
             $table->double('promotional_price')->nullable();

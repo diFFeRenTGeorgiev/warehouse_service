@@ -2,40 +2,57 @@
 {{--@livewire('users-table-view')--}}
 
 <div class="login-box">
-    <h2>Добавяне на продукт</h2>
-    <form>
+    <h2>Регистрация</h2>
+    <form id="register_form" action="{{ route('register_form') }}" method="POST">
+        @csrf
         <div class="user-box">
-            <input type="text" name="product_name" required="">
-            <label>Име на продукта</label>
+            <input type="text" name="user_name" required="">
+            <label>Име</label>
         </div>
         <div class="user-box">
-            <input type="text" name="product_type" required="">
-            <label>Тип</label>
+            <input type="text" name="user_last_name" required="">
+            <label>Фамилия</label>
         </div>
         <div class="user-box">
-            <input type="text" name="product_code" required="">
-            <label>PLU</label>
+            <input type="text" name="user_email" required="">
+            <label>Email</label>
         </div>
-        <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Създаване
-        </a>
-        <a id="close" class="close" >
-            <span></span>
+        <div class="user-box">
+            <input type="text" name="phone" required="">
+            <label>Телефон</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="pass" required="">
+            <label>Парола</label>
+        </div>
+        <div class="buttons">
+        <button type="submit" id="submit_form" onclick="submitForm()">
+            {{--<a href="#" type="submit" >--}}
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Запази
+            {{--</a>--}}
+        </button>
+        <button type="submit" id="submit_form" onclick="close()">
+        {{--<a id="close" href="#">--}}
             <span></span>
             <span></span>
             <span></span>
             Затвори
-        </a>
+        {{--</a>--}}
+        </button>
+        </div>
     </form>
 </div>
+
 <script>
-    function closeForm() {
-            myWindow.close();
-    }
+    $('#submit_form').on('click', function(event) {
+        event.preventDefault();
+
+       $('#register_form').submit();
+    });
 </script>
 <style>
     html {
@@ -48,7 +65,7 @@
         background: linear-gradient(#141e30, #243b55);
     }
     #close{
-        margin-left:-8px;
+        margin-right:-14px !important;
     }
 
     .login-box {
@@ -119,6 +136,21 @@
         letter-spacing: 4px
     }
 
+    .login-box form button {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        background: linear-gradient(#141e30, #243b55);
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px
+    }
+
     .login-box a:hover {
         background: #03e9f4;
         color: #fff;
@@ -134,6 +166,21 @@
         display: block;
     }
 
+    .login-box button:hover {
+        background: #03e9f4;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+    }
+
+    .login-box button span {
+        position: absolute;
+        display: block;
+    }
+
     .login-box a span:nth-child(1) {
         top: 0;
         left: -100%;
@@ -143,6 +190,14 @@
         animation: btn-anim1 1s linear infinite;
     }
 
+    .login-box button span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03e9f4);
+        animation: btn-anim1 1s linear infinite;
+    }
     @keyframes btn-anim1 {
         0% {
             left: -100%;
@@ -162,6 +217,15 @@
         animation-delay: .25s
     }
 
+    .login-box button span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #03e9f4);
+        animation: btn-anim2 1s linear infinite;
+        animation-delay: .25s
+    }
     @keyframes btn-anim2 {
         0% {
             top: -100%;
@@ -172,6 +236,16 @@
     }
 
     .login-box a span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, #03e9f4);
+        animation: btn-anim3 1s linear infinite;
+        animation-delay: .5s
+    }
+
+    .login-box button span:nth-child(3) {
         bottom: 0;
         right: -100%;
         width: 100%;
@@ -200,6 +274,15 @@
         animation-delay: .75s
     }
 
+    .login-box button span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #03e9f4);
+        animation: btn-anim4 1s linear infinite;
+        animation-delay: .75s
+    }
     @keyframes btn-anim4 {
         0% {
             bottom: -100%;
