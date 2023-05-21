@@ -23,4 +23,7 @@ Route::get('products/', 'ProductController@showProducts')->name('tab_all_product
 Route::get('add_product/',function(){
     return view('products.add_product_form');
 })->name('new_product_form');
-Route::post('register/','UserController@register')->name('register_form');
+Route::prefix('/users')->group(function () {
+    Route::post('register/', 'UserController@register')->name('register_form');
+    Route::post('login/', 'UserController@login')->name('login_form');
+});

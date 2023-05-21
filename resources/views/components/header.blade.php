@@ -3,39 +3,38 @@
     <div class="header-right">
         <a class="active" href="#">Home</a>
 
-        <a data-toggle="modal" data-target="#myModal" id="logBtn" href="#">Login</a>
-        <a href="#">Register</a>
+        <a  data-toggle="modal" data-target="#login" id="logBtn" href="#">Login</a>
+        <a href="#" data-toggle="modal" data-target="#myModal">Register</a>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
+
         <div class="modal-dialog">
 
             <!-- Modal content-->
                     @include('auth.register_form')
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="login" role="dialog">
+
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            @include('auth.login_form')
+        </div>
+    </div>
 </div>
 <script>
-    $("#close").on('click',function () {
-        $('.modal').hide()
-    });
+    // $(document).ready(function() {
+    //     // Close the modal when the close button or outside the modal is clicked
+    //     $('.close, .modal').on('click', function() {
+    //         $('#myModal').hide(); // or $('#myModal').modal('hide');
+    //         $('.modal-backdrop').remove(); // Remove the modal backdrop
+    //         $('body').removeClass('modal-open'); // Restore body class to enable scrolling
+    //     });
+    // });
 </script>
-    {{--$(document).ready(function(){--}}
-        {{--function alignModal(){--}}
-            {{--var modalDialog = $(this).find(".modal-dialog");--}}
-{{--console.log(modalDialog);--}}
-            {{--// Applying the top margin on modal to align it vertically center--}}
-            {{--modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));--}}
-        {{--}--}}
-        {{--// Align modal when it is displayed--}}
-        {{--$(".modal").on("show", alignModal);--}}
-
-        {{--// Align modal when user resize the window--}}
-        {{--$(window).on("resize", function(){--}}
-            {{--$(".modal:visible").each(alignModal);--}}
-        {{--});--}}
-    {{--});--}}
-{{--</script>--}}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
     .modal:before {
@@ -264,29 +263,3 @@
         font-size: 0.9rem;
     }
 </style>
-{{--<script>--}}
-    {{--const menu_btn = document.getElementsByClassName("menu-btn")[0];--}}
-    {{--const menu_dropdown = document.getElementsByClassName("dropdown-content")[0];--}}
-    {{--const filter_btn = document.getElementsByClassName("filter-btn")[0];--}}
-    {{--const filter_dropdown = document.getElementsByClassName("filter-dropdown")[0];--}}
-    {{--let filter_display = filter_dropdown.style.display;--}}
-    {{--const icon = document.getElementById("icon");--}}
-    {{--menu_btn.onclick = () => {--}}
-        {{--if(menu_dropdown.style.display != 'block'){--}}
-            {{--menu_dropdown.style.display = 'block';--}}
-        {{--}else{--}}
-            {{--menu_dropdown.style.display = 'none';--}}
-        {{--}--}}
-    {{--}--}}
-    {{--filter_btn.onclick = () => {--}}
-        {{--if(filter_dropdown.style.display != 'block'){--}}
-            {{--filter_dropdown.style.display = 'block';--}}
-
-        {{--}else{--}}
-            {{--filter_dropdown.style.display = 'none';--}}
-        {{--}--}}
-    {{--}--}}
-
-
-
-{{--</script>--}}

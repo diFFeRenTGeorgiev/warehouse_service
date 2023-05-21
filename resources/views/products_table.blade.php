@@ -350,7 +350,7 @@
             position: relative;
         }
         :root {
-            --app-bg: #151e2f;
+            /*--app-bg: #151e2f;*/
             --sidebar: #151e2f;
             --sidebar-main-color: #fff;
             --table-border: #1a2131;

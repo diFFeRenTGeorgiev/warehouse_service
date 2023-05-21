@@ -2,47 +2,35 @@
 {{--@livewire('users-table-view')--}}
 
 <div class="login-box">
-    <h2>Регистрация</h2>
-    <form id="register_form" action="{{ route('register_form') }}" method="POST">
+    <h2>Вписване</h2>
+    <form id="register_form" action="{{ route('login_form') }}" method="POST">
         @csrf
-        <div class="user-box">
-            <input type="text" name="user_name" required="">
-            <label>Име</label>
-        </div>
-        <div class="user-box">
-            <input type="text" name="user_last_name" required="">
-            <label>Фамилия</label>
-        </div>
         <div class="user-box">
             <input type="text" name="user_email" required="">
             <label>Email</label>
-        </div>
-        <div class="user-box">
-            <input type="text" name="phone" required="">
-            <label>Телефон</label>
         </div>
         <div class="user-box">
             <input type="text" name="pass" required="">
             <label>Парола</label>
         </div>
         <div class="buttons">
-        <button type="submit" id="submit_form" onclick="submitForm()">
-            {{--<a href="#" type="submit" >--}}
+            <button type="submit" id="submit_form" onclick="submitForm()">
+                {{--<a href="#" type="submit" >--}}
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                Запази
-            {{--</a>--}}
-        </button>
-        <button type="button" id="close_form"  data-dismiss="modal" >
-        {{--<a id="close" href="#">--}}
-            <span></span>
-            <span></span>
-            <span></span>
-            Затвори
-        {{--</a>--}}
-        </button>
+                Вход
+                {{--</a>--}}
+            </button>
+            <button type="button" id="close_form"  data-dismiss="modal" >
+                {{--<a id="close" href="#">--}}
+                <span></span>
+                <span></span>
+                <span></span>
+                Изход
+                {{--</a>--}}
+            </button>
         </div>
     </form>
 </div>
@@ -51,7 +39,7 @@
     $('#submit_form').on('click', function(event) {
         event.preventDefault();
 
-       $('#register_form').submit();
+        $('#register_form').submit();
     });
 </script>
 <style>
