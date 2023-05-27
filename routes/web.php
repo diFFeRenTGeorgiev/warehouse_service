@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('front.homepage');
+})->name('front.index');
 Route::get('tables/',function () {
     return view('stores.table');
 })->name('web.index.createTable');
@@ -26,4 +26,7 @@ Route::get('add_product/',function(){
 Route::prefix('/users')->group(function () {
     Route::post('register/', 'UserController@register')->name('register_form');
     Route::post('login/', 'UserController@login')->name('login_form');
+    Route::get('auth/', function () {
+        return view('auth.profil');
+    })->name('login_tabs');
 });

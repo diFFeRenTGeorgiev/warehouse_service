@@ -35,7 +35,7 @@
                 Запази
             {{--</a>--}}
         </button>
-        <button type="button" id="close_form"  data-dismiss="modal" >
+        <button class="hBack" type="button" id="close_form"  data-dismiss="modal" >
         {{--<a id="close" href="#">--}}
             <span></span>
             <span></span>
@@ -53,6 +53,11 @@
 
        $('#register_form').submit();
     });
+    $(".hBack").on("click", function(e){
+        e.preventDefault();
+        window.history.back();
+    });
+
 </script>
 <style>
     html {
@@ -62,7 +67,7 @@
         margin:0;
         padding:0;
         font-family: sans-serif;
-        background: linear-gradient(#141e30, #243b55);
+        /*background: linear-gradient(#141e30, #243b55);*/
     }
     #close{
         margin-right:-14px !important;
@@ -70,7 +75,7 @@
 
     .login-box {
         position: absolute;
-        top: 50%;
+        top: 65%;
         left: 50%;
         width: 400px;
         padding: 40px;
@@ -136,7 +141,7 @@
         letter-spacing: 4px
     }
 
-    .login-box form button {
+    .login-box form .buttons button {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -148,7 +153,8 @@
         overflow: hidden;
         transition: .5s;
         margin-top: 40px;
-        letter-spacing: 4px
+        letter-spacing: 4px;
+        margin-left: 5%;
     }
 
     .login-box a:hover {

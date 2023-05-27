@@ -45,4 +45,12 @@ class UserController extends Controller
         }
 
     }
+
+    public function login(Request $request){
+        $user = User::where('email', '=', $request->user_email)->get();
+        if (!$user and count($user) == 0) {
+            return "Няма потребител с такъв имейл адрес!";
+        }
+
+    }
 }

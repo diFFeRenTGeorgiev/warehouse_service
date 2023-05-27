@@ -1,9 +1,9 @@
 
 {{--@livewire('users-table-view')--}}
 
-<div class="login-box">
+<div class="login-box" id="log">
     <h2>Вписване</h2>
-    <form id="register_form" action="{{ route('login_form') }}" method="POST">
+    <form id="login_form" action="{{ route('login_form') }}" method="POST">
         @csrf
         <div class="user-box">
             <input type="text" name="user_email" required="">
@@ -13,8 +13,8 @@
             <input type="text" name="pass" required="">
             <label>Парола</label>
         </div>
-        <div class="buttons">
-            <button type="submit" id="submit_form" onclick="submitForm()">
+        <div class="buttonss">
+            <button type="submit" id="log_form" onclick="submitForm()">
                 {{--<a href="#" type="submit" >--}}
                 <span></span>
                 <span></span>
@@ -23,7 +23,7 @@
                 Вход
                 {{--</a>--}}
             </button>
-            <button type="button" id="close_form"  data-dismiss="modal" >
+            <button class="hBack" type="button" id="close_form"  data-dismiss="modal" >
                 {{--<a id="close" href="#">--}}
                 <span></span>
                 <span></span>
@@ -36,10 +36,14 @@
 </div>
 
 <script>
-    $('#submit_form').on('click', function(event) {
+    $('#log_form').on('click', function(event) {
         event.preventDefault();
 
-        $('#register_form').submit();
+        $('#login_form').submit();
+    });
+    $(".hBack").on("click", function(e){
+        e.preventDefault();
+        window.history.back();
     });
 </script>
 <style>
@@ -50,15 +54,16 @@
         margin:0;
         padding:0;
         font-family: sans-serif;
-        background: linear-gradient(#141e30, #243b55);
+        /*background: linear-gradient(#141e30, #243b55);*/
     }
     #close{
         margin-right:-14px !important;
     }
-
+    #log{
+        top: 50%;
+    }
     .login-box {
         position: absolute;
-        top: 50%;
         left: 50%;
         width: 400px;
         padding: 40px;
@@ -136,7 +141,8 @@
         overflow: hidden;
         transition: .5s;
         margin-top: 40px;
-        letter-spacing: 4px
+        letter-spacing: 4px;
+        margin-left: 10%;
     }
 
     .login-box a:hover {
