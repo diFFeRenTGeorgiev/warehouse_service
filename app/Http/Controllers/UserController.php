@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserController extends Controller
 {
@@ -48,9 +49,18 @@ class UserController extends Controller
 
     public function login(Request $request){
         $user = User::where('email', '=', $request->user_email)->get();
-        if (!$user and count($user) == 0) {
+
+        if (count($user) == 0) {
             return "Няма потребител с такъв имейл адрес!";
         }
-
+//        else {dd($user->has('email'));
+//            if($user['role_id'] != null){
+//                dd($user);
+//                return view('index');
+//            }
+//            else{
+//                return view('front.homepage',$user);
+//            }
+//        }
     }
 }
