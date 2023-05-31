@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -11,7 +12,6 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-
         $this->validateUserData($request);
 
         $user = User::where('email', '=', $request->user_email)->get();
@@ -22,6 +22,7 @@ class UserController extends Controller
         $user->first_name = $request->user_name;
         $user->last_name = $request->user_last_name;
         $user->email = $request->user_email;
+        $user->password = Hash::make($request->pass);
         $user->phone = $request->phone;
         $user->save();
 
@@ -48,19 +49,18 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        $user = User::where('email', '=', $request->user_email)->get();
+        $user = User::where('email', '=', $request->user_email)->first();
 
-        if (count($user) == 0) {
+        if (empty($user)) {
             return "Няма потребител с такъв имейл адрес!";
         }
-//        else {dd($user->has('email'));
-//            if($user['role_id'] != null){
-//                dd($user);
-//                return view('index');
-//            }
-//            else{
-//                return view('front.homepage',$user);
-//            }
-//        }
+        else {
+            if($user->role_id != null){
+                return view('index',$user);
+            }
+            else{
+                return view('front.homepage',$user);
+            }
+        }
     }
 }

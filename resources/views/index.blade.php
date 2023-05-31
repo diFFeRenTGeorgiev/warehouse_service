@@ -7,7 +7,7 @@
                 <div class="card card-campany">
                     <div class="card-img-top">
                         <img class="lazyload"
-                             src="files/banner.jpg"
+                             src="/files/banner.jpg"
                              data-src="files/main_banner.jpg" style="width: 1109px; height: 393px;">
                     </div>
                 </div><!-- /.card card-campany -->

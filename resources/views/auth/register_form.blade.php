@@ -22,7 +22,7 @@
             <label>Телефон</label>
         </div>
         <div class="user-box">
-            <input type="text" name="pass" required="">
+            <input type="password" name="pass" required="">
             <label>Парола</label>
         </div>
         <div class="buttons">
