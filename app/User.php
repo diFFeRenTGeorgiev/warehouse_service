@@ -165,7 +165,7 @@ class User extends Authenticatable
      */
     public function hasAnyRole()
     {
-        if(count($this->roles)>0){
+        if($this->role_id != null){
             return true;
         }
 

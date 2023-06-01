@@ -29,4 +29,7 @@ Route::prefix('/users')->group(function () {
     Route::get('auth/', function () {
         return view('auth.profil');
     })->name('login_tabs');
+//    Route::post('logout/',function () {
+//        return view('auth.profil');
+//    })->name('logout_tabs');
 });

@@ -55,8 +55,8 @@ class UserController extends Controller
             return "Няма потребител с такъв имейл адрес!";
         }
         else {
-            if($user->role_id != null){
-                return view('index',$user);
+            if($user->hasAnyRole()){
+                return view('front.homepage',['user' => $user,'admin']);
             }
             else{
                 return view('front.homepage',$user);

@@ -11,32 +11,32 @@
                 <a href="{{route('front.index')}}">Начало</a>
             </li>
             <li>
-                <a href="">Категории</a>
+                <a href="{{route('tab_all_products') }}">Продукти</a>
                 <ul class="mega-dropdown">
                     <li class="row">
                         <ul class="mega-col">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Дивани</a></li>
+                            <li><a href="#">Канапета</a></li>
+                            <li><a href="#">Секции</a></li>
+                            <li><a href="#">Маси</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Легла</a></li>
+                            <li><a href="#">Гардероби</a></li>
+                            <li><a href="#">Скринове</a></li>
+                            <li><a href="#">Матраци</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Coming Soon</a></li>
-                            <li><a href="#">404 Error</a></li>
-                            <li><a href="#">Search</a></li>
-                            <li><a href="#">Author Page</a></li>
+                            <li><a href="#">Кухни</a></li>
+                            <li><a href="#">Модулни кухни</a></li>
+                            <li><a href="#">Трапезни маси</a></li>
+                            <li><a href="#">Столове</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Full Width</a></li>
-                            <li><a href="#">Right Column</a></li>
-                            <li><a href="#">Left Column</a></li>
-                            <li><a href="#">Maintenance</a></li>
+                            <li><a href="#">Офис столове</a></li>
+                            <li><a href="#">Бюра</a></li>
+                            <li><a href="#">Шкафове</a></li>
+                            <li><a href="#">Мека мебел</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -53,9 +53,15 @@
             <li>
                 <a href="">Контакти</a>
             </li>
+            @if(!empty($user->role_id))
+                <li class="dropdown">
+                    <a id="logoutBtn" href="{{route('front.index')}}">Изход</a>
+                </li>
+            @else
             <li class="dropdown">
                    <a id="logBtn" href="{{route('login_tabs')}}">Вход</a>
             </li>
+                @endif
         </ul>
     </nav>
 </div>
@@ -160,7 +166,8 @@
     }
 
     nav li:hover ul {
-        display: inline
+        display: inline;
+        z-index: 10;
     }
 
     nav li li {
@@ -194,7 +201,8 @@
         background: #fff;
         overflow: hidden;
         padding: 20px 35px;
-        border-bottom: 3px solid #34495e
+        border-bottom: 3px solid #34495e;
+        /*z-index: 10;*/
     }
 
     nav li li a {

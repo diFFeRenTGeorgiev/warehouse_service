@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function showProducts(){
-        $product = Product::where('id','>', 67)->get();
+//        $product = Product::where('id','>', 67)->get();
 //        dd($product);
-        return view('products_table',['products' => $product]);
+        return view('front.all_products');
     }
 }
