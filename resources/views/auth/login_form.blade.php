@@ -1,4 +1,3 @@
-
 {{--@livewire('users-table-view')--}}
 
 <div class="login-box" id="log">
@@ -6,12 +5,30 @@
     <form id="login_form" action="{{ route('login_form') }}" method="POST">
         @csrf
         <div class="user-box">
-            <input type="text" name="user_email" required="">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                   required autocomplete="email" autofocus name="user_email">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input type="password" name="pass" required="">
+            <input type="password" name="pass" class="form-control @error('password') is-invalid @enderror"  required autocomplete="current-password">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
             <label>Парола</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+            <label class="form-check-label" for="remember">
+                {{ __('Запомни ме') }}
+            </label>
         </div>
         <div class="buttonss">
             <button type="submit" id="log_form" onclick="submitForm()">
@@ -23,7 +40,12 @@
                 Вход
                 {{--</a>--}}
             </button>
-            <button class="hBack" type="button" id="close_form"  data-dismiss="modal" >
+            {{--@if (!Route::has('password.request'))--}}
+                {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                    {{--{{ __('Forgot Your Password?') }}--}}
+                {{--</a>--}}
+            {{--@endif--}}
+            <button class="hBack" type="button" id="close_form" data-dismiss="modal">
                 {{--<a id="close" href="#">--}}
                 <span></span>
                 <span></span>
@@ -36,12 +58,12 @@
 </div>
 
 <script>
-    $('#log_form').on('click', function(event) {
+    $('#log_form').on('click', function (event) {
         event.preventDefault();
 
         $('#login_form').submit();
     });
-    $(".hBack").on("click", function(e){
+    $(".hBack").on("click", function (e) {
         e.preventDefault();
         window.history.back();
     });
@@ -50,27 +72,31 @@
     html {
         height: 100%;
     }
+
     body {
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
         font-family: sans-serif;
         /*background: linear-gradient(#141e30, #243b55);*/
     }
-    #close{
-        margin-right:-14px !important;
+
+    #close {
+        margin-right: -14px !important;
     }
-    #log{
+
+    #log {
         top: 50%;
     }
+
     .login-box {
         position: absolute;
         left: 50%;
         width: 400px;
         padding: 40px;
         transform: translate(-50%, -50%);
-        background: rgba(0,0,0,.5);
+        background: rgba(0, 0, 0, .5);
         box-sizing: border-box;
-        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
         border-radius: 10px;
     }
 
@@ -96,9 +122,10 @@
         outline: none;
         background: transparent;
     }
+
     .login-box .user-box label {
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
         padding: 10px 0;
         font-size: 16px;
@@ -192,11 +219,12 @@
         background: linear-gradient(90deg, transparent, #03e9f4);
         animation: btn-anim1 1s linear infinite;
     }
+
     @keyframes btn-anim1 {
         0% {
             left: -100%;
         }
-        50%,100% {
+        50%, 100% {
             left: 100%;
         }
     }
@@ -220,11 +248,12 @@
         animation: btn-anim2 1s linear infinite;
         animation-delay: .25s
     }
+
     @keyframes btn-anim2 {
         0% {
             top: -100%;
         }
-        50%,100% {
+        50%, 100% {
             top: 100%;
         }
     }
@@ -253,7 +282,7 @@
         0% {
             right: -100%;
         }
-        50%,100% {
+        50%, 100% {
             right: 100%;
         }
     }
@@ -277,11 +306,12 @@
         animation: btn-anim4 1s linear infinite;
         animation-delay: .75s
     }
+
     @keyframes btn-anim4 {
         0% {
             bottom: -100%;
         }
-        50%,100% {
+        50%, 100% {
             bottom: 100%;
         }
     }

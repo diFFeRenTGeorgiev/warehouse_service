@@ -33,3 +33,7 @@ Route::prefix('/users')->group(function () {
 //        return view('auth.profil');
 //    })->name('logout_tabs');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
