@@ -12,7 +12,7 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-                    @include('auth.register_form')
+            @include('auth.register_form')
         </div>
     </div>
     <!-- Modal -->

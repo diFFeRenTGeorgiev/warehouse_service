@@ -171,7 +171,7 @@ class User extends Authenticatable
 //        }
 //
 //        return false;
-        if(Auth::check() && $this->role_id != null){
+        if($this->role_id != null){
             return true;
         }
 

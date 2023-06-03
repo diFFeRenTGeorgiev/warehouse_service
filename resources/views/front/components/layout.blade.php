@@ -26,6 +26,8 @@
     </div>
 </div>
 </body>
+@yield('js')
+
 <style>
 
 </style>
