@@ -8,8 +8,13 @@
         </form>
         <ul>
             <li>
+            @if(Helpers::is_admin())
+
+                <a href="{{route('admin_page')}}">Админ</a>
+                @else
                 <a href="{{route('front.index')}}">Начало</a>
-            </li>
+            @endif
+                </li>
             <li>
                 <a href="{{route('tab_all_products') }}">Продукти</a>
                 <ul class="mega-dropdown">

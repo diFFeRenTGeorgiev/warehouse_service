@@ -12,7 +12,7 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            @include('auth.register_form')
+            {{--@include('auth.register_form')--}}
         </div>
     </div>
     <!-- Modal -->
@@ -21,7 +21,7 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            @include('auth.login_form')
+            {{--@include('auth.login_form')--}}
         </div>
     </div>
 </div>
