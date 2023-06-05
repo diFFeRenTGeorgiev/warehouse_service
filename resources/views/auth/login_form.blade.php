@@ -6,7 +6,7 @@
         @csrf
         <div class="user-box">
             <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
-                   required autocomplete="email" autofocus name="user_email">
+                   required autocomplete="email" autofocus name="email">
             @error('email')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -15,7 +15,7 @@
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input type="password" name="pass" class="form-control @error('password') is-invalid @enderror"  required autocomplete="current-password">
+            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  required autocomplete="current-password">
             @error('password')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -60,7 +60,6 @@
 <script>
     $('#log_form').on('click', function (event) {
         event.preventDefault();
-
         $('#login_form').submit();
     });
     $(".hBack").on("click", function (e) {

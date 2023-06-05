@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Collection;
@@ -49,12 +50,14 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        $user = User::where('email', '=', $request->user_email)->first();
-
+        $user = User::where('email', '=', $request->email)->first();
         if (empty($user)) {
             return "Няма потребител с такъв имейл адрес!";
         }
         else {
+//            dd(Auth::attempt($request->user_email,$request->pass));
+            Auth::check();
+
             if($user->hasAnyRole()){
                 return view('index',['user' => $user,'admin']);
             }

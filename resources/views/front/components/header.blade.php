@@ -53,15 +53,19 @@
             <li>
                 <a href="">Контакти</a>
             </li>
-            @if(!empty($user->role_id))
+            @guest
                 <li class="dropdown">
-                    <a id="logoutBtn" href="{{route('front.index')}}">Изход</a>
+                    <a id="logBtn" href="{{route('login_tabs')}}">Вход</a>
                 </li>
             @else
-            <li class="dropdown">
-                   <a id="logBtn" href="{{route('login_tabs')}}">Вход</a>
-            </li>
-                @endif
+                <li>
+                    <form id="logout-form-dropdown" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a id="logoutBtn" href="{{route('logout')}}" onclick="event.preventDefault();
+                       document.getElementById('logout-form-dropdown').submit();">Изход</a>
+                </li>
+            @endguest
         </ul>
     </nav>
 </div>

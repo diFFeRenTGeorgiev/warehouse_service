@@ -25,13 +25,11 @@ Route::get('add_product/',function(){
 })->name('new_product_form');
 Route::prefix('/users')->group(function () {
     Route::post('register/', 'UserController@register')->name('register_form');
-    Route::post('login/', 'UserController@login')->name('login_form');
+    Route::post('login/', 'Auth\LoginController@log_in')->name('login_form');
     Route::get('auth/', function () {
         return view('auth.profil');
     })->name('login_tabs');
-//    Route::post('logout/',function () {
-//        return view('auth.profil');
-//    })->name('logout_tabs');
+    Route::post('logout/','Auth\LoginController@logut')->name('logout_tabs');
 });
 
 Auth::routes();
