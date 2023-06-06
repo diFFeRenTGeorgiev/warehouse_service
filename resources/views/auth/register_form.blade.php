@@ -6,15 +6,15 @@
     <form id="register_form" action="{{ route('register_form') }}" method="POST">
         @csrf
         <div class="user-box">
-            <input type="text" name="user_name" required="">
+            <input type="text" name="first_name" required="">
             <label>Име</label>
         </div>
         <div class="user-box">
-            <input type="text" name="user_last_name" required="">
+            <input type="text" name="last_name" required="">
             <label>Фамилия</label>
         </div>
         <div class="user-box">
-            <input type="text" name="user_email" required="">
+            <input type="text" name="email" required="">
             <label>Email</label>
         </div>
         <div class="user-box">
@@ -22,7 +22,7 @@
             <label>Телефон</label>
         </div>
         <div class="user-box">
-            <input type="password" name="pass" required="">
+            <input type="password" name="password" required="">
             <label>Парола</label>
         </div>
         <div class="buttons">

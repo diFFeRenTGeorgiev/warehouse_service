@@ -16,22 +16,28 @@
             <input type="text" name="product_code" required="">
             <label>PLU</label>
         </div>
-        <a href="#">
+        <div class="buttons">
+        <button type="submit" id="submit_form" onclick="submitForm()">
+            {{--<a href="#" type="submit" >--}}
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Създаване
-        </a>
-        <a id="close" class="close" >
-            <span></span>
+            Запази
+            {{--</a>--}}
+        </button>
+        <button class="hBack" type="button" id="close_form"  data-dismiss="modal" >
+            {{--<a id="close" href="#">--}}
             <span></span>
             <span></span>
             <span></span>
             Затвори
-        </a>
+            {{--</a>--}}
+        </button>
+        </div>
     </form>
 </div>
+
 <script>
     function closeForm() {
             myWindow.close();
@@ -62,6 +68,7 @@
         box-sizing: border-box;
         box-shadow: 0 15px 25px rgba(0,0,0,.6);
         border-radius: 10px;
+        z-index: 3;
     }
 
     .login-box h2 {

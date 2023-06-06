@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -74,5 +75,15 @@ class RegisterController extends Controller
     protected function guard()
     {
         return Auth::guard('guard-name');
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $user = User::create($request->validated());
+
+
+        auth()->login($user);
+
+        return redirect('/')->with('success', "Account successfully registered.");
     }
 }

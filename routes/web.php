@@ -24,7 +24,8 @@ Route::get('add_product/',function(){
     return view('products.add_product_form');
 })->name('new_product_form');
 Route::prefix('/users')->group(function () {
-    Route::post('register/', 'UserController@register')->name('register_form');
+//    Route::post('register/', 'UserController@register')->name('register_form');
+    Route::post('/register', 'Auth\RegisterController@register')->name('register_form');
     Route::post('login/', 'Auth\LoginController@log_in')->name('login_form');
     Route::get('auth/', function () {
         return view('auth.profil');
