@@ -11,21 +11,22 @@
                 </svg>
             </button>
             @if(Helpers::is_admin())
-                <button  class="app-content-headerButton" data-toggle="modal" id="btnAddProduct" onclick="showModal()">Add Product</button>
-                <!-- The modal -->
-                <div class="modal fade" id="myModal" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                <a href="{{route('addProduct')}}" class="btn btn-xs btn-danger app-content-headerButton" id="adminBtn" role="button" style="border-radius:5px;padding:5px;">Add Product</a>
+                {{--<button  class="app-content-headerButton" data-toggle="modal" id="btnAddProduct" onclick="showProductForm()">Add Product</button>--}}
+                {{--<!-- The modal -->--}}
+                {{--<div class="modal fade" id="myModal" style="display: none;">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
 
 
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                @include('products.add_product_form')
-                            </div>
+                            {{--<!-- Modal body -->--}}
+                            {{--<div class="modal-body">--}}
+                                {{--@include('products.add_product_form')--}}
+                            {{--</div>--}}
 
-                        </div>
-                    </div>
-                </div>
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
 
                 {{--<div class="modal fade" id="myModal" role="dialog">--}}
@@ -365,20 +366,6 @@
 @endsection
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-    /*.modal:before {*/
-        /*content: '';*/
-        /*display: inline-block;*/
-        /*height: 100%;*/
-        /*vertical-align: middle;*/
-        /*align: middle;*/
-
-    /*}*/
-
-    /*.modal-dialog {*/
-        /*display: inline-block;*/
-        /*vertical-align: middle;*/
-        /*opacity: 10!important;*/
-    /*}*/
     * {
         box-sizing: border-box;
     }

@@ -25,6 +25,7 @@ class CreateProductTranslationsTable extends Migration
             $table->double('discount')->nullable();
             $table->double('assembling_price')->nullable();
             $table->double('carrying_price')->nullable();
+            $table->double('quantity')->nullable();
             $table->timestamps();
         });
     }

@@ -16,11 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('type')->nullable();
-            $table->string('plu')->nullable();
             $table->boolean('is_enabled')->nullable();
             $table->integer('supplier_id')->nullable();
             $table->integer('out_of_stock_days')->nullable();
-            $table->integer('unbalanced_days')->nullable();
             $table->timestamps();
         });
     }

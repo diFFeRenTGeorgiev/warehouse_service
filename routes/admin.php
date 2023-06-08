@@ -20,3 +20,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('/', function () {
         return view('index');
     })->name('admin_page');
+Route::get('add-product/', function () {
+    return view('products.add_product_form');
+    })->name('addProduct');

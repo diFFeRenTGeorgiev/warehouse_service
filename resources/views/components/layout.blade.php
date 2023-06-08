@@ -67,65 +67,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
-        #main {
-            min-height: 100vh;
-            overflow: hidden;
+        #sidebarNav{
+            display: block;
         }
-
-        .header {
-            overflow: hidden;
-            background-color: #f1f1f1;
-            /*height: 52px;*/
-            /*padding: 20px 10px;*/
-        }
-
-        #homePage {
-            width: 100%;
-            margin-right: -120px;
-        }
-
-        .header a {
-            float: left;
-            color: black;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 25px;
-            border-radius: 4px;
-        }
-
-        .header a.logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .header a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .header a.active {
-            background-color: dodgerblue;
-            color: white;
-        }
-
-        .header-right {
-            float: right;
-        }
-
-        @media screen and (max-width: 500px) {
-            .header a {
-                float: none;
-                display: block;
-                text-align: left;
-            }
-
-            .header-right {
-                float: none;
-            }
-        }
-
         #sidebar ul li a:hover {
             border-left: 3px solid #009688 !important;
             color: #1d2129 !important;
@@ -137,50 +81,6 @@
             color: #1d2129 !important;
             background-color: #fff !important;
         }
-
-        .footer {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /*background-color: #4C4;*/
-            height: 30px;
-            float: right;
-            width: 100%;
-        }
-
-        .kt-footer__copyright {
-            color: black;
-        }
-
-        .foot {
-            width: 100%;
-        }
-
-        #grid-container {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            /*grid-gap: 8px;*/
-        }
-
-        #grid-container div {
-            text-align: center;
-        }
-
-        #box-1 {
-            grid-row-start: 1;
-            grid-row-end: 7;
-            height: 100%;
-            position: sticky;
-            top: 0px;
-        }
-        body {
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            height:100%;
-        }
-
         #sidebar ul li.active > a, a[aria-expanded="true"] {
             border-left: 3px solid #009688;
             color: #1d2129;
@@ -202,44 +102,6 @@
             font-family: 'Glyphicons Halflings', serif;
             font-size: 0.6em;
         }
-
-        .nav {
-            text-align: center;
-        }
-
-        a[aria-expanded="true"] {
-            content: '\e260';
-        }
-
-        ul ul a {
-            font-size: 0.9em !important;
-            padding-left: 30px !important;
-        }
-
-        a[data-toggle="collapse"] {
-            position: relative;
-        }
-
-        #viewport {
-            position: fixed;
-            width: 100vw;
-            /*height: 100vh;*/
-            /*background: rgba(0, 0, 0, 0.7);*/
-            z-index: 998;
-            /*display: none;*/
-        }
-
-        /*padding-left: 250px;*/
-        /*-webkit-transition: all 0.5s ease;*/
-        /*-moz-transition: all 0.5s ease;*/
-        /*-o-transition: all 0.5s ease;*/
-        /*transition: all 0.5s ease;*/
-        /*}*/
-
-        #sidebarCollapse {
-            display: none;
-        }
-
         @media ( max-width: 768px) {
             #sidebar a {
                 color: #fff;
@@ -252,7 +114,7 @@
 
             #sidebar {
                 margin-left: -250px;
-                width: 250px;
+                width: 15%;
                 color: #fff;
                 background: #009688;
                 overflow-y: scroll;
@@ -320,20 +182,11 @@
                 margin-top: 4px;
             }
         }
-
-        #content {
-            width: 100%;
-            position: relative;
-            margin-right: 0;
-        }
-
-        /* Sidebar Styles */
-
         #sidebar {
             z-index: 1000;
             position: fixed;
             left: 250px;
-            width: 250px;
+            width: 18%;
             height: 100%;
             margin-left: -250px;
             overflow-y: auto;
@@ -425,5 +278,164 @@
         #sidebarCollapse.active .icon-bar + .icon-bar {
             margin-top: 4px;
         }
+        #sidebarCollapse {
+            display: none;
+        }
+        #main {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /*.header {*/
+            /*overflow: hidden;*/
+            /*background-color: #f1f1f1;*/
+            /*!*height: 52px;*!*/
+            /*!*padding: 20px 10px;*!*/
+        /*}*/
+
+        #homePage {
+            max-width: 1170px;
+            margin-right: -120px;
+        }
+        /*@media (min-width: 1200px){*/
+            /*max-width: 1170px;*/
+        /*}*/
+
+        /*.header a {*/
+            /*float: left;*/
+            /*color: black;*/
+            /*text-align: center;*/
+            /*padding: 12px;*/
+            /*text-decoration: none;*/
+            /*font-size: 18px;*/
+            /*line-height: 25px;*/
+            /*border-radius: 4px;*/
+        /*}*/
+
+        /*.header a.logo {*/
+            /*font-size: 25px;*/
+            /*font-weight: bold;*/
+        /*}*/
+
+        /*.header a:hover {*/
+            /*background-color: #ddd;*/
+            /*color: black;*/
+        /*}*/
+
+        /*.header a.active {*/
+            /*background-color: dodgerblue;*/
+            /*color: white;*/
+        /*}*/
+
+        /*.header-right {*/
+            /*float: right;*/
+        /*}*/
+
+        /*@media screen and (max-width: 500px) {*/
+            /*.header a {*/
+                /*float: none;*/
+                /*display: block;*/
+                /*text-align: left;*/
+            /*}*/
+
+            /*.header-right {*/
+                /*float: none;*/
+            /*}*/
+        /*}*/
+
+
+
+        .footer {
+            position: fixed;
+            left: 18%;
+            right: 0;
+            bottom: 0;
+            /*background-color: #4C4;*/
+            height: 30px;
+            float: right;
+            width: 82%;
+            z-index: 3;
+        }
+
+        .kt-footer__copyright {
+            color: black;
+        }
+
+        .foot {
+            width: 100%;
+        }
+
+        #grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            /*grid-gap: 8px;*/
+        }
+
+        #grid-container div {
+            text-align: center;
+        }
+
+        #box-1 {
+            grid-row-start: 1;
+            grid-row-end: 7;
+            height: 100%;
+            position: sticky;
+            top: 0px;
+        }
+        body {
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            height:100%;
+        }
+
+
+
+        .nav {
+            text-align: center;
+        }
+
+        a[aria-expanded="true"] {
+            content: '\e260';
+        }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+        }
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        #viewport {
+            position: fixed;
+            width: 100vw;
+            /*height: 100vh;*/
+            /*background: rgba(0, 0, 0, 0.7);*/
+            z-index: 998;
+            /*display: none;*/
+        }
+
+        /*padding-left: 250px;*/
+        /*-webkit-transition: all 0.5s ease;*/
+        /*-moz-transition: all 0.5s ease;*/
+        /*-o-transition: all 0.5s ease;*/
+        /*transition: all 0.5s ease;*/
+        /*}*/
+
+
+
+
+
+        #content {
+            width: 100%;
+            position: relative;
+            margin-right: 0;
+        }
+
+        /* Sidebar Styles */
+
+
     </style>
 @show

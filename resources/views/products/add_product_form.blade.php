@@ -1,13 +1,25 @@
+@extends('components.layout')
+
 
 {{--@livewire('users-table-view')--}}
-
+@section('content')
 <div class="login-box">
     <h2>Добавяне на продукт</h2>
     <form>
-        <div class="user-box">
-            <input type="text" name="product_name" required="">
-            <label>Име на продукта</label>
+        @csrf
+
+        <div class="form-group">
+            <div class="user-box">
+                <input type="text" name="product_name" required="">
+                <label>Име на продукта</label>
         </div>
+            <div class="form-group">
+            <div class="user-box">
+                <input type="text" name="product_type" required="">
+                <label>Категория</label>
+            </div>
+        </div>
+
         <div class="user-box">
             <input type="text" name="product_type" required="">
             <label>Тип</label>
@@ -16,33 +28,37 @@
             <input type="text" name="product_code" required="">
             <label>PLU</label>
         </div>
+        </div>
         <div class="buttons">
         <button type="submit" id="submit_form" onclick="submitForm()">
-            {{--<a href="#" type="submit" >--}}
+            <a href="#" type="submit" >
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Запази
-            {{--</a>--}}
+            </a>
         </button>
         <button class="hBack" type="button" id="close_form"  data-dismiss="modal" >
-            {{--<a id="close" href="#">--}}
+            <a id="close" href="#">
             <span></span>
             <span></span>
             <span></span>
             Затвори
-            {{--</a>--}}
+            </a>
         </button>
         </div>
     </form>
 </div>
-
+@endsection
+@section('page_js')
 <script>
     function closeForm() {
             myWindow.close();
     }
 </script>
+@endsection
+@section('page_css')
 <style>
     html {
         height: 100%;
@@ -59,11 +75,11 @@
 
     .login-box {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 400px;
+        /*top: 50%;*/
+        /*left: 50%;*/
+        width: 80%;
         padding: 40px;
-        transform: translate(-50%, -50%);
+        /*transform: translate(-50%, -50%);*/
         background: rgba(0,0,0,.5);
         box-sizing: border-box;
         box-shadow: 0 15px 25px rgba(0,0,0,.6);
@@ -124,6 +140,22 @@
         transition: .5s;
         margin-top: 40px;
         letter-spacing: 4px
+    }
+
+    .login-box form .buttons button {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        background: linear-gradient(#141e30, #243b55);
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+        margin-left: 5%;
     }
 
     .login-box a:hover {
@@ -217,3 +249,4 @@
     }
 
 </style>
+@endsection
