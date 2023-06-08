@@ -122,7 +122,6 @@
                 position: fixed;
                 top: 0;
                 left: -250px;
-                height: 100vh;
                 z-index: 999;
             }
 
@@ -346,15 +345,14 @@
 
 
         .footer {
-            position: fixed;
-            left: 18%;
             right: 0;
             bottom: 0;
-            /*background-color: #4C4;*/
             height: 30px;
             float: right;
-            width: 82%;
+            width: 102%;
             z-index: 3;
+            position: relative;
+            left: 2%;
         }
 
         .kt-footer__copyright {
@@ -383,7 +381,7 @@
             top: 0px;
         }
         body {
-            overflow: hidden;
+            overflow: scroll;
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
             height:100%;

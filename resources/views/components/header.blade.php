@@ -397,6 +397,10 @@
     .header {
         overflow: hidden;
         background-color: #f1f1f1;
+        position: relative;
+        /*width: 98%;*/
+        z-index: 10;
+        /*left: -1.5%;*/
         /*height: 52px;*/
         /*padding: 20px 10px;*/
     }
@@ -544,9 +548,9 @@
     form {
         margin: 1rem;;
     }
-    label, h2 {
-        color: white;
-    }
+    /*label, h2 {*/
+        /*color: white;*/
+    /*}*/
     .home{
         text-align: center;
         color: white;
