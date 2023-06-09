@@ -24,42 +24,44 @@
         {{--</div>--}}
     </fieldset>
 </div>
-
+<form id="product_form" action="{{ route('create_product') }}" method="POST">
+    @csrf
 <div id="form" class="form-wrapper">
     <label class="text">
         <span>Име на продукта</span>
         <div class="input-wrapper">
-            <input type="text" />
+            <input type="text" name="product_name"/>
         </div>
     </label>
 
     <label class="dropdown">
         <span>Тип</span>
         <div class="input-wrapper">
-            <select size="1">
+            <select size="1" name="product_type">
                 <option>-- Моля изберете --</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+
+                @foreach($data['types'] as $type)
+                    <option value="{{$type->type_name}}">{{$type->type_name}}</option>
+                @endforeach
             </select>
         </div>
     </label>
 
-    {{--<label class="multiple">--}}
-        {{--<span>Multiple</span>--}}
-        {{--<div class="input-wrapper">--}}
-            {{--<select class="multiple" size="3">--}}
-                {{--<option value="1">Option 1</option>--}}
-                {{--<option value="2">Option 2</option>--}}
-                {{--<option value="3">Option 3</option>--}}
-            {{--</select>--}}
-        {{--</div>--}}
-    {{--</label>--}}
+    <label class="multiple">
+        <span>Атрибути</span>
+        <div class="input-wrapper">
+            <select class="multiple" size="3" name="attributes">
+                @foreach($data['attributes'] as $attribute)
+                    <option value="{{$attribute->id}}">{{$attribute->name}} {{$attribute->value}}</option>
+                @endforeach
+            </select>
+        </div>
+    </label>
 
     <label class="text">
         <span>Описание</span>
         <div class="input-wrapper">
-            <textarea>Write, some text here  </textarea>
+            <textarea name="description">Write, some text here  </textarea>
         </div>
     </label>
     <label for="myfile">
@@ -71,7 +73,7 @@
                     <div class="col-sm-2 imgUp">
                         <div class="imagePreview"></div>
                         <label class="btn btn-primary">
-                            Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            Upload<input type="file" name="product_files[]" class="uploadFile img form-control"  accept="image/*" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" multiple/>
                         </label>
                     </div><!-- col-2 -->
                     <i class="fa fa-plus imgAdd"></i>
@@ -84,17 +86,21 @@
 
         <div class="input-wrapper">
             <label class="radio" for="yes">
-                <input type="radio" name="foo" value="yes" id="yes"/>
+                <input type="radio" name="status_active" value="yes" id="yes"/>
                 <span>Активен</span>
             </label>
-        </div>
-
-        <div class="input-wrapper">
             <label class="radio" for="no" >
-                <input type="radio" name="foo" value="no" id="no"/>
+                <input type="radio" name="status_inactive" value="no" id="no"/>
                 <span>Неактивен</span>
             </label>
         </div>
+
+        {{--<div class="input-wrapper">--}}
+            {{--<label class="radio" for="no" >--}}
+                {{--<input type="radio" name="foo" value="no" id="no"/>--}}
+                {{--<span>Неактивен</span>--}}
+            {{--</label>--}}
+        {{--</div>--}}
 
         {{--<div class="input-wrapper">--}}
             {{--<label class="radio" for="maybe" for="maybe">--}}
@@ -104,31 +110,31 @@
         {{--</div>--}}
     </fieldset>
 
-    <fieldset class="radio-check-label">
-        <span class="label">Цвят</span>
-        <div class="input-wrapper">
-            <label class="checkbox" for="accept">
-                <input type="checkbox" name="accept" id="accept"/>
-                <span>Okay, I accept all u want</span>
-            </label>
-        </div>
+    {{--<fieldset class="radio-check-label">--}}
+        {{--<span class="label">Цвят</span>--}}
+        {{--<div class="input-wrapper">--}}
+            {{--<label class="checkbox" for="accept">--}}
+                {{--<input type="checkbox" name="accept" id="accept"/>--}}
+                {{--<span>Okay, I accept all u want</span>--}}
+            {{--</label>--}}
+        {{--</div>--}}
 
-        <div class="input-wrapper">
-            <label class="checkbox" for="spam" >
-                <input type="checkbox" name="spam" id="spam"/>
-                <span>Yes, send me all your spam.</span>
-            </label>
-        </div>
+        {{--<div class="input-wrapper">--}}
+            {{--<label class="checkbox" for="spam" >--}}
+                {{--<input type="checkbox" name="spam" id="spam"/>--}}
+                {{--<span>Yes, send me all your spam.</span>--}}
+            {{--</label>--}}
+        {{--</div>--}}
 
-        <div class="input-wrapper">
-            <label class="checkbox" for="toolbars" >
-                <input type="checkbox" name="toolbars" id="toolbars"/>
-                <span>Install 1000 toolbars and add all available plugins to my browser</span>
-            </label>
+        {{--<div class="input-wrapper">--}}
+            {{--<label class="checkbox" for="toolbars" >--}}
+                {{--<input type="checkbox" name="toolbars" id="toolbars"/>--}}
+                {{--<span>Install 1000 toolbars and add all available plugins to my browser</span>--}}
+            {{--</label>--}}
 
-        </div>
+        {{--</div>--}}
 
-    </fieldset>
+    {{--</fieldset>--}}
 
     <fieldset class="number-label">
         <span class="label">Количество</span>
@@ -139,15 +145,22 @@
         </div>
     </fieldset>
         <div class="input-wrapper">
-    <input type="submit" name="submit" value="Запази"/>
+    <input type="submit" name="submit" id="submit_form" value="Запази"/>
     <input type="reset" name="reset" value="Изчисти"/>
 
     <div class="clear"></div>
     <span class="notes">* Полетата са задължителни.</span>
 </div>
+</div>
+</form>
 @endsection
 @section('page_js')
     <script>
+        // $('#submit_form').on('click', function(event) {
+        //     event.preventDefault();
+        //
+        //     $('#product_form').submit();
+        // });
         /* JS is only for label klick on iPad & theming, so you won't need any JS for you homepage (except the iPad part) */
 
         $(".imgAdd").click(function(){

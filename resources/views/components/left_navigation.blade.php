@@ -12,6 +12,7 @@
                 <ul class="nav collapse list-unstyled" id="homeSubmenu">
                     <li><a href="{{route('tab_all_products') }}"><span>Продукти</span></a></li>
                     <li><a href="#">Поръчки</a></li>
+                    <li><a href="#">Типове</a></li>
                     <li><a href="#submenu_suppliers" data-toggle="collapse" aria-expanded="false">Доставчици</a>
                         <ul class="nav collapse list-unstyled" id="submenu_suppliers">
                             <li><a href=""><span>Шофьори</span></a></li>

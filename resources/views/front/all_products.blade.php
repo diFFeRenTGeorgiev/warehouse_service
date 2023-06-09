@@ -12,33 +12,6 @@
             </button>
             @if(Helpers::is_admin())
                 <a href="{{route('addProduct')}}" class="btn btn-xs btn-danger app-content-headerButton" id="adminBtn" role="button" style="border-radius:5px;padding:5px;">Add Product</a>
-                {{--<button  class="app-content-headerButton" data-toggle="modal" id="btnAddProduct" onclick="showProductForm()">Add Product</button>--}}
-                {{--<!-- The modal -->--}}
-                {{--<div class="modal fade" id="myModal" style="display: none;">--}}
-                    {{--<div class="modal-dialog">--}}
-                        {{--<div class="modal-content">--}}
-
-
-                            {{--<!-- Modal body -->--}}
-                            {{--<div class="modal-body">--}}
-                                {{--@include('products.add_product_form')--}}
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-
-                {{--<div class="modal fade" id="myModal" role="dialog">--}}
-
-                    {{--<div class="modal-dialog">--}}
-                        {{--<!-- Modal content-->--}}
-                        {{--<div class="modal-content">--}}
-                        {{--@include('products.add_product_form')--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
             @endif
         </div>
         <div class="app-content-actions">
