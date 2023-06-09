@@ -3,17 +3,17 @@
 @section('content')
 <div id="options" class="form-wrapper">
     <fieldset class="radio-check-label" id="color">
-        <span class="label">Choose your theme</span>
+        <span class="label">Изберете тема</span>
         <div class="input-wrapper">
             <label class="radio" id="dark">
                 <input type="radio" name="color" value="dark"/>
-                <span>Dark version</span>
+                <span>Тъмна тема</span>
             </label>
         </div>
         <div class="input-wrapper">
             <label class="radio" id="light">
                 <input type="radio" name="color" value="light"/>
-                <span>Light version</span>
+                <span>Светла тема</span>
             </label>
         </div>
         {{--<div class="input-wrapper">--}}
@@ -45,16 +45,16 @@
         </div>
     </label>
 
-    <label class="multiple">
-        <span>Multiple</span>
-        <div class="input-wrapper">
-            <select class="multiple" size="3">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-        </div>
-    </label>
+    {{--<label class="multiple">--}}
+        {{--<span>Multiple</span>--}}
+        {{--<div class="input-wrapper">--}}
+            {{--<select class="multiple" size="3">--}}
+                {{--<option value="1">Option 1</option>--}}
+                {{--<option value="2">Option 2</option>--}}
+                {{--<option value="3">Option 3</option>--}}
+            {{--</select>--}}
+        {{--</div>--}}
+    {{--</label>--}}
 
     <label class="text">
         <span>Описание</span>
@@ -62,34 +62,50 @@
             <textarea>Write, some text here  </textarea>
         </div>
     </label>
-
+    <label for="myfile">
+        <span>Качване на снимки:</span>
+        <div class="input-wrapper" id="files">
+    {{--<input type="file" id="myfile" name="myfile" multiple><br><br>--}}
+            <br><div class="container">
+                <div class="row">
+                    <div class="col-sm-2 imgUp">
+                        <div class="imagePreview"></div>
+                        <label class="btn btn-primary">
+                            Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                    </div><!-- col-2 -->
+                    <i class="fa fa-plus imgAdd"></i>
+                </div><!-- row -->
+            </div><!-- container -->
+        </div>
+</label>
     <fieldset class="radio-check-label">
-        <span class="label">Do you like this?</span>
+        <span class="label">Статус</span>
 
         <div class="input-wrapper">
             <label class="radio" for="yes">
                 <input type="radio" name="foo" value="yes" id="yes"/>
-                <span>Yes, please</span>
+                <span>Активен</span>
             </label>
         </div>
 
         <div class="input-wrapper">
             <label class="radio" for="no" >
                 <input type="radio" name="foo" value="no" id="no"/>
-                <span>No, thanks</span>
+                <span>Неактивен</span>
             </label>
         </div>
 
-        <div class="input-wrapper">
-            <label class="radio" for="maybe" for="maybe">
-                <input type="radio" name="foo" value="maybe" id="maybe"/>
-                <span>Well, maybe</span>
-            </label>
-        </div>
+        {{--<div class="input-wrapper">--}}
+            {{--<label class="radio" for="maybe" for="maybe">--}}
+                {{--<input type="radio" name="foo" value="maybe" id="maybe"/>--}}
+                {{--<span>Well, maybe</span>--}}
+            {{--</label>--}}
+        {{--</div>--}}
     </fieldset>
 
     <fieldset class="radio-check-label">
-        <span class="label">Please check all</span>
+        <span class="label">Цвят</span>
         <div class="input-wrapper">
             <label class="checkbox" for="accept">
                 <input type="checkbox" name="accept" id="accept"/>
@@ -111,20 +127,54 @@
             </label>
 
         </div>
+
     </fieldset>
 
-
-    <input type="submit" name="submit" value="Submit"/>
-    <input type="reset" name="reset" value="Reset"/>
+    <fieldset class="number-label">
+        <span class="label">Количество</span>
+        <div class="input-wrapper">
+            <label class="number" for="qtty">
+                <input type="number" id="typeNumber" class="form-control" name="quantity" />
+            </label>
+        </div>
+    </fieldset>
+        <div class="input-wrapper">
+    <input type="submit" name="submit" value="Запази"/>
+    <input type="reset" name="reset" value="Изчисти"/>
 
     <div class="clear"></div>
-    <span class="notes">* Is mandetory.</span>
+    <span class="notes">* Полетата са задължителни.</span>
 </div>
 @endsection
 @section('page_js')
     <script>
         /* JS is only for label klick on iPad & theming, so you won't need any JS for you homepage (except the iPad part) */
 
+        $(".imgAdd").click(function(){
+            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+        });
+        $(document).on("click", "i.del" , function() {
+            $(this).parent().remove();
+        });
+        $(function() {
+            $(document).on("change",".uploadFile", function()
+            {
+                var uploadFile = $(this);
+                var files = !!this.files ? this.files : [];
+                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+                if (/^image/.test( files[0].type)){ // only image file
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(files[0]); // read the local file
+
+                    reader.onloadend = function(){ // set image data as background of div
+                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+                    }
+                }
+
+            });
+        });
         $(document).ready(function(){
 
             $('.form-wrapper, html').addClass('dark');
@@ -158,6 +208,58 @@
         body {
             /*margin:30px;*/
         }
+        body
+        {
+            background-color:#f5f5f5;
+        }
+        .imagePreview {
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+            background-color:#fff;
+            background-size: cover;
+            background-repeat:no-repeat;
+            display: inline-block;
+            box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+        }
+        .btn-primary
+        {
+            display:block;
+            border-radius:0px;
+            box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
+            margin-top:-5px;
+        }
+        .imgUp
+        {
+            margin-bottom:15px;
+        }
+        .del
+        {
+            position:absolute;
+            top:0px;
+            right:15px;
+            width:30px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            background-color:rgba(255,255,255,0.6);
+            cursor:pointer;
+        }
+        .imgAdd
+        {
+            width:30px;
+            height:30px;
+            border-radius:50%;
+            background-color:#4bd7ef;
+            color:#fff;
+            box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+            text-align:center;
+            line-height:30px;
+            margin-top:0px;
+            cursor:pointer;
+            font-size:15px;
+        }
         .form-wrapper {
             float:left;
             width:100%;
@@ -165,16 +267,39 @@
             background: #afafaf;
             overflow:hidden;
         }
+        #files
+        {
+            width:100%;
+            float:left;
+            margin-bottom:1em;
+            max-width:75.000em;
+            /*background: #afafaf;*/
+            overflow:hidden;
+        }
         .form-wrapper label, .form-wrapper .radio-check-label {
             width:100%;
             float:left;
             margin-bottom:1em;
+        }
+
+        .number-label{
+            width:100%;
+            color: #afafaf;
+            float:left;
+            margin-bottom:1em;
+        }
+
+        .number-label span {
+            float: left;
+            width: 25%;
+            text-align: right;
         }
         .form-wrapper label span, .form-wrapper .notes, .form-wrapper .radio-check-label span.label {
             float:left;
             width: 25%;
             text-align:right;
         }
+
         div.input-wrapper {
             width:70%;
             float:right;
