@@ -16,6 +16,8 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->integer('type_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
             $table->boolean('is_enabled')->nullable();
             $table->integer('out_of_stock_days')->nullable();
             $table->integer('attribute_id')->nullable();
@@ -23,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->double('regular_price')->nullable();
             $table->double('promotional_price')->nullable();
             $table->double('discount')->nullable();
-            $table->double('quantity')->nullable();
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

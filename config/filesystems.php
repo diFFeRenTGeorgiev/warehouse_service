@@ -66,8 +66,8 @@ return [
         ],
         'media_files' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/media_files'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('/media_files'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
@@ -85,7 +85,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('public') => storage_path('app/public'),
     ],
 
 ];

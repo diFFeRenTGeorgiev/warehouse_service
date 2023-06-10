@@ -24,7 +24,7 @@
         {{--</div>--}}
     </fieldset>
 </div>
-<form id="product_form" action="{{ route('create_product') }}" method="POST">
+<form id="product_form" action="{{ route('create_product') }}" method="POST" enctype="multipart/form-data">
     @csrf
 <div id="form" class="form-wrapper">
     <label class="text">
@@ -41,7 +41,7 @@
                 <option>-- Моля изберете --</option>
 
                 @foreach($data['types'] as $type)
-                    <option value="{{$type->type_name}}">{{$type->type_name}}</option>
+                    <option value="{{$type->id}}">{{$type->type_name}}</option>
                 @endforeach
             </select>
         </div>
@@ -50,7 +50,7 @@
     <label class="multiple">
         <span>Атрибути</span>
         <div class="input-wrapper">
-            <select class="multiple" size="3" name="attributes">
+            <select class="multiple" size="3" name="attributtes">
                 @foreach($data['attributes'] as $attribute)
                     <option value="{{$attribute->id}}">{{$attribute->name}} {{$attribute->value}}</option>
                 @endforeach
@@ -67,7 +67,6 @@
     <label for="myfile">
         <span>Качване на снимки:</span>
         <div class="input-wrapper" id="files">
-    {{--<input type="file" id="myfile" name="myfile" multiple><br><br>--}}
             <br><div class="container">
                 <div class="row">
                     <div class="col-sm-2 imgUp">
@@ -76,7 +75,7 @@
                             Upload<input type="file" name="product_files[]" class="uploadFile img form-control"  accept="image/*" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" multiple/>
                         </label>
                     </div><!-- col-2 -->
-                    <i class="fa fa-plus imgAdd"></i>
+                    <i class="fa fa-plus imgAdd" id="addFile"></i>
                 </div><!-- row -->
             </div><!-- container -->
         </div>
@@ -86,11 +85,11 @@
 
         <div class="input-wrapper">
             <label class="radio" for="yes">
-                <input type="radio" name="status_active" value="yes" id="yes"/>
+                <input type="radio" name="status_active" value=1 id="yes"/>
                 <span>Активен</span>
             </label>
             <label class="radio" for="no" >
-                <input type="radio" name="status_inactive" value="no" id="no"/>
+                <input type="radio" name="status_inactive" value=0 id="no"/>
                 <span>Неактивен</span>
             </label>
         </div>
@@ -156,15 +155,20 @@
 @endsection
 @section('page_js')
     <script>
-        // $('#submit_form').on('click', function(event) {
-        //     event.preventDefault();
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var fileInputsWrapper = document.getElementById('files');
+        //     var addFileInputButton = document.getElementById('addFile');
         //
-        //     $('#product_form').submit();
+        //     addFileInputButton.addEventListener('click', function() {
+        //         var fileInput = document.createElement('input');
+        //         fileInput.type = 'file';
+        //         fileInput.name = 'product_files[]';
+        //         fileInputsWrapper.appendChild(fileInput);
+        //     });
         // });
-        /* JS is only for label klick on iPad & theming, so you won't need any JS for you homepage (except the iPad part) */
 
         $(".imgAdd").click(function(){
-            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="product_files[]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;" multiple></label><i class="fa fa-times del"></i></div>');
         });
         $(document).on("click", "i.del" , function() {
             $(this).parent().remove();
