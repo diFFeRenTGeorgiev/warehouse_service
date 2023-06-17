@@ -12,6 +12,7 @@ class Helpers
 {
    public static function is_admin()
 {
+//    dd(Auth::user());
     if(!empty(Auth::user())){
         if(Auth::user()->role_id != null){
             return true;
