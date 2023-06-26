@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function showProducts(){
-//        $product = Product::where('id','>', 67)->get();
-//        dd($product);
-        return view('front.all_products');
+       $products = DB::select('SELECT products.*,types.type_name,product_files.name as product_card_img FROM products
+          LEFT JOIN types on types.id = products.type_id
+          inner JOIN product_files on product_files.product_id = products.id
+         ');
+
+//        dd($products);
+        return view('front.all_products',['products' => $products]);
     }
 }

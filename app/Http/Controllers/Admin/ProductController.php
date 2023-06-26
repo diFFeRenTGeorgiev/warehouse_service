@@ -21,14 +21,19 @@ class ProductController extends Controller
     }
 
     public function createProduct(Request $request){
-
+//dd($request);
         $product = new Product();
         $product->name = $request->product_name;
         $product->type_id = $request->product_type;
         $product->is_enabled = $request->status_active;
         $product->attribute_id = $request->attributtes;
         $product->quantity = $request->quantity;
+        $product->warranty = $request->warranty;
+        $product->regular_price = $request->regular_price;
+        $product->promotional_price = $request->promo_price;
         $product->description = $request->description;
+        $product->discount = $request->discount;
+        $product->out_of_stock_days = $request->delivery;
         $product->save();
 
 
