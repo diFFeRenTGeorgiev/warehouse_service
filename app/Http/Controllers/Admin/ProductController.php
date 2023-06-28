@@ -44,6 +44,6 @@ class ProductController extends Controller
             $prod_files->name = $file->hashName();
             $prod_files->save();
         }
-        return view('front.all_products');
+        return redirect()->route('tab_all_products');
     }
 }

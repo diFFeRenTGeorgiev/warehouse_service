@@ -12,6 +12,7 @@ class ProductController extends Controller
        $products = DB::select('SELECT products.*,types.type_name,product_files.name as product_card_img FROM products
           LEFT JOIN types on types.id = products.type_id
           inner JOIN product_files on product_files.product_id = products.id
+          order by products.id desc
          ');
 
 //        dd($products);

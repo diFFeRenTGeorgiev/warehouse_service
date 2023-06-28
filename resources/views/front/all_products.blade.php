@@ -889,8 +889,8 @@
         justify-content: center;
         width: 24px;
         height: 24px;
-        background-color: rgba(16, 24, 39, 0.7);
-        color: #fff;
+        /*background-color: rgba(16, 24, 39, 0.7);*/
+        /*color: #fff;*/
         cursor: pointer;
         display: none;
     }
