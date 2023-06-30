@@ -34,5 +34,7 @@ Route::prefix('/users')->group(function () {
 });
 
 Auth::routes();
-
+Route::prefix('/ajax')->group(function () {
+    Route::post('/favorite-products-add', 'ProductController@addFavourite')->name('ajax.ajaxRequest.post');
+});
 Route::get('/home', 'HomeController@index')->name('home');

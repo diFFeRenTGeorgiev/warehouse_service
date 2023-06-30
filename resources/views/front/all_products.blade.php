@@ -1,5 +1,8 @@
 @extends('front.components.layout')
 @section('front_body')
+    <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+    </head>
 <div class="app-container">
     <div class="app-content">
         <div class="app-content-header">
@@ -291,6 +294,103 @@
 @endsection
 @section('js')
 <script>
+
+    function addOrRemoveFavorite(productId)
+    {
+        var btn = document.getElementById("favorite_product_btn_"+productId);
+        if(btn==undefined) {
+            return;
+        }
+        if(btn.dataset.isFavorite==1) {
+            removeFromFavorites(productId);
+        }
+        else {
+            addToFavorites(productId);
+
+        }
+    }
+
+    function removeFromFavorites(productId)
+    {
+        var url = '/ajax/favorite-products-remove';
+
+        var data = {
+            "product_id": productId,
+        };
+
+        $.post(url, data, function(response) {
+            if(response.status=="success") {
+
+                if($('#favorite-products-total')) {
+                    if(($('#favorite-products-total').text()*1)>0) {
+                        $('#favorite-products-total').text(($('#favorite-products-total').text()*1)-1);
+                        if(($('#favorite-products-total').text()*1)==0) {
+                            $('#favorite-products-total').css('visibility','hidden');
+                        }
+                    }
+                }
+                var btn = document.getElementById("favorite_product_btn_"+productId);
+                if(btn!=undefined) {
+                    btn.dataset.isFavorite=0;
+                    var color="white"; //default color for not in favorites
+                    if(btn.dataset.notFavoriteColor!=undefined) {
+                        color=btn.dataset.notFavoriteColor;
+                    }
+                    btn.style.color = color;
+                    btn.style.textShadow = "-2px 0 #4d4d4f, 0 2px #4d4d4f, 2px 0 #4d4d4f, 0 -2px #4d4d4f";
+                    if (window.location.href.indexOf("/favorite-products") > -1) {
+                        $(btn).closest("li").hide();
+                    }
+                }
+            }
+        });
+    }
+
+
+    function addToFavorites(productId)
+    {
+        var url = "{{ route('ajax.ajaxRequest.post') }}";
+
+        var data = {
+            "product_id": productId,
+        };
+
+// Send the AJAX POST request
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify(data),
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data); // Process the response data
+            })
+            .catch(function (error) {
+                console.log(error); // Handle any errors
+            });
+
+        // $.post(url, data, function(response) {
+        //     if(response.status=="success") {
+        //
+        //         // alert(response.data.content.product_id);
+        //         if($('#favorite-products-total')) {
+        //             $('#favorite-products-total').css('visibility','visible');
+        //             $('#favorite-products-total').text(($('#favorite-products-total').text()*1)+1);
+        //         }
+        //         var btn = document.getElementById("favorite_product_btn_"+productId);
+        //         if(btn!=undefined) {
+        //             btn.dataset.isFavorite=1;
+        //             btn.style.color = "#cb1523";
+        //             btn.style.textShadow = "none";
+        //         }
+        //     }
+        // });
+    }
 
     function showModal() {
         $('#myModal').modal('show');

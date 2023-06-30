@@ -18,4 +18,8 @@ class ProductController extends Controller
 //        dd($products);
         return view('front.all_products',['products' => $products]);
     }
+
+    public function addFavourite($productId){
+        dd(12);
+    }
 }
