@@ -1,8 +1,22 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+</head>
 <div id="header">
     <div class="logo">
         <a href="{{route('front.index')}}">McLaughlin furniture</a>
     </div>
     <nav>
+        <div class="navbar-inner">
+            {{--<ul class="nav navbar-right">--}}
+                {{--<li class="dropdown">--}}
+                    <a href="#" class="dropdown-toggle active" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span id="favorite-products-total" class="badge badge-notify" style="right: 1px; padding: 2px 4px; visibility:hidden; background-color:#cb1523;"></span>
+                        <i class="far fa-heart" aria-hidden="true" ></i></a>
+                {{--</li>--}}
+            {{--</ul>--}}
+        </div>
         <form class="search" action="search.php">
             <input name="q" placeholder="Search..." type="search">
         </form>
@@ -124,6 +138,11 @@
     .search {
         float: right;
         padding: 30px
+    }
+    .navbar-inner{
+        float: right;
+        font-size: 28px;
+        padding: 24px
     }
 
     input {

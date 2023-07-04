@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FavoriteProductsManager;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,14 @@ class ProductController extends Controller
         return view('front.all_products',['products' => $products]);
     }
 
-    public function addFavourite($productId){
-        dd(12);
+    public function addFavourite(Request $request)
+    {
+//        dd($request->json('product_id'));
+        FavoriteProductsManager::addProduct($request->json('product_id'));
+        $responseContent = [
+            'product_id' => $request->product_id,
+            'message' => trans('Продукта беше запазен в любими.'),
+        ];
+        return json_response_success(['content'=>$responseContent]);
     }
 }
