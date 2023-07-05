@@ -28,6 +28,22 @@ class ProductController extends Controller
             'product_id' => $request->product_id,
             'message' => trans('Продукта беше запазен в любими.'),
         ];
-        return json_response_success(['content'=>$responseContent]);
+        return json_encode(['content'=>$responseContent]);
+    }
+
+    public static function removeProduct($productId)
+    {
+        $idsArr=self::getIds();
+        if (in_array($productId, $idsArr)) {
+            $user = auth()->user();
+            $newIdsArr=array_values(array_diff($idsArr, array($productId)));
+            $idsAsStr = implode(',',$newIdsArr);
+            if(!empty($user)) {
+                self::saveIdsInDb($user->id, $idsAsStr);
+            }
+            else {
+                self::saveIdsInCookie($idsAsStr);
+            }
+        }
     }
 }

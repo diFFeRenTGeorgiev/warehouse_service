@@ -2,13 +2,17 @@
 
 namespace App;
 
+use App\Constant\CookieConstant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 
 class FavoriteProductsManager extends Model
 {
     public static function addProduct($productId)
     {
-        $idsArr=self::getIds();
+//        $idsArr=self::getIds();
+        $idsArr = [];
         if (!in_array($productId, $idsArr)) {
 
             if(count($idsArr)>=40) { //protect DB column or cookie from overloading with ids
@@ -16,17 +20,32 @@ class FavoriteProductsManager extends Model
             }
             array_push($idsArr, $productId);
             $idsAsStr = implode(',',$idsArr);
-            $user = auth()->user();
-            if(!empty($user)) {
-                self::saveIdsInDb($user->id, $idsAsStr);
-            }
-            else {
-                self::saveIdsInCookie($idsAsStr);
-            }
+            self::saveIdsInCookie($idsAsStr);
+//            $user = auth()->user();
+//            if(!empty($user)) {
+//                self::saveIdsInDb($user->id, $idsAsStr);
+//            }
+//            else {
+//                self::saveIdsInCookie($idsAsStr);
+//            }
         }
     }
 
+    public static function saveIdsInDb($userId,$idsAsStr)
+    {
+        $idsInDb = FavoriteProduct::firstOrNew(['user_id' => $userId]);
+        $idsInDb->product_ids = $idsAsStr;
+        $idsInDb->save();
+        //recache
+        Cache::tags(CacheTagConstant::FAVORITE_PRODUCTS_IDS)->put(self::getCacheId(), $idsAsStr, 60*60*24);
+    }
 
+    public static function saveIdsInCookie($idsAsStr)
+    {
+        $noWwwDomainName=str_replace("www.",".",request()->getHost());
+        Cookie::queue(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 500000, '/', $noWwwDomainName);
+
+    }
 
 
 

@@ -141,8 +141,8 @@
     }
     .navbar-inner{
         float: right;
-        font-size: 28px;
-        padding: 24px
+        font-size: 20px;
+        padding: 19px
     }
 
     input {

@@ -312,7 +312,7 @@
 
     function removeFromFavorites(productId)
     {
-        var url = '/ajax/favorite-products-remove';
+        var url = "{{ route('ajax.removeFavorite')}}";
 
         var data = {
             "product_id": productId,
@@ -368,6 +368,22 @@
                 return response.json();
             })
             .then(function (data) {
+                // if(response.status=="success") {
+
+                            // alert(response.data.content.product_id);
+                            if($('#favorite-products-total')) {
+                                $('#favorite-products-total').css('visibility','visible');
+                                $('#favorite-products-total').text(($('#favorite-products-total').text()*1)+1);
+                            }
+                            var btn = document.getElementById("favorite_product_btn_"+productId);
+                            var icon = document.getElementById("favorite_"+productId)
+                            if(btn!=undefined) {
+                                btn.dataset.isFavorite=1;
+                                btn.style.color = "#cb1523";
+                                icon.style.color = "#cb1523";
+                                btn.style.textShadow = "none";
+                            }
+                        // }
                 console.log(data); // Process the response data
             })
             .catch(function (error) {
