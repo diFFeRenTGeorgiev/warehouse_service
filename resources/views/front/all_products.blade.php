@@ -318,8 +318,18 @@
             "product_id": productId,
         };
 
-        $.post(url, data, function(response) {
-            if(response.status=="success") {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify(data),
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
 
                 if($('#favorite-products-total')) {
                     if(($('#favorite-products-total').text()*1)>0) {
@@ -342,7 +352,6 @@
                         $(btn).closest("li").hide();
                     }
                 }
-            }
         });
     }
 
@@ -376,15 +385,14 @@
                                 $('#favorite-products-total').text(($('#favorite-products-total').text()*1)+1);
                             }
                             var btn = document.getElementById("favorite_product_btn_"+productId);
-                            var icon = document.getElementById("favorite_"+productId)
+                            // var icon = document.getElementById("favorite_"+productId)
                             if(btn!=undefined) {
                                 btn.dataset.isFavorite=1;
                                 btn.style.color = "#cb1523";
-                                icon.style.color = "#cb1523";
+                                // icon.style.color = "#cb1523";
+                                // console.log(icon);
                                 btn.style.textShadow = "none";
                             }
-                        // }
-                console.log(data); // Process the response data
             })
             .catch(function (error) {
                 console.log(error); // Handle any errors
@@ -441,6 +449,11 @@
 </script>
 @endsection
 <style>
+    .fa-heart{
+        font-size: 26px;
+        color: white;
+        text-shadow: rgb(77, 77, 79) -2px 0px, rgb(77, 77, 79) 0px 2px, rgb(77, 77, 79) 2px 0px, rgb(77, 77, 79) 0px -2px;
+    }
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
     * {
         box-sizing: border-box;

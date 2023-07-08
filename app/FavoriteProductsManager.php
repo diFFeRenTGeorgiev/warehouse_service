@@ -11,7 +11,6 @@ class FavoriteProductsManager extends Model
 {
     public static function addProduct($productId)
     {
-//        $idsArr=self::getIds();
         $idsArr = [];
         if (!in_array($productId, $idsArr)) {
 
@@ -21,13 +20,19 @@ class FavoriteProductsManager extends Model
             array_push($idsArr, $productId);
             $idsAsStr = implode(',',$idsArr);
             self::saveIdsInCookie($idsAsStr);
-//            $user = auth()->user();
-//            if(!empty($user)) {
-//                self::saveIdsInDb($user->id, $idsAsStr);
-//            }
-//            else {
-//                self::saveIdsInCookie($idsAsStr);
-//            }
+        }
+    }
+
+    public static function removeProduct($productId){
+        $idsArr = [];
+        if (!in_array($productId, $idsArr)) {
+
+            if(count($idsArr)>=40) { //protect DB column or cookie from overloading with ids
+                array_shift($idsArr);
+            }
+            array_push($idsArr, $productId);
+            $idsAsStr = implode(',',$idsArr);
+            self::saveIdsInCookie($idsAsStr);
         }
     }
 
