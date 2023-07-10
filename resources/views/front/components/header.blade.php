@@ -14,6 +14,9 @@
                     <a href="#" class="dropdown-toggle active" role="button" aria-haspopup="true" aria-expanded="false">
                         <span id="favorite-products-total" class="badge badge-notify" style="right: 1px; padding: 2px 4px; visibility:hidden; background-color:#cb1523;"></span>
                         <i class="far fa-heart" id="hasFavorite" aria-hidden="true" ></i></a>
+            <a href="#" class="dropdown-toggle active" role="button" aria-haspopup="true" aria-expanded="false">
+                <span id="shopping_CART" class="badge badge-notify" style="right: 1px; padding: 2px 4px; visibility:hidden; background-color:#cb1523;"></span>
+                <i class="fas fa-shopping-cart" id="cart" aria-hidden="true" ></i></a>
                 {{--</li>--}}
             {{--</ul>--}}
         </div>
@@ -137,7 +140,7 @@
 
     .search {
         float: right;
-        padding: 30px
+        padding-top: 30px;
     }
     .navbar-inner{
         float: right;
@@ -148,6 +151,9 @@
     #hasFavorite{
         font-size: 23px;
         color: #FFF!important;
+    }
+    #cart{
+        font-size: 23px;
     }
     #favorite-products-total{
         font-size: 11px;
