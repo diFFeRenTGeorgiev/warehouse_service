@@ -11,4 +11,8 @@ class Product extends Model
         return $this->hasOne(Type::class);
     }
 
+    public function attributes()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }

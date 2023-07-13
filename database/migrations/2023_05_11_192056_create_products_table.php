@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('description')->nullable();
             $table->boolean('is_enabled')->nullable();
             $table->integer('out_of_stock_days')->nullable();
-            $table->integer('attribute_id')->nullable();
+            $table->foreignId('attribute_id')->nullable()->constrained('attributes');
             $table->integer('warranty')->nullable();
             $table->double('regular_price')->nullable();
             $table->double('promotional_price')->nullable();

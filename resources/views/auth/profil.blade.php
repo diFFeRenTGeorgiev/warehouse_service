@@ -36,7 +36,7 @@
         overflow: hidden;
         border: 1px solid #ccc;
         background-color: rgba(0,0,0,.5);
-        width: 29%;
+        width: 30%;
         left:35.5%;
         position: absolute;
     }

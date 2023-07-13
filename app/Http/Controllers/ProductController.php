@@ -45,4 +45,26 @@ class ProductController extends Controller
         ];
         return json_encode(['content'=>$responseContent]);
     }
+
+    public function show($productId){
+//
+//        $product = Product::with('attributes')->find($productId);
+
+//        $roles = App\User::find(1)->roles()->orderBy('name')->get();
+
+        $product = DB::select("SELECT products.*,attributes.name AS attribute_name, attributes.value,types.type_name,
+         json_agg(product_files.name) product_card_img 
+            FROM products
+            INNER JOIN attributes ON attributes.id = products.attribute_id
+            INNER JOIN types ON types.id = products.type_id
+            INNER JOIN product_files ON product_files.product_id = products.id
+            WHERE products.id = '{$productId}'
+            GROUP BY products.id,products.type_id,products.name,products.description,
+          products.is_enabled,products.out_of_stock_days,products.attribute_id,products.warranty,
+          products.regular_price,products.promotional_price,products.discount,products.quantity,products.created_at,
+          products.updated_at,attributes.name,attributes.value,types.type_name");
+
+        return view();
+        dd($product);
+    }
 }

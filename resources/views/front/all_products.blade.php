@@ -81,7 +81,6 @@
                     </button></div>
             </div>
             @foreach($products as $product)
-                {{--@dd($product)--}}
            @include('products.product_card',[$product])
             @endforeach
             <div class="products-row">
@@ -294,7 +293,6 @@
 @endsection
 @section('js')
 <script>
-
     function addOrRemoveFavorite(productId)
     {
         var btn = document.getElementById("favorite_product_btn_"+productId);

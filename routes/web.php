@@ -39,3 +39,6 @@ Route::prefix('/ajax')->group(function () {
     Route::post('/favorite-products-remove', 'ProductController@removeFavorite')->name('ajax.removeFavorite');
 });
 Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('/products')->group(function () {
+Route::get('/{id?}', 'ProductController@show')->name('product');
+});
