@@ -21,54 +21,60 @@
         <!-- PRODUCT INFORMATION -->
         <div class="product">
             <!--category-breadcrumb-->
-            <span class="category">Footwear</span>
+            <span class="category">{{$type->type_name}}</span>
             <!--stock-label-->
-            <span class="stock">In Stock</span>
-            <h1>Stacy Adams Men's Trevor Slip-On Loafer</h1>
+            <span class="stock">{{$product->quantity > 0 ? 'В наличност':'Изчерпан'}}</span>
+            <h1>{{$product->name}}</h1>
             <!--PRICE-RATING-REVIEW-->
             <div class="block-price-rating clearfix">
                 <!--price-->
                 <div class="block-price clearfix">
                     <div class="price-new clearfix">
-                        <span class="price-new-dollar">$399</span>
-                        <span class="price-new-cent">90</span>
+                        <span class="price-new-dollar">{{$product->promotional_price}}BGN</span>
+                        {{--<span class="price-new-cent">90</span>--}}
                     </div>
                     <div class="price-old clearfix">
-                        <span class="price-old-dollar">$599</span>
-                        <span class="price-old-cent">&#8228;90</span>
+                        <span class="price-old-dollar">{{$product->regular_price}}BGN</span>
+                        {{--<span class="price-old-cent">&#8228;90</span>--}}
                     </div>
                 </div>
                 <!--rating-->
-                <div class="block-rating clearfix">
-                    <!--review-->
-                    <span class="review">40 Reviews</span>
-                    <span class="rating"><img src="http://thrivedigital.wpengine.com/wp-content/uploads/2015/03/Review-Stars.png"></span>
-                </div>
+                {{--<div class="block-rating clearfix">--}}
+                    {{--<!--review-->--}}
+                    {{--<span class="review">40 Reviews</span>--}}
+                    {{--<span class="rating"><img src="http://thrivedigital.wpengine.com/wp-content/uploads/2015/03/Review-Stars.png"></span>--}}
+                {{--</div>--}}
             </div>
             <!--PRODUCT DESCRIPTION-->
             <div class="descr">
-                <p>Stacy Adams and men who know style have been a perfect fit for over 100 years. Founded in 1875 in Brockton, Massachusetts by William H. Stacy and Henry L. Adams, the Stacy Adams Shoe Company has long been a part of American culture.</p>
+                <p>{{$product->description}}</p>
             </div>
             <!--SELECT BLOCK-->
             <div class="block-select clearfix">
                 <form>
                     <div class="select-color">
-                        <span>Select Color</span>
+                        <span>Цвят</span>
                         <select class="color">
-                            <option>Cognac</option>
-                            <option>Black</option>
+                            <option>{{$attribute->value}}</option>
                         </select>
                     </div>
                     <div class="select-size">
-                        <span>Size</span>
+                        <span>Количество</span>
                         <select class="size">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
                             <option>8</option>
                             <option>9</option>
                             <option>10</option>
                         </select>
                     </div>
                     <!--BUTTON-->
-                    <button class="btn"><img src="">Add to bag</button>
+                    <button class="btn"><img src="">Добави в количката</button>
                 </form>
             </div>
             <!--LINKS-->
@@ -80,12 +86,12 @@
                     </div>
                     <div class="wishlist">
                         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/23243-200.png">
-                        <span>Save for later</span>
+                        <span>Добави в любими</span>
                     </div>
                 </div>
                 <!--SOCIAL-->
                 <div class="social">
-                    <a href="#"><img src="http://www.iconsdb.com/icons/download/black/facebook-7-256.gif"></a>
+                    <a href="#"><img src="http://www.iconsdb.com/icons/download/black/facebook-7-256.gif" alt="sdf"></a>
                     <a href="#"><img src="http://www.iconsdb.com/icons/download/black/twitter-4-512.gif"></a>
                     <a href="#"><img src="http://www.iconsdb.com/icons/download/black/google-plus-4-512.jpg"></a>
                     <a href="#"><img src="http://www.nataliemorgan.co.nz/images/Pinterest.png"></a>
@@ -102,7 +108,7 @@
         /*width: 430px;*/
         position: absolute;
         top: 133px;
-        left: 774px;
+        left: 729px;
     }
     span.category {
         display: block;

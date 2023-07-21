@@ -25,6 +25,7 @@
     <!-- end:: body_content section -->
         <!-- end:: Content -->
     </div>
+    @include('front.components.footer')
 </div>
 </body>
 @yield('js')
