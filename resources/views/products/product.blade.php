@@ -267,10 +267,14 @@
         width: 100%;
         border-radius: 2px;
         cursor: pointer;
-        background: #fd7064;
+        background: #222;
     }
     .btn:hover {
-        background: #fc796f;
+        background: #fff;
+        color: #222;
+        font-size: 14px;
+        font-weight: 700;
+
     }
     /*LINKS*/
     .block-footer {

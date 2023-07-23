@@ -12,9 +12,10 @@
 {{--</head>--}}
 <body>
 
-<footer class="mainfooter" role="contentinfo">
+<footer class="bg-info text-center text-lg-start fixed-bottom">
+    {{--<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--}}
     <div class="footer-middle">
-        <div class="container">
+        <div class="container p-4">
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <!--Column1-->
@@ -77,6 +78,7 @@
 
         </div>
     </div>
+    {{--</section>--}}
 </footer>
 
 
