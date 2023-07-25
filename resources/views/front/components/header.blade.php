@@ -115,15 +115,15 @@
     body {
         background: #bdc3c7;
         line-height: 1.5;
-        font-family: sans-serif;
-        text-transform: uppercase;
-        font-size: 16px;
+        font-family: sans-serif !important;
+        text-transform: uppercase !important;
+        font-size: 16px !important;
         color: #fff
     }
 
     a {
         text-decoration: none;
-        color: #fff
+        color: #fff !important;
     }
 
     #header {
@@ -201,7 +201,8 @@
     }
 
     nav li a:hover {
-        background: #2C3E50
+        background: #2C3E50;
+        color:#fff !important;
     }
 
     nav li ul {
@@ -233,7 +234,8 @@
     nav .dropdown li a {
         padding: 10px 35px;
         font-size: 13px;
-        min-width: 200px
+        min-width: 200px;
+        /*color: #222;*/
     }
 
     nav .mega-dropdown {
@@ -250,7 +252,7 @@
 
     nav li li a {
         float: none;
-        color: #333;
+        color: #333 !important;
         display: block;
         padding: 8px 10px;
         border-radius: 3px;
