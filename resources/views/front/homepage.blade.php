@@ -18,7 +18,8 @@
 @endsection
 <style>
     .col-xs-6{
-        margin-left: 14px !important;
-        width:100% !important;
+        /*margin-left: 14px !important;*/
+        width:97% !important;
+        float: unset !important;
     }
 </style>

@@ -1,7 +1,7 @@
 
 {{--@livewire('users-table-view')--}}
 
-<div class="login-box">
+<div class="register-box">
     <h2>Регистрация</h2>
     <form id="register_form" action="{{ route('register_form') }}" method="POST">
         @csrf
@@ -73,9 +73,9 @@
         margin-right:-14px !important;
     }
 
-    .login-box {
+    .register-box {
         position: absolute;
-        top: 65%;
+        top: 91% !important;
         left: 50%;
         width: 400px;
         padding: 40px;
@@ -86,18 +86,18 @@
         border-radius: 10px;
     }
 
-    .login-box h2 {
+    .register-box h2 {
         margin: 0 0 30px;
         padding: 0;
         color: #fff;
         text-align: center;
     }
 
-    .login-box .user-box {
+    .register-box .user-box {
         position: relative;
     }
 
-    .login-box .user-box input {
+    .register-box .user-box input {
         width: 100%;
         padding: 10px 0;
         font-size: 16px;
@@ -108,7 +108,7 @@
         outline: none;
         background: transparent;
     }
-    .login-box .user-box label {
+    .register-box .user-box label {
         position: absolute;
         top:0;
         left: 0;
@@ -119,15 +119,15 @@
         transition: .5s;
     }
 
-    .login-box .user-box input:focus ~ label,
-    .login-box .user-box input:valid ~ label {
+    .register-box .user-box input:focus ~ label,
+    .register-box .user-box input:valid ~ label {
         top: -20px;
         left: 0;
         color: #03e9f4;
         font-size: 12px;
     }
 
-    .login-box form a {
+    .register-box form a {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -141,7 +141,7 @@
         letter-spacing: 4px
     }
 
-    .login-box form .buttons button {
+    .register-box form .buttons button {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -157,7 +157,7 @@
         margin-left: 5%;
     }
 
-    .login-box a:hover {
+    .register-box a:hover {
         background: #03e9f4;
         color: #fff;
         border-radius: 5px;
@@ -167,12 +167,12 @@
         0 0 100px #03e9f4;
     }
 
-    .login-box a span {
+    .register-box a span {
         position: absolute;
         display: block;
     }
 
-    .login-box button:hover {
+    .register-box button:hover {
         background: #03e9f4;
         color: #fff;
         border-radius: 5px;
@@ -182,12 +182,12 @@
         0 0 100px #03e9f4;
     }
 
-    .login-box button span {
+    .register-box button span {
         position: absolute;
         display: block;
     }
 
-    .login-box a span:nth-child(1) {
+    .register-box a span:nth-child(1) {
         top: 0;
         left: -100%;
         width: 100%;
@@ -196,7 +196,7 @@
         animation: btn-anim1 1s linear infinite;
     }
 
-    .login-box button span:nth-child(1) {
+    .register-box button span:nth-child(1) {
         top: 0;
         left: -100%;
         width: 100%;
@@ -213,7 +213,7 @@
         }
     }
 
-    .login-box a span:nth-child(2) {
+    .register-box a span:nth-child(2) {
         top: -100%;
         right: 0;
         width: 2px;
@@ -223,7 +223,7 @@
         animation-delay: .25s
     }
 
-    .login-box button span:nth-child(2) {
+    .register-box button span:nth-child(2) {
         top: -100%;
         right: 0;
         width: 2px;
@@ -241,7 +241,7 @@
         }
     }
 
-    .login-box a span:nth-child(3) {
+    .register-box a span:nth-child(3) {
         bottom: 0;
         right: -100%;
         width: 100%;
@@ -251,7 +251,7 @@
         animation-delay: .5s
     }
 
-    .login-box button span:nth-child(3) {
+    .register-box button span:nth-child(3) {
         bottom: 0;
         right: -100%;
         width: 100%;
@@ -270,7 +270,7 @@
         }
     }
 
-    .login-box a span:nth-child(4) {
+    .register-box a span:nth-child(4) {
         bottom: -100%;
         left: 0;
         width: 2px;
@@ -280,7 +280,7 @@
         animation-delay: .75s
     }
 
-    .login-box button span:nth-child(4) {
+    .register-box button span:nth-child(4) {
         bottom: -100%;
         left: 0;
         width: 2px;

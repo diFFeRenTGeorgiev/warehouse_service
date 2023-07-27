@@ -56,7 +56,7 @@
                 </button>
             </div>
         </div>
-        <div class="products-area-wrapper tableView">
+        <div class="products-area-wrapper gridView">
             <div class="products-header">
                 <div class="product-cell image">
                     Items

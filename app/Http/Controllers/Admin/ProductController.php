@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attribute;
 use App\Models\Product;
 use App\Models\Product_file;
+use App\Models\ProductFile;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,7 @@ class ProductController extends Controller
 
 
         foreach ($request->file('product_files') as $file ){
-            $prod_files = new Product_file();
+            $prod_files = new ProductFile();
             Storage::disk('media_files')->put('product_files/'.$product->id, $file);
             $prod_files->product_id = $product->id;
             $prod_files->name = $file->hashName();

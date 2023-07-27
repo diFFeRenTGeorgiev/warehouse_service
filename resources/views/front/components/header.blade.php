@@ -114,11 +114,11 @@
 
     body {
         background: #bdc3c7;
-        line-height: 1.5;
-        font-family: sans-serif !important;
+        /*line-height: 1.5;*/
+        /*font-family: sans-serif !important;*/
         text-transform: uppercase !important;
         font-size: 16px !important;
-        color: #fff
+        /*color: #fff*/
     }
 
     a {
@@ -337,7 +337,23 @@
         }
 
         .search {
-            float: none
+            float: none;
+            /*background-color: var(--app-content-secondary-color);*/
+            /*border: 1px solid var(--app-content-secondary-color);*/
+            /*color: var(--app-content-main-color);*/
+            /*font-size: 14px;*/
+            /*line-height: 24px;*/
+            /*border-radius: 4px;*/
+            /*padding: 0px 10px 0px 32px;*/
+            /*height: 32px;*/
+            /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");*/
+            /*background-size: 16px;*/
+            /*background-repeat: no-repeat;*/
+            /*background-position: left 10px center;*/
+            /*width: 100%;*/
+            /*max-width: 320px;*/
+            transition: 0.2s;
+            position: relative !important;
         }
 
         .search input {

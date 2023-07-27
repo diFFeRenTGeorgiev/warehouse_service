@@ -84,7 +84,7 @@
     }
 
     #log {
-        top: 50%;
+        top: 65%;
     }
 
     .login-box {
