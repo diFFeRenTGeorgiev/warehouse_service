@@ -6,6 +6,8 @@ use App\Constant\CookieConstant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+//use Symfony\Component\HttpFoundation\Cookie;
 
 class FavoriteProductsManager extends Model
 {
@@ -13,15 +15,15 @@ class FavoriteProductsManager extends Model
     {
 
         $idsArr=self::getIds();
-
         if (!in_array($productId, $idsArr)) {
-
+//dd(12);
             if(count($idsArr)>=40) { //protect DB column or cookie from overloading with ids
                 array_shift($idsArr);
             }
             array_push($idsArr, $productId);
             $idsAsStr = implode(',',$idsArr);
             self::saveIdsInCookie($idsAsStr);
+//            return redirect()->intended('/')->withCookie(cookie()->forever(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 500000));
         }
     }
 
@@ -47,27 +49,27 @@ class FavoriteProductsManager extends Model
     public static function saveIdsInCookie($idsAsStr)
     {
         $noWwwDomainName=str_replace("www.",".",request()->getHost());
-        Cookie::queue(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 500000, '/', $noWwwDomainName);
-
+        Cookie::queue(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 500000, '/',$noWwwDomainName);
     }
 
-    private  static function explodeIds($idsAsStr){
+//    private  static function explodeIds($idsAsStr){
+//
+//        $arrIds = explode(',', $idsAsStr);
+//
+//        return $arrIds;
+//    }
 
-        $arrIds = explode(',', $idsAsStr);
-
-        return $arrIds;
+    private static function explodeIds($idsAsStr)
+    {
+        return array_filter(explode(',',$idsAsStr),'strlen'); //array_filter($arr,'strlen') removes empty elements
     }
-
     public static function getIds()
     {
         $idsArr=[];
-
         if(!empty(request()->cookie(CookieConstant::FAVORITE_PRODUCTS_IDS))) {
             $idsAsStr = request()->cookie(CookieConstant::FAVORITE_PRODUCTS_IDS);
-
             $idsArr = self::explodeIds($idsAsStr);
         }
-
         return $idsArr;
     }
 }

@@ -12,7 +12,7 @@
             {{--<ul class="nav navbar-right">--}}
                 {{--<li class="dropdown">--}}
                     <a href="#" class="dropdown-toggle active" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span id="favorite-products-total" class="badge badge-notify" style="right: 1px; padding: 2px 4px; visibility:hidden; background-color:#cb1523;"></span>
+                        <span id="favorite-products-total" class="badge badge-notify" style="right: 1px; padding: 2px 4px; background-color:#cb1523;@if(count($favoriteIds)==0)visibility:hidden;@endif">{{count($favoriteIds[0])}}</span>
                         <i class="far fa-heart" id="hasFavorite" aria-hidden="true" ></i></a>
             <a href="#" class="dropdown-toggle active" role="button" aria-haspopup="true" aria-expanded="false">
                 <span id="shopping_CART" class="badge badge-notify" style="right: 1px; padding: 2px 4px; visibility:hidden; background-color:#cb1523;"></span>

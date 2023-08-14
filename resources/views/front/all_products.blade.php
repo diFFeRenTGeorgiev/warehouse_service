@@ -310,12 +310,10 @@
 
     function removeFromFavorites(productId)
     {
-        var url = "{{ route('ajax.removeFavorite')}}";
-
+        var url = "{{route('ajax.removeFavorite')}}";
         var data = {
             "product_id": productId,
         };
-
         fetch(url, {
             method: 'POST',
             headers: {
@@ -324,9 +322,6 @@
             },
             body: JSON.stringify(data),
         })
-            .then(function (response) {
-                return response.json();
-            })
             .then(function (data) {
 
                 if($('#favorite-products-total')) {
@@ -371,49 +366,29 @@
             },
             body: JSON.stringify(data),
         })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                // if(response.status=="success") {
-
-                            // alert(response.data.content.product_id);
-                            if($('#favorite-products-total')) {
-                                $('#favorite-products-total').css('visibility','visible');
-                                $('#favorite-products-total').text(($('#favorite-products-total').text()*1)+1);
-                            }
-                            var btn = document.getElementById("favorite_product_btn_"+productId);
-                            // var icon = document.getElementById("favorite_"+productId)
-                            if(btn!=undefined) {
-                                btn.dataset.isFavorite=1;
-                                btn.style.color = "#cb1523";
-                                // icon.style.color = "#cb1523";
-                                // console.log(icon);
-                                btn.style.textShadow = "none";
-                            }
-            })
-            .catch(function (error) {
-                console.log(error); // Handle any errors
-            });
-
-        // $.post(url, data, function(response) {
-        //     if(response.status=="success") {
-        //
-        //         // alert(response.data.content.product_id);
-        //         if($('#favorite-products-total')) {
-        //             $('#favorite-products-total').css('visibility','visible');
-        //             $('#favorite-products-total').text(($('#favorite-products-total').text()*1)+1);
-        //         }
-        //         var btn = document.getElementById("favorite_product_btn_"+productId);
-        //         if(btn!=undefined) {
-        //             btn.dataset.isFavorite=1;
-        //             btn.style.color = "#cb1523";
-        //             btn.style.textShadow = "none";
-        //         }
-        //     }
-        // });
+        .then(function (data) {
+            if ($('#favorite-products-total')) {
+                $('#favorite-products-total').css('visibility', 'visible');
+                $('#favorite-products-total').text(($('#favorite-products-total').text() * 1) + 1);
+            }
+            var btn = document.getElementById("favorite_product_btn_" + productId);
+            if (btn != undefined) {
+                console.log(btn);
+                btn.dataset.isFavorite = 1;
+                btn.style.color = "#cb1523";
+                btn.style.textShadow = "none";
+            }
+        })
     }
-
+    @foreach(App\FavoriteProductsManager::getIds() as $items)
+    var btn = document.getElementById("favorite_product_btn_{{$items}}");
+    if (btn != undefined) {
+        console.log(btn);
+        btn.dataset.isFavorite = 1;
+        btn.style.color = "#cb1523";
+        btn.style.textShadow = "none";
+    }
+    @endforeach
     function showModal() {
         $('#myModal').modal('show');
         $("#myModal").modal({backdrop: true});

@@ -12,7 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ec6f230225.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/x-icon" href="{{ 'files/favicon.jpeg'}}">
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>--}}
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js" integrity="sha512-Nonc2AqL1+VEN+97F3n4YxucBOAL5BgqNwEVc2uUjdKOWAmzwj5ChdJQvN2KldAxkCxE4OenuJ/RL18bWxGGzA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
     {{--@laravelViewsStyles--}}
+
+<!-- App JS -->
+    <script src="{{ asset('js/cart_products.js') }}?{{0}}"></script>
+{{--    <script src="{{ asset('js/favourites_products.js') }}?''"></script>--}}
 </head>
 <body>
 <div id="grid-container">
@@ -36,3 +42,7 @@
     width:103%;
 }
 </style>
+<script>
+    {{--var favoriteProductsIdsArr = @json{\App\FavoriteProductsManager::getIds()};--}}
+    </script>
+@yield('css')

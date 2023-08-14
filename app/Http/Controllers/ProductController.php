@@ -31,7 +31,7 @@ class ProductController extends Controller
         FavoriteProductsManager::addProduct($request->json('product_id'));
         $responseContent = [
             'product_id' => $request->product_id,
-            'message' => trans('Продукта беше запазен в любими.'),
+            'message' => 'Продукта беше запазен в любими.'
         ];
         return json_encode(['content'=>$responseContent]);
     }

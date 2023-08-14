@@ -1,4 +1,5 @@
 @extends('front.components.layout')
+
 @section('front_body')
     <div class="shop-bg"></div>
     <div class="pop-up clearfix">
@@ -20,6 +21,7 @@
         </div>
         <!-- PRODUCT INFORMATION -->
         <div class="product">
+            <input type="hidden" value="{{$product->id}}" id="prod_id">
             <!--category-breadcrumb-->
             <span class="category">{{$type->type_name}}</span>
             <!--stock-label-->
@@ -60,7 +62,7 @@
                     </div>
                     <div class="select-size">
                         <span>Количество</span>
-                        <select class="size">
+                        <select class="size size_packing" name="size_packing">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -74,7 +76,7 @@
                         </select>
                     </div>
                     <!--BUTTON-->
-                    <button class="btn"><img src="">Добави в количката</button>
+                    <button class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
                 </form>
             </div>
             <!--LINKS-->
@@ -101,6 +103,7 @@
     </div>
 
 @endsection
+@section('css')
 <style>
     /*PRODUCT INFORMATION*/
     .product {
@@ -349,9 +352,46 @@
         width: 100%;
     }
 </style>
+    @endsection
+@section('js')
 <script>
     lightGallery(document.getElementById('product-gallery'), {
         thumbnail: true,
         download: false,
     });
 </script>
+<script>
+    $(".product-order-btn").click( function () {
+        console.log($("#prod_id").val());
+        addCartProduct($("#prod_id"),$(".size_packing").val());
+    });
+    function addCartProduct(productId, qty)
+    {
+        console.log(productId);
+        var url = '/cart/add-product';
+
+        var data = {
+            "productId": productId,
+            "quantity": qty
+        };
+
+        {{--$.post(url, data, function(data, status) {--}}
+        {{--if(data.status=="error") {--}}
+        {{--alert(data.error_message);--}}
+        {{--} else {--}}
+        {{--var eventId = 'add_' + data.cartId  + '_' +  {{ $product->id }} + '_' + $.now();--}}
+        {{--// send server-side FB event--}}
+        {{--$.ajax({--}}
+        {{--method: "GET",--}}
+        {{--url: "{{ route('cart.send_add_to_cart_event') }}?product_id=" + {{ $product->id }} + '&price={{ $productSellPriceLocalized }}' + '&url={{  url()->current() }}' + '&eventId=' + eventId + '&quantity=' + qty,--}}
+        {{--}).done(function (data) {--}}
+        {{--// maybe check result and do something further. So far not needed--}}
+        {{--});--}}
+        {{--window.location.href = "/cart";--}}
+        {{--}--}}
+
+        // });
+    }
+
+</script>
+    @endsection
