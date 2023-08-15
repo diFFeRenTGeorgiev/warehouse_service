@@ -9,6 +9,7 @@
 namespace App;
 
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
@@ -294,8 +295,11 @@ class CartManager
      */
     public static function addProduct($productId, $quantity)
     {
-        if(ProductStockManager::canOrderProductsNumber($productId) < $quantity) {
-            throw new \Exception(trans('Съжаляваме, няма достатъчно количество.'));
+//        dd(Product::where('id',$productId)->get('quantity'));
+        $qtty = Product::where('id',$productId)->get('quantity');
+        dd($qtty);
+        if($qtty->quantity < $quantity) {
+            throw new \Exception('Съжаляваме, няма достатъчно количество.');
         }
 
         $productPackSize=self::getProductPackSize($productId);

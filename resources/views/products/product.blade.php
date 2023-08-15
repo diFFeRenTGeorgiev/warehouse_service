@@ -20,8 +20,10 @@
              @endforeach
         </div>
         <!-- PRODUCT INFORMATION -->
+        <form action="{{route('cart.add_product',[$product->id])}}" method="POST">
+            @csrf
         <div class="product">
-            <input type="hidden" value="{{$product->id}}" id="prod_id">
+            <input type="hidden" name="productId" value="{{$product->id}}" id="prod_id">
             <!--category-breadcrumb-->
             <span class="category">{{$type->type_name}}</span>
             <!--stock-label-->
@@ -53,10 +55,10 @@
             </div>
             <!--SELECT BLOCK-->
             <div class="block-select clearfix">
-                <form>
+
                     <div class="select-color">
                         <span>Цвят</span>
-                        <select class="color">
+                        <select class="color" name="attribute">
                             <option>{{$attribute->value}}</option>
                         </select>
                     </div>
@@ -76,7 +78,7 @@
                         </select>
                     </div>
                     <!--BUTTON-->
-                    <button class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
+                    <button type="submit" class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
                 </form>
             </div>
             <!--LINKS-->
@@ -354,26 +356,25 @@
 </style>
     @endsection
 @section('js')
-<script>
-    lightGallery(document.getElementById('product-gallery'), {
-        thumbnail: true,
-        download: false,
-    });
-</script>
-<script>
-    $(".product-order-btn").click( function () {
-        console.log($("#prod_id").val());
-        addCartProduct($("#prod_id"),$(".size_packing").val());
-    });
-    function addCartProduct(productId, qty)
-    {
-        console.log(productId);
-        var url = '/cart/add-product';
+{{--<script>--}}
+    {{--lightGallery(document.getElementById('product-gallery'), {--}}
+        {{--thumbnail: true,--}}
+        {{--download: false,--}}
+    {{--});--}}
+{{--</script>--}}
+{{--<script>--}}
+    {{--$(".product-order-btn").click( function () {--}}
+        {{--console.log($("#prod_id").val());--}}
+        {{--addCartProduct({{$product->id}},$("select.size_packing").children("option:selected").val());--}}
+    {{--});--}}
+    {{--function addCartProduct(productId, qty)--}}
+    {{--{--}}
+        {{--var url = '/cart/add-product';--}}
 
-        var data = {
-            "productId": productId,
-            "quantity": qty
-        };
+        {{--var data = {--}}
+            {{--"productId": productId,--}}
+            {{--"quantity": qty--}}
+        {{--};--}}
 
         {{--$.post(url, data, function(data, status) {--}}
         {{--if(data.status=="error") {--}}
@@ -390,8 +391,8 @@
         {{--window.location.href = "/cart";--}}
         {{--}--}}
 
-        // });
-    }
+        {{--});--}}
+    {{--}--}}
 
-</script>
+{{--</script>--}}
     @endsection

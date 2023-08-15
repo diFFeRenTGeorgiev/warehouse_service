@@ -38,7 +38,10 @@ Route::prefix('/ajax')->group(function () {
     Route::post('/favorite-products-add', 'ProductController@addFavorite')->name('ajax.ajaxRequest.post');
     Route::post('/favorite-products-remove', 'ProductController@removeFavorite')->name('ajax.removeFavorite');
 });
+Route::post('/cart/add-product/{id}', 'CartController@addProduct')->name('cart.add_product');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/products')->group(function () {
 Route::get('/{id?}', 'ProductController@show')->name('product');
 });
+
+

@@ -18,7 +18,7 @@ class CartController extends Controller
     {
         $resultArr=[];
         try {
-            $cartId = CartManager::addProduct($request->productId, $request->quantity);
+            $cartId = CartManager::addProduct($request->productId, $request->size_packing);
             $resultArr=['status' => 'success', 'cartId' => $cartId];
         } catch (\Exception $ex) {
             $resultArr=['status' => 'error', 'error_message' => $ex->getMessage()];
