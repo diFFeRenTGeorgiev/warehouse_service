@@ -20,9 +20,10 @@
              @endforeach
         </div>
         <!-- PRODUCT INFORMATION -->
-        <form action="{{route('cart.add_product',[$product->id])}}" method="POST">
-            @csrf
+
         <div class="product">
+            <form action="{{route('cart.add_product',[$product->id])}}" method="POST">
+                @csrf
             <input type="hidden" name="productId" value="{{$product->id}}" id="prod_id">
             <!--category-breadcrumb-->
             <span class="category">{{$type->type_name}}</span>
@@ -77,10 +78,18 @@
                             <option>10</option>
                         </select>
                     </div>
-                    <!--BUTTON-->
+                {{--@if ($error)--}}
+                    <div >
+                        {!! Session::has('msg') ? Session::get("msg") : '' !!}
+                    </div>
+            {{--@endif--}}
+
+
+            <!--BUTTON-->
                     <button type="submit" class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
-                </form>
+
             </div>
+        </form>
             <!--LINKS-->
             <div class="block-footer clearfix">
                 <div class="block-links">

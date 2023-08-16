@@ -9,9 +9,12 @@
 namespace App;
 
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CartManager
 {
@@ -102,7 +105,7 @@ class CartManager
      * get the cart with added products from DB or null
      * @return null|Illuminate\Database\Eloquent\Collection
      */
-    private static function getCartWithProducts()
+    public static function getCartWithProducts()
     {
         $cart = null;
 
@@ -114,7 +117,6 @@ class CartManager
             $cart = Cart::where('id', request()->cookie('cart_id'))
                 ->with('cartProducts')->first();
         }
-
         return $cart;
     }
 
@@ -123,7 +125,7 @@ class CartManager
      *
      * @return instance of Cart model with CartProducts relation
      */
-    private static function createCart()
+    public static function createCart()
     {
         $cart = new Cart();
         if (Auth::check()) {
@@ -250,10 +252,10 @@ class CartManager
         return false;
     }
 
-    private static function getProductPackSize($productId)
+    public static function getProductPackSize($productId)
     {
-        $product = Product::find($productId);
-        return $product->pack_size;
+        $product = Product::where('id',$productId )->first();
+        return $product;
     }
 
     private static function mergeCarts()
@@ -293,13 +295,13 @@ class CartManager
      * @return integer|exception  //true on success and exception if fail
      * @throws \Exception
      */
-    public static function addProduct($productId, $quantity)
+    public static function addProduct($productId, $quantity,$request)
     {
-//        dd(Product::where('id',$productId)->get('quantity'));
-        $qtty = Product::where('id',$productId)->get('quantity');
-        dd($qtty);
-        if($qtty->quantity < $quantity) {
-            throw new \Exception('Съжаляваме, няма достатъчно количество.');
+        $qtty = Product::where('id',$productId)->get('quantity')->first();
+        if($qtty != null and $qtty->quantity < $quantity) {
+           session()->flash('msg', 'Съжаляваме, няма достатъчно количество.!');
+    return redirect()->back();
+//            throw new \Exception('Съжаляваме, няма достатъчно количество.');
         }
 
         $productPackSize=self::getProductPackSize($productId);
