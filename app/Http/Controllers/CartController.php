@@ -13,13 +13,16 @@ class CartController extends Controller
     {
         //list all products in the cart
         $cartData = CartManager::getCartData();
+//        dd($cartData);
         return view('front.cart.cart', ['cartData' => $cartData, 'showShareProductList' => 'cart_products']);
     }
 
     public function addProduct(Request $request)
     {
-        $product = CartManager::getProductPackSize($request->productId);
-        if ($product != null and $product->quantity < $request->size_packing) {
+        $qtty = $request->quantity;
+        $productId = $request->productId;
+        $product = CartManager::getProductPackSize($productId);
+        if ($product != null and $product->quantity < $qtty) {
             session()->flash('msg', 'Съжаляваме, няма достатъчно количество.!');
             return redirect()->back();
         }
@@ -28,21 +31,24 @@ class CartController extends Controller
         if (empty($cart)) {
             $cart = CartManager::createCart();
         }
+
         $cartProductsByKeyArr = !empty($cart->cartProducts) ? $cart->cartProducts->keyBy('product_id') : null;
-        $existingCartProduct = !empty($cartProductsByKeyArr[$request->productId]) ? $cartProductsByKeyArr[$request->productId] : null;
+        $existingCartProduct = !empty($cartProductsByKeyArr[$productId]) ? $cartProductsByKeyArr[$productId] : null;
 
         if (empty($existingCartProduct)) {
+
             $newCartProduct = new CartProduct();
             $newCartProduct->cart_id = $cart->id;
-            $newCartProduct->product_id = $product->id;
-            $newCartProduct->quantity = $request->size_packing;
+            $newCartProduct->product_id = $productId;
+            $newCartProduct->quantity = $qtty;
 
             $newCartProduct->save();
         }
 
-        $existingCartProduct != null ? $existingCartProduct->quantity = $existingCartProduct->quantity + $request->size_packing : null;
+        $existingCartProduct != null ? $existingCartProduct->quantity = $existingCartProduct->quantity + $qtty : null;
 
         $existingCartProduct != null ? $existingCartProduct->save() : null;
+
         $resultArr=[];
         try {
             $resultArr=['status' => 'success', 'cartId' => $cart->id];

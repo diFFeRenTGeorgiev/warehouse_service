@@ -6,10 +6,11 @@
  * Time: 19:13
  */
 
-namespace App;
+namespace App\Constant;
 
 
 class CacheTagConstant
 {
 const FAVORITE_PRODUCTS_IDS = 'favourite_products';
+const USERS_CARTS = 'user_cart';
 }

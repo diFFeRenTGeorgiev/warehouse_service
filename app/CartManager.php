@@ -9,9 +9,12 @@
 namespace App;
 
 
+use App\Constant\CacheTagConstant;
 use App\Models\Cart;
+use App\Models\CartProduct;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -22,26 +25,26 @@ class CartManager
 
     public static function getCartData()
     {
+
         //to avoid attaching to login event do check if carts merge is needed every time when get the cart data
         if(!empty(request()->cookie('cart_id')) && Auth::check()) {
             self::mergeCarts();
         }
 
-        if(empty(self::getCartCacheId())) { //on the very first request when user still does not have a session cookie
-            return [];
-        }
+//        if(empty(self::getCartCacheId())) { //on the very first request when user still does not have a session cookie
+//            return [];
+//        }
 
 
-        // get from cache only if no discount code is applied
-        if(empty(request()->discount_code)) {
-            if (Cache::tags(CacheTagConstant::USERS_CARTS)->has(self::getCartCacheId())) {
-                return Cache::tags(CacheTagConstant::USERS_CARTS)->get(self::getCartCacheId());
-            }
-        }
+//        // get from cache only if no discount code is applied
+//        if(empty(request()->discount_code)) {
+//            if (Cache::tags(CacheTagConstant::USERS_CARTS)->has(self::getCartCacheId())) {
+//                return Cache::tags(CacheTagConstant::USERS_CARTS)->get(self::getCartCacheId());
+//            }
+//        }
 
-
+//        dd(!empty(request()->cookie('cart_id')) && Auth::check());
         $cartWithProducts = self::getCartWithProducts();
-
         if(empty($cartWithProducts)) {
             return [];
         }
@@ -49,9 +52,6 @@ class CartManager
         self::$cartData=[];
         self::$cartData['id']=$cartWithProducts->id;
         self::$cartData['products']=[];
-        self::$cartData['discount_code']=null;
-        self::$cartData['discount_code_id']=null;
-        self::$cartData['discount_code_percent']=null;
         //load product details
         $cartProductsTmp = $cartWithProducts->cartProducts;
         $cartProducts = [];
@@ -83,16 +83,16 @@ class CartManager
         self::$cartData['products_total_amount']=$totalAmount;
 
         $productsCollection = Product::find(array_keys(self::$cartData['products']));
-        self::$cartData['delivery_time']=DeliveryPeriod::determineProductsCollectionDeliveryPeriod($productsCollection);
+//        self::$cartData['delivery_time']=DeliveryPeriod::determineProductsCollectionDeliveryPeriod($productsCollection);
 
-        Cache::tags(CacheTagConstant::USERS_CARTS)->put(self::getCartCacheId(), self::$cartData, 60*60);
+//        Cache::tags(CacheTagConstant::USERS_CARTS)->put(self::getCartCacheId(), self::$cartData, 60*60);
 
         return self::$cartData;
     }
 
     public static function clearCache()
     {
-        Cache::tags(CacheTagConstant::USERS_CARTS)->forget(self::getCartCacheId());
+//        Cache::tags(CacheTagConstant::USERS_CARTS)->forget(self::getCartCacheId());
     }
 
     private static function getCartCacheId()
@@ -108,7 +108,6 @@ class CartManager
     public static function getCartWithProducts()
     {
         $cart = null;
-
         if (Auth::check()) { // The user is logged in get cart by user_id
             $cart = Cart::where('user_id', Auth::id())
                 ->with('cartProducts')->first();
@@ -141,98 +140,82 @@ class CartManager
 
     private static function getProductDetails($productId)
     {
-        $product = Product::find($productId);
-        $productTranslation = $product->translate(app()->getLocale());
-
-        $discountCode=null;
-        $discountCodeId=null;
-        $discountValue=0;
-        $discountCodeValue = 0;
-        $isUsedDiscountCode=false;
-        $isGift = ProductGift::where('gift_product_id', $productId)-> count() > 0;
-
-        $currentProductPrice=ProductPrice::getCurrentPrice($product, ProductPrice::applyLoyalPrice()); //return regular promo or loyal price
+        $product = Product::with('attributes')->with('types')->find($productId);
+//        $isGift = ProductGift::where('gift_product_id', $productId)-> count() > 0;
+//
+//        $currentProductPrice=ProductPrice::getCurrentPrice($product, ProductPrice::applyLoyalPrice()); //return regular promo or loyal price
 
         //apply discount code
-        if(!empty(request()->discount_code)) {
-            $discountCodeCheck=DiscountCodeManager::checkCodeOnCheckout(request()->discount_code);
-
-            if($discountCodeCheck['status']=='valid') {
-                $discountCodeObj = $discountCodeCheck['discount_code_obj'];
-                $discountCodeId=$discountCodeObj->id;
-                $discountPercent=$discountCodeObj->percent;
-                $discountCode=$discountCodeObj->code;
-                $discountCodeForProductIds=unserialize($discountCodeObj->products);
-                $canApplyOnPromoPrice = false;
-
-                if ($discountCodeObj->on_promo_price == 1) {
-                    $canApplyOnPromoPrice = true;
-
-                    $discountedPrice = $currentProductPrice*((100-$discountPercent)/100);
-                    $discountCodeValue = $currentProductPrice - $discountedPrice;
-                } else {
-                    $discountedPrice = $productTranslation->regular_price*((100-$discountPercent)/100);
-                }
-
-                if (empty($discountCodeForProductIds)) {
-                    //discount code se prilaga samo na produkti, koito ne sa v promotsia (promotional_price=0)
-                    if($productTranslation->promotional_price==0 && $discountedPrice<$currentProductPrice) {
-                        $currentProductPrice=$discountedPrice;
-
-                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
-                        $isUsedDiscountCode=true;
-                    }
-                    if($canApplyOnPromoPrice == true && $discountedPrice<$currentProductPrice) {
-                        $currentProductPrice=$discountedPrice;
-
-                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
-                        $isUsedDiscountCode=true;
-                    }
-                } else {
-                    //apply discount only on specific products
-                    if ($productTranslation->promotional_price==0 && in_array($productId, $discountCodeForProductIds) && $discountedPrice < $currentProductPrice) {
-                        $currentProductPrice=$discountedPrice;
-
-                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
-                        $isUsedDiscountCode=true;
-                    }
-                }
-            }
-        }
-
-        $discountValue = $productTranslation->regular_price-$currentProductPrice;
-
-        //get first gallery image if exist
-        $firstGalleryImageName=null;
-        $firstGalleryImage=$product->getGalleryFiles()->first();
-        if(!empty($firstGalleryImage)) {
-            $firstGalleryImageName=$firstGalleryImage->name;
-        }
-
+//        if(!empty(request()->discount_code)) {
+////            $discountCodeCheck=DiscountCodeManager::checkCodeOnCheckout(request()->discount_code);
+//
+//            if($discountCodeCheck['status']=='valid') {
+//                $discountCodeObj = $discountCodeCheck['discount_code_obj'];
+//                $discountCodeId=$discountCodeObj->id;
+//                $discountPercent=$discountCodeObj->percent;
+//                $discountCode=$discountCodeObj->code;
+//                $discountCodeForProductIds=unserialize($discountCodeObj->products);
+//                $canApplyOnPromoPrice = false;
+//
+//                if ($discountCodeObj->on_promo_price == 1) {
+//                    $canApplyOnPromoPrice = true;
+//
+//                    $discountedPrice = $currentProductPrice*((100-$discountPercent)/100);
+//                    $discountCodeValue = $currentProductPrice - $discountedPrice;
+//                } else {
+//                    $discountedPrice = $productTranslation->regular_price*((100-$discountPercent)/100);
+//                }
+//
+//                if (empty($discountCodeForProductIds)) {
+//                    //discount code se prilaga samo na produkti, koito ne sa v promotsia (promotional_price=0)
+//                    if($productTranslation->promotional_price==0 && $discountedPrice<$currentProductPrice) {
+//                        $currentProductPrice=$discountedPrice;
+//
+//                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
+//                        $isUsedDiscountCode=true;
+//                    }
+//                    if($canApplyOnPromoPrice == true && $discountedPrice<$currentProductPrice) {
+//                        $currentProductPrice=$discountedPrice;
+//
+//                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
+//                        $isUsedDiscountCode=true;
+//                    }
+//                } else {
+//                    //apply discount only on specific products
+//                    if ($productTranslation->promotional_price==0 && in_array($productId, $discountCodeForProductIds) && $discountedPrice < $currentProductPrice) {
+//                        $currentProductPrice=$discountedPrice;
+//
+//                        self::applyDiscountDataToCart($discountCode, $discountCodeId, $discountPercent);
+//                        $isUsedDiscountCode=true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        $discountValue = $productTranslation->regular_price-$currentProductPrice;
+//dd($product);
+//        //get first gallery image if exist
+//        $firstGalleryImageName=null;
+//        $firstGalleryImage=$product->getGalleryFiles()->first();
+//        if(!empty($firstGalleryImage)) {
+//            $firstGalleryImageName=$firstGalleryImage->name;
+//        }
+//        dd($product->types->type_name);
         $productDetails = [
-            'sku'=>$product->sku,
-            'type'=>$product->type,
-            'weight'=>$product->weight,
-            'weight_units'=>$product->weight_units,
-            'title'=>$productTranslation->title,
-            'discount_value'=>$discountValue,
-            'is_used_discount_code'=>$isUsedDiscountCode,
-            'regular_price'=>$productTranslation->regular_price,
-            'promotional_price'=>$productTranslation->promotional_price,
-            'loyal_client_price'=>$productTranslation->loyal_client_price,
-            'price'=>$currentProductPrice,
-            'discount_code_value' => $discountCodeValue,
-            'item_delivery_time'=>DeliveryPeriod::getPeriod($product),
-            'image'=>$firstGalleryImageName,
-            'slug'=>$productTranslation->slug,
-            'pack_size'=>$product->pack_size,
-            'assembling_price'=>$productTranslation->assembling_price,
-            'carrying_price'=>$productTranslation->carrying_price,
-            'carrying_elevator_price'=>$productTranslation->carrying_elevator_price,
-            'is_gift' => $isGift,
-            'stamp' => $product->stamp
+//            'sku'=>$product->sku,
+            'type'=>$product->types->type_name,
+//            'weight'=>$product->weight,
+//            'weight_units'=>$product->weight_units,
+            'price'=>$product->regular_price,
+            'promoPrice'=>$product->promotional_price,
+//            'discount_code_value' => $discountCodeValue,
+            'item_delivery_time'=>$product->out_of_stock_days,
+//            'image'=>$firstGalleryImageName,
+            'pack_size'=>$product->quantity,
+//            'carrying_elevator_price'=>$productTranslation->carrying_elevator_price,
+//            'is_gift' => $isGift,
+//            'stamp' => $product->stamp
         ];
-
         return $productDetails;
     }
 
@@ -274,7 +257,7 @@ class CartManager
         $cartByUserId = Cart::where('user_id', Auth::id())->with('cartProducts')->first();
 
         if($cartByCookieId!=null && $cartByUserId!=null) {
-            CartProducts::where('cart_id', $cartByCookieId->id)
+            CartProduct::where('cart_id', $cartByCookieId->id)
                 ->update(['cart_id' => $cartByUserId->id]);
             $cartByCookieId->delete();
         }

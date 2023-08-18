@@ -49,7 +49,7 @@ class FavoriteProductsManager extends Model
     public static function saveIdsInCookie($idsAsStr)
     {
         $noWwwDomainName=str_replace("www.",".",request()->getHost());
-        Cookie::queue(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 500000, '/',$noWwwDomainName);
+        Cookie::queue(CookieConstant::FAVORITE_PRODUCTS_IDS, $idsAsStr, 60, '/',$noWwwDomainName);
     }
 
 //    private  static function explodeIds($idsAsStr){

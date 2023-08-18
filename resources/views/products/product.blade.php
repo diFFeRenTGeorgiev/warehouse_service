@@ -22,7 +22,7 @@
         <!-- PRODUCT INFORMATION -->
 
         <div class="product">
-            <form action="{{route('cart.add_product',[$product->id])}}" method="POST">
+            {{--<form >--}}
                 @csrf
             <input type="hidden" name="productId" value="{{$product->id}}" id="prod_id">
             <!--category-breadcrumb-->
@@ -86,10 +86,10 @@
 
 
             <!--BUTTON-->
-                    <button type="submit" class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
+                    <button class="btn product-order-btn"  id="orderBtn"><img src="">Добави в количката</button>
 
             </div>
-        </form>
+        {{--</form>--}}
             <!--LINKS-->
             <div class="block-footer clearfix">
                 <div class="block-links">
@@ -114,6 +114,7 @@
     </div>
 
 @endsection
+
 @section('css')
 <style>
     /*PRODUCT INFORMATION*/
@@ -365,6 +366,42 @@
 </style>
     @endsection
 @section('js')
+    <script>
+        $("#orderBtn").click( function() {
+            var productId = "{{$product->id}}";
+            var qty = $("select.size_packing").children("option:selected").val();
+            addCartProduct(productId,qty);
+            function addCartProduct(productId,qty)
+            {
+console.log(qty);
+                var url = '/cart/add-product';
+
+                var data = {
+                    "productId": productId,
+                    "quantity": qty,
+                    "_token": "{{ csrf_token() }}" // Include the CSRF token in the data
+                };
+
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url:"{{ route('cart.add_product') }}",
+                    success: function (response) {
+
+                        if(response.status=="error") {
+                            alert(response.error_message);
+                        } else {
+                            window.location.href = "/cart";
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+
+    </script>
 {{--<script>--}}
     {{--lightGallery(document.getElementById('product-gallery'), {--}}
         {{--thumbnail: true,--}}
