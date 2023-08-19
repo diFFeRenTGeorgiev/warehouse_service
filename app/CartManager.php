@@ -140,7 +140,10 @@ class CartManager
 
     private static function getProductDetails($productId)
     {
-        $product = Product::with('attributes')->with('types')->find($productId);
+        $product = Product::with('attributes')
+            ->with('types')
+            ->with('productFiles')
+            ->find($productId);
 //        $isGift = ProductGift::where('gift_product_id', $productId)-> count() > 0;
 //
 //        $currentProductPrice=ProductPrice::getCurrentPrice($product, ProductPrice::applyLoyalPrice()); //return regular promo or loyal price
@@ -192,30 +195,32 @@ class CartManager
 //            }
 //        }
 //
-//        $discountValue = $productTranslation->regular_price-$currentProductPrice;
-//dd($product);
-//        //get first gallery image if exist
-//        $firstGalleryImageName=null;
-//        $firstGalleryImage=$product->getGalleryFiles()->first();
-//        if(!empty($firstGalleryImage)) {
-//            $firstGalleryImageName=$firstGalleryImage->name;
-//        }
-//        dd($product->types->type_name);
+//        $discountValue = $productTranslation->regular_price-$currentProductPrice;lleryImageName=null;
+//        dd($product->productFiles->first());
+        //get first gallery image if exist
+        $firstGalleryImage=$product->productFiles->first();
+        if(!empty($firstGalleryImage)) {
+            $firstGalleryImageName=$firstGalleryImage->name;
+        }
+
         $productDetails = [
 //            'sku'=>$product->sku,
+        'productId' => $product->id,
             'type'=>$product->types->type_name,
 //            'weight'=>$product->weight,
 //            'weight_units'=>$product->weight_units,
             'price'=>$product->regular_price,
             'promoPrice'=>$product->promotional_price,
+            'title'=>$product->name,
 //            'discount_code_value' => $discountCodeValue,
             'item_delivery_time'=>$product->out_of_stock_days,
-//            'image'=>$firstGalleryImageName,
+            'image'=>$firstGalleryImageName,
             'pack_size'=>$product->quantity,
 //            'carrying_elevator_price'=>$productTranslation->carrying_elevator_price,
 //            'is_gift' => $isGift,
 //            'stamp' => $product->stamp
         ];
+
         return $productDetails;
     }
 

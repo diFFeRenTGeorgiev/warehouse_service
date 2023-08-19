@@ -3,30 +3,29 @@
 @section('front_body')
    <section class="section section-cart">
     <div class="container">
-        {{--@dd($cartData)--}}
         @if(!empty($cartData['products']))
         <div class="checkout-custom-cart-wrapper">
-            <div class="checkout-custom-card">
+            <div class="checkout-custom-card" style="width: 90%; position: relative; left: 10%;">
                 <div class="card-header">
-                    <p>Вашата количка</p>
+                    <h3>Вашата количка</h3>
                 </div>
 
                 <div class="card-body">
                     <div class="checkout-custom-cart-list">
 
                         @foreach($cartData['products'] as $cartProductId=>$cartProductDetailsArr)
-                        <div class="checkout-custom-cart-item-wrapper">
+                        <div class="checkout-custom-cart-item-wrapper" style="margin: 2%;">
                             <div class="checkout-custom-cart-item row">
-                                <div class="col-xs-12 col-sm-1">
+                                <div class="col-xs-12 col-sm-1" style="position: relative;left: 2.5%;margin-top:1.5% ;">
                                     <div class="checkout-custom-cart-item-inner checkout-custom-cart-item-inner-remove">
                                         <a href="javascript:removeCartProduct({{$cartProductId}});">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-ban" aria-hidden="true" style="color:red; font-size: xx-large;"></i>
                                         </a>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-7">
-                                    <div class="checkout-custom-cart-item-inner flex-start">
+                                    <div class="checkout-custom-cart-item-inner flex-start" style="display: flex;">
 {{--                                        @if($cartProductDetailsArr['price'] > 0)--}}
 {{--                                        <a href="{{route('product',$cartProductDetailsArr['slug'])}}">--}}
 
@@ -40,11 +39,11 @@
                                                 {{--</div>--}}
                                             {{--@endif--}}
 
-                                            {{--@empty($cartProductDetailsArr['image'])--}}
-                                            {{--<img src="{{ asset('images/no-image.png') }}"  alt="" style="width:121px;height:71px;" class="checkout-custom-product-img">--}}
-                                            {{--@else--}}
-                                            {{--<img src="{{ res_file('uploads/live/styles/product_image_only_compress/public/uc_product_images/'.$cartProductDetailsArr['image']) }}"  alt="" style="width:121px;height:71px;" class="checkout-custom-product-img">--}}
-                                            {{--@endempty--}}
+                                            @empty($cartProductDetailsArr['image'])
+                                            <img src="{{ asset('images/no-image.png') }}"  alt="" style="width:121px;height:71px;" class="checkout-custom-product-img">
+                                            @else
+                                            <img src="{{ '/media_files/product_files/'.$cartProductDetailsArr['productId'].'/'.$cartProductDetailsArr['image'] }}"  alt="" style="width:121px;height:71px;" class="checkout-custom-product-img">
+                                            @endempty
                                         {{--</a>--}}
                                         {{--@else--}}
                                             {{--@empty($cartProductDetailsArr['image'])--}}
@@ -54,9 +53,9 @@
                                             {{--@endempty--}}
                                         {{--@endif--}}
 
-                                        <div class="checkout-custom-cart-item-info">
+                                        <div class="checkout-custom-cart-item-info" style="margin-left: 30px;">
                                             @if($cartProductDetailsArr['price'] > 0)
-{{--                                            <a href="{{route('product',$cartProductDetailsArr['slug'])}}" class="checkout-custom-cart-item-title ">{{$cartProductDetailsArr['title']}}</a>--}}
+                                            <a href="" class="checkout-custom-cart-item-title ">{{$cartProductDetailsArr['title']}}</a>
                                             <!-- /.checkout-custom-cart-item-title -->
                                             @else
                                                 <p class="checkout-custom-cart-item-title "><span style="font-weight: bold;">{{ trans('ПОДАРЪК') }}</span> {{$cartProductDetailsArr['quantity']}}х {{$cartProductDetailsArr['title']}}</p>
@@ -70,31 +69,32 @@
                                 @if($cartProductDetailsArr['price'] > 0)
                                 <div class="col-xs-6 col-sm-2">
                                     <div class="checkout-custom-cart-item-inner flex-start">
-                                        <div class="checkout-custom-cart-item-qty">
-                                            <div onclick="$('#cart_item_{{$cartProductId}}').val(($('#cart_item_{{$cartProductId}}').val()*1)-{{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn btn-danger">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                        <div class="checkout-custom-cart-item-qty" style="position: relative; display: block ruby;">
+                                            <div style="background:#1E262D;" onclick="$('#cart_item_'{{$cartProductId}}).val(($('#cart_item_'{{$cartProductId}}).val()*1)-{{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn">
+                                                <i class="fa fa-minus" style="color:#ffffff;" aria-hidden="true"></i>
                                             </div>
 
-                                            <input id="cart_item_{{$cartProductId}}" onkeyup="setTimeout(function(){ $('#cart_item_{{$cartProductId}}').blur(); }, 1000);" onchange="changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" type="text" class="field" value="{{$cartProductDetailsArr['quantity']}}">
+                                            <input id="cart_item_{{$cartProductId}}" style="text-align:center; width: 20%;" onkeyup="setTimeout(function(){ $('#cart_item_'{{$cartProductId}}).blur(); }, 1000);" onchange="changeCartProductQty({{$cartProductId}}, $('#cart_item_'{{$cartProductId}}).val());" type="text" class="field" value="{{$cartProductDetailsArr['quantity']}}">
 
-                                            <div onclick="$('#cart_item_{{$cartProductId}}').val(($('#cart_item_{{$cartProductId}}').val()*1)+{{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn btn-danger">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <div style="background:#1E262D;" onclick="$('#cart_item_'{{$cartProductId}}).val(($('#cart_item_'{{$cartProductId}}).val()*1) + {{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_'{{$cartProductId}}).val());" class="btn ">
+                                                <i class="fa fa-plus" style="color:#ffffff;" aria-hidden="true"></i>
                                             </div>
+                                            {{--<div class="col-xs-6 col-sm-2">--}}
+                                                <div class="checkout-custom-cart-item-inner checkout-custom-cart-item-inner-price">
+                                                    <p class="checkout-custom-cart-item-price">{{$cartProductDetailsArr['quantity']*$cartProductDetailsArr['price']}} bgn</p><!-- /.checkout-custom-cart-item-qty -->
+                                                </div>
+                                            {{--</div>--}}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6 col-sm-2">
-                                    <div class="checkout-custom-cart-item-inner checkout-custom-cart-item-inner-price">
-                                        <p class="checkout-custom-cart-item-price">{{$cartProductDetailsArr['quantity']*$cartProductDetailsArr['price']}} bgn</p><!-- /.checkout-custom-cart-item-qty -->
-                                    </div>
-                                </div>
+
                                 @endif
                             </div>
                         </div>
                         @endforeach
 
-                        <div class="checkout-custom-cart-item checkout-custom-cart-item-total">
+                        <div align="right" class="checkout-custom-cart-item checkout-custom-cart-item-total" style="display: block ruby; border-top: 1px solid #5c5c5c; width:85%; text-align: right;">
                             <div class="checkout-custom-cart-item-total-inner">
                                 <img src="{{asset('themes/videnov/css/images/total.png')}}" alt="">
 

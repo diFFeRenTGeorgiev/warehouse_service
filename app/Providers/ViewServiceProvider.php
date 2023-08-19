@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\CartManager;
 use App\Constant\CookieConstant;
 use App\FavoriteProductsManager;
 use Illuminate\Support\Facades\Cookie;
@@ -29,7 +30,8 @@ class ViewServiceProvider extends ServiceProvider
     {
 
         View::composer('front.components.header', function ($view) {
-            $view->with('favoriteIds', [FavoriteProductsManager::getIds()]);
+            $view->with('favoriteIds', [FavoriteProductsManager::getIds()])
+            ->with('productsCart',[CartManager::getCartData()]);
         });
 
     }

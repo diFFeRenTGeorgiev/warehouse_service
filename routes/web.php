@@ -40,7 +40,7 @@ Route::prefix('/ajax')->group(function () {
 });
 Route::prefix('/cart')->group(function () {
     Route::post('/cart/add-product', 'CartController@addProduct')->name('cart.add_product');
-    Route::get('/', 'CartController@index')->name('index');
+    Route::get('/', 'CartController@index')->name('cart.index');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/products')->group(function () {
