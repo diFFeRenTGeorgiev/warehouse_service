@@ -31,9 +31,11 @@ class FavoriteProductsManager extends Model
 
         $idsArr=self::getIds();
         if (in_array($productId, $idsArr)) {
+//            dd($productId,$idsArr,array($productId),array_diff($idsArr, array($productId)),array_values(array_diff($idsArr, array($productId))));
             $newIdsArr = array_values(array_diff($idsArr, array($productId)));
             $idsAsStr = implode(',', $newIdsArr);
         }
+
         self::saveIdsInCookie($idsAsStr);
     }
 

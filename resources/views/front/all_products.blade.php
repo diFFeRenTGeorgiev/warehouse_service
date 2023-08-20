@@ -373,7 +373,6 @@
             }
             var btn = document.getElementById("favorite_product_btn_" + productId);
             if (btn != undefined) {
-                console.log(btn);
                 btn.dataset.isFavorite = 1;
                 btn.style.color = "#cb1523";
                 btn.style.textShadow = "none";

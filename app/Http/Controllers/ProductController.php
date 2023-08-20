@@ -117,4 +117,50 @@ class ProductController extends Controller
 
         return $urlRoot.$path;
     }
+
+    public function showFavorites(){
+        $favotiteIds = FavoriteProductsManager::getIds();
+
+//        $products = Product::with('attributes')
+//            ->with('types')
+//            ->with(['productFiles' => function ($query) {
+//                $query->select(DB::raw('json_agg(name) as product_card_img'));
+//            }])
+//            ->whereIn('id',$favotiteIds)
+//        ->get();
+
+
+        $products = DB::table('products')
+            ->select(
+                'products.*',
+                'types.type_name',
+                DB::raw('json_agg(product_files.name) as product_card_img')
+            )
+            ->leftJoin('types', 'types.id', '=', 'products.type_id')
+            ->join('product_files', 'product_files.product_id', '=', 'products.id')
+            ->whereIn('products.id',$favotiteIds)
+            ->groupBy(
+                'products.id',
+                'products.type_id',
+                'products.name',
+                'products.description',
+                'products.is_enabled',
+                'products.out_of_stock_days',
+                'products.attribute_id',
+                'products.warranty',
+                'products.regular_price',
+                'products.promotional_price',
+                'products.discount',
+                'products.quantity',
+                'products.created_at',
+                'products.updated_at',
+                'types.type_name'
+            )
+            ->orderBy('products.id', 'desc')
+            ->get();
+//dd($products);
+         return view('products.favorites',[
+            'products'=> $products
+        ]);
+    }
 }
