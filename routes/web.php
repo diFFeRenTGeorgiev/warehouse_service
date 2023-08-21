@@ -37,8 +37,8 @@ Auth::routes();
 Route::prefix('/ajax')->group(function () {
     Route::post('/favorite-products-add', 'ProductController@addFavorite')->name('ajax.ajaxRequest.post');
     Route::post('/favorite-products-remove', 'ProductController@removeFavorite')->name('ajax.removeFavorite');
-
 });
+Route::post('/cart/change-product-quantity', 'CartController@changeProductQuantity')->name('ajax.changeProductQuantity');
 Route::get('/favorite-products-show', 'ProductController@showFavorites')->name('showFavorites');
 Route::prefix('/cart')->group(function () {
     Route::post('/cart/add-product', 'CartController@addProduct')->name('cart.add_product');

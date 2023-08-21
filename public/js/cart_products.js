@@ -4,16 +4,21 @@ function changeCartProductQty(productId, qty)
 
     var data = {
         "productId": productId,
-        "quantity": qty
+        "quantity": qty,
+        "_token": "{{ csrf_token() }}" // Include the CSRF token in the data
     };
 
-    $.post(url, data, function (data, status) {
-        if (data.status == "error") {
-            bootbox.alert(data.error_message, function (result) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        url:url,
+        success: function (response) {
+
+            if(response.status=="error") {
+                alert(response.error_message);
+            } else {
                 window.location.href = "/cart";
-            });
-        } else {
-            window.location.href = "/cart";
+            }
         }
     });
 }

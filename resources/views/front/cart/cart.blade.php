@@ -4,6 +4,7 @@
    <section class="section section-cart">
     <div class="container">
         @if(!empty($cartData['products']))
+
         <div class="checkout-custom-cart-wrapper">
             <div class="checkout-custom-card" style="width: 90%; position: relative; left: 10%;">
                 <div class="card-header">
@@ -16,6 +17,7 @@
                         @foreach($cartData['products'] as $cartProductId=>$cartProductDetailsArr)
                         <div class="checkout-custom-cart-item-wrapper" style="margin: 2%;">
                             <div class="checkout-custom-cart-item row">
+                                @csrf
                                 <div class="col-xs-12 col-sm-1" style="position: relative;left: 2.5%;margin-top:1.5% ;">
                                     <div class="checkout-custom-cart-item-inner checkout-custom-cart-item-inner-remove">
                                         <a href="javascript:removeCartProduct({{$cartProductId}});">
@@ -70,13 +72,13 @@
                                 <div class="col-xs-6 col-sm-2">
                                     <div class="checkout-custom-cart-item-inner flex-start">
                                         <div class="checkout-custom-cart-item-qty" style="position: relative; display: block ruby;">
-                                            <div style="background:#1E262D;" onclick="$('#cart_item_'{{$cartProductId}}).val(($('#cart_item_'{{$cartProductId}}).val()*1)-{{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn">
+                                            <div style="background:#1E262D;" onclick="$('#cart_item_{{$cartProductId}}').val(($('#cart_item_{{$cartProductId}}').val()*1)-1);changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn">
                                                 <i class="fa fa-minus" style="color:#ffffff;" aria-hidden="true"></i>
                                             </div>
 
-                                            <input id="cart_item_{{$cartProductId}}" style="text-align:center; width: 20%;" onkeyup="setTimeout(function(){ $('#cart_item_'{{$cartProductId}}).blur(); }, 1000);" onchange="changeCartProductQty({{$cartProductId}}, $('#cart_item_'{{$cartProductId}}).val());" type="text" class="field" value="{{$cartProductDetailsArr['quantity']}}">
+                                            <input readonly id="cart_item_{{$cartProductId}}" style="text-align:center; width: 20%;" onkeyup="setTimeout(function(){ $('#cart_item_{{$cartProductId}}').blur(); }, 1000);" onchange="changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" type="text" class="field numFieldQtty" value="{{$cartProductDetailsArr['quantity']}}">
 
-                                            <div style="background:#1E262D;" onclick="$('#cart_item_'{{$cartProductId}}).val(($('#cart_item_'{{$cartProductId}}).val()*1) + {{$cartProductDetailsArr['pack_size']}});changeCartProductQty({{$cartProductId}}, $('#cart_item_'{{$cartProductId}}).val());" class="btn ">
+                                            <div style="background:#1E262D;" onclick="$('#cart_item_{{$cartProductId}}').val(($('#cart_item_{{$cartProductId}}').val()*1) + 1);changeCartProductQty({{$cartProductId}}, $('#cart_item_{{$cartProductId}}').val());" class="btn ">
                                                 <i class="fa fa-plus" style="color:#ffffff;" aria-hidden="true"></i>
                                             </div>
                                             {{--<div class="col-xs-6 col-sm-2">--}}
@@ -105,7 +107,9 @@
                         </div>
 
                         <div class="checkout-custom-btn-wrapper">
-{{--                            <a href="{{route('checkout.order_form')}}" class="btn form-btn">{{trans('Поръчай')}}</a>--}}
+                            {{--<button class="btn product-order-btn"  id="purchaseBtn">Поръчай</button>--}}
+                            <a href="#" class="btn product-order-btn btns"  id="continueBtn">{{trans('Продължи с пазаруването')}}</a>
+                            <a href="#" class="btn product-order-btn btns"  id="purchaseBtn">{{trans('Поръчай')}}</a>
                         </div>
                     </div><!-- /.checkout-custom-cart-list -->
                 </div>
@@ -117,3 +121,65 @@
     </div>
 </section>
     @endsection
+@section('js')
+<script>
+    function changeCartProductQty(productId, qty)
+    {
+
+        var url = '/cart/change-product-quantity';
+
+        var data = {
+            "productId": productId,
+            "quantity": qty,
+            "_token": "{{ csrf_token() }}" // Include the CSRF token in the data
+        };
+
+        $.ajax({
+            type: "POST",
+            data: data,
+            url:url,
+            success: function (response) {
+
+                if(response.status=="error") {
+                    alert(response.error_message);
+                } else {
+                    window.location.href = "/cart";
+                }
+            }
+        });
+    }
+</script>
+    @endsection
+@section('css')
+    <style>
+        .btns {
+            margin: 10px auto;
+            text-align: center;
+            font-size: 14px;
+            width:25%;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            padding: 15px 0;
+            border-radius: 2px;
+            /*float: right;*/
+            margin-right: 15%;
+            cursor: pointer;
+            background: #1E262D;
+        }
+        .btns:hover {
+            background: #fff;
+            color: #222 !important;
+            font-size: 14px;
+            font-weight: 700;
+
+        }
+         #purchaseBtn{
+            float: right;
+        }
+        #continueBtn{
+            float:left;
+        }
+    </style>
+@endsection

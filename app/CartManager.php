@@ -341,36 +341,31 @@ class CartManager
         return $cart->id;
     }
 
-    /**
-     * changeProductQuantity - change product quantity in the cart
-     * if $quantityChange>0 product quantity will be updated
-     * if $quantityChange<=0 product will be removed from the shopping cart
-     * @param  int $productId
-     * @param  int $quantityChange
-     * @return true|exception  //true on success and exception if fail
-     */
     public static function changeProductQuantity($productId, $quantityChange)
     {
-        if(ProductStockManager::canOrderProductsNumber($productId) < $quantityChange) {
-            throw new \Exception(trans('Съжаляваме, няма достатъчно количество.'));
-        }
+
 
         $productPackSize=self::getProductPackSize($productId);
 
-        if($quantityChange>0 && ($quantityChange<$productPackSize || ($quantityChange%$productPackSize)!==0)) {
-            throw new \Exception(trans('Грешно въведено количесто. Броя на поръчаните продукти трябва да е кратен на :productPackSize.', ['productPackSize'=>$productPackSize]));
+        if($productPackSize->quantity < $quantityChange) {
+            session()->flash('msg', 'Съжаляваме, няма достатъчно количество.!');
+            return redirect()->back();
+//            throw new \Exception(trans('Съжаляваме, няма достатъчно количество.'));
         }
+//        dd($quantityChange%$productPackSize->quantity);
+//        if($quantityChange>0 && ($quantityChange<$productPackSize->quantity || ($quantityChange%$productPackSize->quantity)!==0)) {
+//            session()->flash('msg','Грешно въведено количесто!');
+//            return redirect()->back();
+//        }
 
         $existingCartProduct = self::getCartProduct($productId);
+//        dd($existingCartProduct);
         if(!empty($existingCartProduct)) {
             if($quantityChange<=0) {
-                self::deleteGiftProduct($productId,$existingCartProduct->created_at);
                 self::deleteCartProducts($productId);
             } else {
                 $existingCartProduct->quantity = $quantityChange;
                 $existingCartProduct->save();
-
-                self::changeGiftProductQuantity($productId, $existingCartProduct);
             }
         }
 
@@ -388,43 +383,6 @@ class CartManager
         }
     }
 
-    /**
-     * @param $productId
-     * @param $existingCartProduct
-     * Change gift product quantity in cart
-     */
-    public static function changeGiftProductQuantity($productId, $existingCartProduct) {
-        $product = Product::where('id', $productId)->first();
-        if ($product->gifts()->exists()) {
-            foreach ($product->gifts as $gift) {
-                $giftProduct = self::getGiftCartProduct($gift->gift_product_id,$existingCartProduct->created_at);
-                if (!empty($giftProduct)) {
-                    $giftProduct->quantity = $existingCartProduct->quantity * $gift->quantity;
-                    $giftProduct->save();
-                }
-            }
-        }
-
-        self::clearCache();
-    }
-
-    /**
-     * @param $productId
-     * Delete gift product from cart when deleting main product
-     */
-    public static function deleteGiftProduct($productId,$created_at) {
-        $product = Product::where('id', $productId)->first();
-        if ($product->gifts()->exists()) {
-            foreach ($product->gifts as $gift) {
-                $giftProduct = self::getGiftCartProduct($gift->gift_product_id, $created_at);
-                if (!empty($giftProduct)) {
-                    $giftProduct->delete();
-                }
-            }
-        }
-
-    }
-
     public static function removeProduct($productId)
     {
         $existingCartProduct = self::getCartProduct($productId);
@@ -439,13 +397,6 @@ class CartManager
     {
         $cart = self::getCartWithProducts();
         $cartProductsByKeyArr = $cart->cartProducts->keyBy('product_id');
-        return !empty($cartProductsByKeyArr[$productId]) ? $cartProductsByKeyArr[$productId] : null;
-    }
-
-    public static function getGiftCartProduct($productId,$created_at)
-    {
-        $cart = self::getCartWithProducts();
-        $cartProductsByKeyArr = $cart->cartProducts->where('created_at','=',$created_at)->keyBy('product_id');
         return !empty($cartProductsByKeyArr[$productId]) ? $cartProductsByKeyArr[$productId] : null;
     }
 
@@ -476,28 +427,6 @@ class CartManager
         }
 
         return $isCartProductsStockChanged;
-    }
-
-    public static function isCartProductsQuarantined()
-    {
-        $isCartProductsQuarantined=false;
-
-        $cartData = self::getCartData();
-
-        if(array_key_exists("products",$cartData)) {
-            //sync cart product quantities with available products stock
-            foreach ($cartData['products'] as $productId => $cartProduct) {
-                $quarantined = QuarantinedProduct::where('product_id', $productId)
-                    ->where('has_expired', 0)
-                    ->first();
-                if($quarantined){
-                    self::removeProduct($productId);
-                    $isCartProductsQuarantined=true;
-                }
-            }
-        }
-
-        return $isCartProductsQuarantined;
     }
 
     public static function isCartEmpty()
