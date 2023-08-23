@@ -43,6 +43,7 @@ Route::get('/favorite-products-show', 'ProductController@showFavorites')->name('
 Route::prefix('/cart')->group(function () {
     Route::post('/cart/add-product', 'CartController@addProduct')->name('cart.add_product');
     Route::get('/', 'CartController@index')->name('cart.index');
+    Route::get('/checkout-view', 'CartController@checkoutView')->name('checkView');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/products')->group(function () {

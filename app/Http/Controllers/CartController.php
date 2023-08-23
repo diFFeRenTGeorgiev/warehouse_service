@@ -81,4 +81,10 @@ class CartController extends Controller
         return response()->json(['status' => 'success']);
     }
 
+    public function checkoutView(Request $request){
+        $cartData = CartManager::getCartData();
+//        dd($cartData);
+        return view('front.cart.checkout',['cart' => $cartData, 'products' => $cartData['products']]);
+    }
+
 }

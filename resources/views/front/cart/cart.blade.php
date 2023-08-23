@@ -109,7 +109,7 @@
                         <div class="checkout-custom-btn-wrapper">
                             {{--<button class="btn product-order-btn"  id="purchaseBtn">Поръчай</button>--}}
                             <a href="#" class="btn product-order-btn btns"  id="continueBtn">{{trans('Продължи с пазаруването')}}</a>
-                            <a href="#" class="btn product-order-btn btns"  id="purchaseBtn">{{trans('Поръчай')}}</a>
+                            <a href="{{route('checkView')}}" class="btn product-order-btn btns"  id="purchaseBtn">{{trans('Поръчай')}}</a>
                         </div>
                     </div><!-- /.checkout-custom-cart-list -->
                 </div>
