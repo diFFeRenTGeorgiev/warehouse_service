@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3381fde-5bbb-4f07-ae06-3e2b88dfbe33" name="Default" comment="add purchase btn and fix qtty btns in cart">
-      <change afterPath="$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php" afterDir="false" />
+    <list default="true" id="c3381fde-5bbb-4f07-ae06-3e2b88dfbe33" name="Default" comment="add checkout view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front/cart/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front/cart/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php" afterDir="false" />
     </list>
     <list id="87e2be18-6726-4c08-a243-9e71ad2d1127" name="local" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/CartManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+            <state relative-caret-position="-435">
+              <caret line="343" column="27" selection-start-line="343" selection-start-column="27" selection-end-line="343" selection-end-column="27" />
               <folding>
                 <element signature="e#107#141#0#PHP" expanded="true" />
               </folding>
@@ -52,7 +49,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
+            <state relative-caret-position="675">
               <caret line="45" column="80" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="80" />
             </state>
           </provider>
@@ -61,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CartController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="85" column="24" lean-forward="true" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+            <state relative-caret-position="143">
+              <caret line="68" column="37" lean-forward="true" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
               </folding>
@@ -85,20 +82,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/front/cart/cart.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
+            <state relative-caret-position="14">
+              <caret line="125" column="13" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="29" column="68" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
+            <state relative-caret-position="149">
+              <caret line="34" column="161" selection-start-line="34" selection-start-column="161" selection-end-line="34" selection-end-column="161" />
               <folding>
-                <element signature="e#6546#6552#1#HTML" expanded="true" />
-                <element signature="e#7464#7470#1#HTML" expanded="true" />
+                <element signature="e#1095#1110#0#HTML" expanded="true" />
+                <element signature="e#1237#1264#0#HTML" expanded="true" />
+                <element signature="e#1307#1334#0#HTML" expanded="true" />
+                <element signature="e#2437#2456#0#HTML" expanded="true" />
+                <element signature="e#2599#2618#0#HTML" expanded="true" />
+                <element signature="e#2754#2773#0#HTML" expanded="true" />
+                <element signature="e#4525#4582#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,19 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addP</find>
-      <find>ajax</find>
-      <find>getElementById</find>
-      <find>getProductDetails</find>
-      <find>$firstGalleryImage</find>
-      <find>checkout-custom-cart-item-inner</find>
-      <find>flex-start</find>
-      <find>favorite-products-total</find>
-      <find>hasFavorite</find>
-      <find>product_card_img</find>
-      <find>CookieConstant</find>
-      <find>orderBtn</find>
-      <find>product-order-btn</find>
       <find>/cart/change-product-quantity</find>
       <find>btn</find>
       <find>changePro</find>
@@ -146,6 +135,19 @@
       <find>product-image</find>
       <find>additional</find>
       <find>col-5</find>
+      <find>emphasized</find>
+      <find>titleHead</find>
+      <find>very emphasized</find>
+      <find>very</find>
+      <find>get_basket</find>
+      <find>card-name</find>
+      <find>label</find>
+      <find>footer</find>
+      <find>border-top</find>
+      <find>creditcard-footer</find>
+      <find>backg</find>
+      <find>panel-footer</find>
+      <find>checkout-custom-cart-item</find>
     </findStrings>
     <replaceStrings>
       <replace>cont</replace>
@@ -335,9 +337,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="102" />
-    <option name="width" value="1098" />
-    <option name="height" value="664" />
+    <option name="x" value="106" />
+    <option name="width" value="1088" />
+    <option name="height" value="663" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -599,7 +601,8 @@
       <workItem from="1692470609655" duration="12283000" />
       <workItem from="1692559557789" duration="7190000" />
       <workItem from="1692646664421" duration="6539000" />
-      <workItem from="1692815464736" duration="6835000" />
+      <workItem from="1692815464736" duration="6978000" />
+      <workItem from="1692897839904" duration="7362000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1679512164023</created>
@@ -916,11 +919,18 @@
       <option name="project" value="LOCAL" />
       <updated>1692653183028</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="add checkout view">
+      <created>1692822423864</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1692822423864</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="568326000" />
+    <option name="totallyTimeSpent" value="575831000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -932,15 +942,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1360" height="738" extended-state="6" />
+    <frame x="-4" y="0" width="1368" height="742" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.73373985" visible="true" weight="0.2914764" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73373985" visible="true" weight="0.3736682" />
       <window_info id="Structure" order="1" sideWeight="0.26626018" side_tool="true" weight="0.34015152" />
       <window_info id="npm" order="2" sideWeight="0.503876" side_tool="true" weight="0.32272726" />
       <window_info id="Favorites" order="3" sideWeight="0.503876" side_tool="true" weight="0.32272726" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49923897" weight="0.32649574" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49847794" weight="0.32649574" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.542618" weight="0.41367522" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986711" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -951,7 +961,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.56697106" weight="0.1948718" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.6492424" weight="0.22735043" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.4330289" side_tool="true" weight="0.22393163" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="12" sideWeight="0.50152206" side_tool="true" visible="true" weight="0.32649574" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1012,7 +1022,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="addSessionstable and install redis" />
     <MESSAGE value="startAutheticateUser" />
     <MESSAGE value="addIsAdmin(Helper.php),add in config/app,add Admin route file" />
     <MESSAGE value="fixRegistration,addProduct btn modal" />
@@ -1037,7 +1046,8 @@
     <MESSAGE value="finish back-end cart,show cart popup" />
     <MESSAGE value="create favorite preview" />
     <MESSAGE value="add purchase btn and fix qtty btns in cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="add purchase btn and fix qtty btns in cart" />
+    <MESSAGE value="add checkout view" />
+    <option name="LAST_COMMIT_MESSAGE" value="add checkout view" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2023_05_11_192056_create_products_table.php">
@@ -1339,6 +1349,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/cart_products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="80" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -1349,54 +1373,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/cart_products.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="45" column="80" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/CartManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        <state relative-caret-position="149">
+          <caret line="34" column="161" selection-start-line="34" selection-start-column="161" selection-end-line="34" selection-end-column="161" />
           <folding>
-            <element signature="e#107#141#0#PHP" expanded="true" />
+            <element signature="e#1095#1110#0#HTML" expanded="true" />
+            <element signature="e#1237#1264#0#HTML" expanded="true" />
+            <element signature="e#1307#1334#0#HTML" expanded="true" />
+            <element signature="e#2437#2456#0#HTML" expanded="true" />
+            <element signature="e#2599#2618#0#HTML" expanded="true" />
+            <element signature="e#2754#2773#0#HTML" expanded="true" />
+            <element signature="e#4525#4582#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/cart/cart.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
+        <state relative-caret-position="14">
+          <caret line="125" column="13" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CartController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="85" column="24" lean-forward="true" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+        <state relative-caret-position="143">
+          <caret line="68" column="37" lean-forward="true" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front/cart/checkout.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/CartManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="29" column="68" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
+        <state relative-caret-position="-435">
+          <caret line="343" column="27" selection-start-line="343" selection-start-column="27" selection-end-line="343" selection-end-column="27" />
           <folding>
-            <element signature="e#6546#6552#1#HTML" expanded="true" />
-            <element signature="e#7464#7470#1#HTML" expanded="true" />
+            <element signature="e#107#141#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

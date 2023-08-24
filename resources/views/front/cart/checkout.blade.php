@@ -14,8 +14,8 @@
                                             <div class="col-6 basket-title">
                                                 <span class="description">Общ преглед</span><br><span class="emphasized">Вашата количка</span>
                                             </div>
-                                            <div class="col-6 order-number align-right">
-                                                <span class="description">order #</span><br><span class="emphasized">order number</span>
+                                            <div class="col-2 order-number align-right" style="font-size:11px;">
+                                                <span class="description">order #</span><br><span class="emphasized titleHead" style="margin-right: 25px;">Количество</span><span class="emphasized titleHead" style="margin-right: 20px;">Цена</span>
                                             </div>
                                         </div>
                                         <div class="row column-titles padding-top-10">
@@ -29,10 +29,10 @@
                                         {{--{{#products}}--}}
                                         @foreach($products as $product)
                                         <div class="row product">
-                                            <div class="col-2 product-image"><img src="{{ '/media_files/product_files/'.$product['productId'].'/'. $product['image']}}"></div>
-                                            <div class="col-5"><br><span class="additional">{{$product['title']}}</span></div>
-                                            <div class="col-2 align-right"><span class="sub"></span>{{$product['quantity']}}</div>
-                                            <div class="col-3 align-right"><span class="sub"></span> {{$product['price']}}</div>
+                                            <div class="col-2 col product-image"><img src="{{ '/media_files/product_files/'.$product['productId'].'/'. $product['image']}}"></div>
+                                            <div class="col-5 col" style="width: 30%;"><br><span class="additional">{{$product['title']}}</span></div>
+                                            <div class="col-2 col align-right"style="width: 20%;"><span class="sub"></span>{{$product['quantity']}}</div>
+                                            <div class="col-3 col align-right" style="width: 15%;"><span class="sub"></span> {{number_format($product['price'],2)}}</div>
                                         </div>
                                         @endforeach
 {{--                                        {{/products}}--}}
@@ -41,7 +41,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
-                                            <div class="col-4 align-right"><span class="emphasized">discount</span></div>
+                                            <div class="col-4 align-center"><span class="emphasized footerTitle">Отстъпка:</span></div>
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
                                             {{--<div class="col-4 align-right"><span class="emphasized">taxes</span></div>--}}
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
@@ -50,7 +50,8 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
-                                            <div class="col-4 align-right"><span class="very emphasized">Total</span></div>
+                                            <div class="col-4 align-center"><span class="very emphasized footerTitle">Общо:</span><span class="total footerTitle" style="float: right;margin-right: 31px;
+font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -60,22 +61,22 @@
                                     <div class="col-12 panel-header creditcard-header">
                                         <div class="row">
                                             <div class="col-12 creditcard-title">
-                                                <span class="description">Въведете вашите данни</span><br><span class="emphasized">Информация за доставка</span>
+                                                <span class="description">Въведете вашите данни</span><br><span class="emphasized">Информация за плащане с карта</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 panel-body creditcard-body">
                                         <form action="#" method="post" target="_self">
                                             <fieldset>
-                                                <label for="card-name">Name on the Card</label><br>
+                                                <label for="card-name">Титуляр на картата</label><br>
                                                 <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='card-name' placeholder='John Doe' title='Name on the Card'>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-number">Card Number</label><br>
+                                                <label for="card-number">Номер на картата</label><br>
                                                 <i class="fa fa-credit-card" aria-hidden="true"></i><input type='text' id='card-number' name='card-number' placeholder='1234 5678 9123 4567' title='Card Number'>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-expiration">Expiration Date</label><br>
+                                                <label for="card-expiration">Дата на валидност</label><br>
                                                 <i class="fa fa-calendar" aria-hidden="true"></i><input type='text' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
@@ -155,9 +156,25 @@
    @endsection
 @section('css')
     <style>
+        .panel-footer.creditcard-footer{
+            border-top: none!important;
+        }
+        .footerTitle{
+            color:#1E262D !important;
+
+        }
         #checkout_container{
             position: relative;
             right: -8%;
+        }
+        .titleHead{
+            color:#1E262D !important;
+        }
+        .col{
+            display: inline-block;
+        }
+        .product-image{
+            width: 30%;
         }
         /*html, body*/
         /*{*/
@@ -350,7 +367,7 @@
 
         .basket-footer
         {
-            background: #1E262D;
+            /*background: #1E262D;*/
             border-radius: 0 0 0 15px;
             -moz-border-radius: 0 0 0 15px;
             -webkit-border-radius: 0 0 0 15px;
@@ -379,7 +396,7 @@
             display: block;
             height: 1px;
             border: 0;
-            border-top: 1px solid #ffffff;
+            /*border-top: 1px solid #ffffff;*/
             padding: 0;
         }
 
@@ -436,12 +453,12 @@
 
         .very
         {
-            font-size: 2.2em;
+            font-size: 1.2em;
         }
 
         .creditcard-body form
         {
-            font-size: 1.3em;
+            /*font-size: 1.3em;*/
         }
 
         .creditcard-body form i.fa
@@ -452,7 +469,7 @@
 
         .creditcard-body form fieldset
         {
-            border-bottom: dotted 2px #D0D0D0;
+            border-bottom: dotted 1px #D0D0D0;
             margin-bottom: 25px;
         }
 
