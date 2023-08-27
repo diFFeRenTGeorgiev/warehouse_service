@@ -12,7 +12,7 @@
 {{--</head>--}}
 <body>
 
-<footer class="bg-info text-center text-lg-start fixed-bottom">
+<footer class="bg-info text-center text-lg-start">
     {{--<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--}}
     <div class="footer-middle">
         <div class="container p-4">

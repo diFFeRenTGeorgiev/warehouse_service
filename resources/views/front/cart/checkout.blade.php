@@ -41,18 +41,19 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
-                                            <div class="col-4 align-center"><span class="emphasized footerTitle">Отстъпка:</span></div>
+                                            <div class="col-4 align-center"><span class="very emphasized footerTitle">Общо:</span><span class="total footerTitle" style="float: right;margin-right: 31px;
+font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span></div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-8 align-right description"><div class="dive"></div></div>
+                                            <div class="col-4 align-center"><span class="emphasized footerTitle">Плащане при получаване на поръчката!</span></div>
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
                                             {{--<div class="col-4 align-right"><span class="emphasized">taxes</span></div>--}}
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
                                             {{--<div class="col-4 align-right"><span class="emphasized">ship</span></div>--}}
                                         </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-8 align-right description"><div class="dive"></div></div>
-                                            <div class="col-4 align-center"><span class="very emphasized footerTitle">Общо:</span><span class="total footerTitle" style="float: right;margin-right: 31px;
-font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -61,35 +62,37 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
                                     <div class="col-12 panel-header creditcard-header">
                                         <div class="row">
                                             <div class="col-12 creditcard-title">
-                                                <span class="description">Въведете вашите данни</span><br><span class="emphasized">Информация за плащане с карта</span>
+                                                <span class="description">Въведете вашите данни</span><br><span class="emphasized">Информация за доставка</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 panel-body creditcard-body">
-                                        <form action="#" method="post" target="_self">
+                                        <form action="{{route('saveOrder')}}" method="post" target="_self">
                                             <fieldset>
-                                                <label for="card-name">Титуляр на картата</label><br>
-                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='card-name' placeholder='John Doe' title='Name on the Card'>
+                                                <label for="card-name">Вашите имена</label><br>
+                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='card-name' placeholder='John Doe' title='Names'>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-number">Номер на картата</label><br>
-                                                <i class="fa fa-credit-card" aria-hidden="true"></i><input type='text' id='card-number' name='card-number' placeholder='1234 5678 9123 4567' title='Card Number'>
+                                                <label for="card-number">Имейл адрес</label><br>
+                                                <i class="fa fa-solid fa-at" aria-hidden="true"></i><input type='text' id='card-number' name='card-number' placeholder='JohnDoe@mail.com' title='EmailAdress'>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-expiration">Дата на валидност</label><br>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i><input type='text' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
+                                                <label for="card-expiration">Адрес за доставка</label><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Въведете вашият адрес, на който желаете да получите поръчката!"></i><br>
+                                                <i class="fa fa-solid fa-location-dot" aria-hidden="true"></i><input type='text' id='card-expiration' name='card-expiration' placeholder='' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-ccv">CVC/CCV</label>&nbsp;<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="The CVV Number on your credit card or debit card is a 3 digit number on VISA, MasterCard and Discover branded credit and debit cards. On your American Express branded credit or debit card it is a 4 digit numeric code."></i><br>
-                                                <i class="fa fa-lock" aria-hidden="true"></i><input type='text' id='card-ccv' name='card-ccv' placeholder='123' title='CVC/CCV'>
+                                                <label for="card-ccv">Телефон за връзка</label>&nbsp;<br>
+                                                <i class="fa fa-solid fa-phone-volume" aria-hidden="true"></i><input type='text' id='card-ccv' name='card-ccv' placeholder='+358 8********' title='CVC/CCV'>
                                             </fieldset>
+                                            @csrf
                                         </form>
                                     </div>
                                     <div class="col-12 panel-footer creditcard-footer">
                                         <div class="row">
-                                            <div class="col-12 align-right"><button class="cancel">Cancel</button>&nbsp;<button class="confirm">Confirm & Pay</button></div>
+                                            <div class="col-12 align-right"><button class="cancel">Отказ</button>&nbsp;<button class="confirm"><a href="{{route('saveOrder')}}" >Потвърди</a></button></div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -433,13 +436,16 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
             color: white;
         }
 
-        button.confirm:hover
-        {
-            background: white;
-            /*border-color: #00b300;*/
-            color: #1E262D;
-        }
+        /*button.confirm :hover*/
+        /*{*/
+            /*background: white !important;*/
+            /*!*border-color: #00b300;*!*/
+            /*color: #1E262D;*/
+        /*}*/
 
+        /*.confirm a:hover{*/
+            /*background: white !important;*/
+        /*}*/
         .dive
         {
             margin-top: 5px;

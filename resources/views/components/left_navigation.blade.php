@@ -34,7 +34,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="zmdi zmdi-calendar"></i> Отчети
+                    <i class="zmdi zmdi-calendar"></i> Акаунти
                 </a>
             </li>
             <li>

@@ -28,14 +28,14 @@
     }
 </script>
 <style>
-    body {font-family: Arial;
-        background-color: white;}
+    body {
+        background-color: #bdc3c7;}
 
     /* Style the tab */
     .tab {
         overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: rgba(0,0,0,.5);
+        /*border: 1px solid #ccc;*/
+        background-color: white;
         width: 30%;
         left:35.5%;
         position: absolute;
@@ -67,7 +67,7 @@
     .tabcontent {
         display: none;
         padding: 6px 12px;
-        border: 1px solid #ccc;
+        /*border: 1px solid #ccc;*/
         border-top: none;
         top:20%;
     }

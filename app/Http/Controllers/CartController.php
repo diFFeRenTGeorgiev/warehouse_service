@@ -87,4 +87,8 @@ class CartController extends Controller
         return view('front.cart.checkout',['cart' => $cartData, 'products' => $cartData['products']]);
     }
 
+    public function saveOrder(Request $request){
+        return view('front.cart.thank_you_page');
+    }
+
 }

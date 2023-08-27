@@ -32,7 +32,9 @@
     <!-- end:: body_content section -->
         <!-- end:: Content -->
     </div>
-    @include('front.components.footer')
+    @section('footer')
+        @include('front.components.footer')
+    @show
 </div>
 </body>
 @yield('js')
