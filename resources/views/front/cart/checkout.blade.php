@@ -66,33 +66,44 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-12 panel-body creditcard-body">
-                                        <form action="{{route('saveOrder')}}" method="post" target="_self">
+                                        <form id="myForm" action="{{route('saveOrder')}}" method="post">
+                                            @csrf
                                             <fieldset>
-                                                <label for="card-name">Вашите имена</label><br>
-                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='card-name' placeholder='John Doe' title='Names'>
+                                                <label for="card-name">Вашите имена<span class="required">*</span></label><br>
+                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' required id='card-name' name='names' placeholder='John Doe' title='Names'/>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-number">Имейл адрес</label><br>
-                                                <i class="fa fa-solid fa-at" aria-hidden="true"></i><input type='text' id='card-number' name='card-number' placeholder='JohnDoe@mail.com' title='EmailAdress'>
+                                                <label for="card-number">Имейл адрес<span class="required">*</span></label><br>
+                                                <i class="fa fa-solid fa-at" aria-hidden="true"></i><input required type='text' id='card-number' name='email' placeholder='JohnDoe@mail.com' title='EmailAdress'>
                                             </fieldset>
                                             <fieldset>
                                                 <label for="card-expiration">Адрес за доставка</label><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Въведете вашият адрес, на който желаете да получите поръчката!"></i><br>
-                                                <i class="fa fa-solid fa-location-dot" aria-hidden="true"></i><input type='text' id='card-expiration' name='card-expiration' placeholder='' title='Expiration' class="card-expiration">
+                                                <i class="fa fa-solid fa-location-dot" aria-hidden="true"></i><input required type='text' id='card-expiration' name='address' placeholder='' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-ccv">Телефон за връзка</label>&nbsp;<br>
-                                                <i class="fa fa-solid fa-phone-volume" aria-hidden="true"></i><input type='text' id='card-ccv' name='card-ccv' placeholder='+358 8********' title='CVC/CCV'>
+                                                <label for="card-ccv">Телефон за връзка<span class="required">*</span></label>&nbsp;<br>
+                                                <i class="fa fa-solid fa-phone-volume" aria-hidden="true"></i><input required type='text' maxlength="12" id='card-ccv' name='phone' placeholder='+358 8********' title='CVC/CCV'>
                                             </fieldset>
-                                            @csrf
+                                            <button type="submit" style="display: none;"></button>
                                         </form>
                                     </div>
                                     <div class="col-12 panel-footer creditcard-footer">
                                         <div class="row">
-                                            <div class="col-12 align-right"><button class="cancel"><a href="{{route('cart.index')}}" >назад</a></button>&nbsp;<button class="confirm"><a href="{{route('saveOrder')}}" >Потвърди</a></button></div>
+                                            <div class="col-12 align-right"><button class="cancel"><a href="{{route('cart.index')}}" >назад</a></button>
+                                                <button class="confirm" type="submit" id="submitButton">Потвърди</button></div>
                                         </div>
                                     </div>
-
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -104,30 +115,45 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
 @endsection
 @section('js')
     <script>
-        $( document ).ready ( function ()
-        {
-            console.log ( 'ready!' );
-            $('[data-toggle="tooltip"]').tooltip();
-            var template = $( '#template' ).html ();
-            Mustache.parse ( template );
-            var rendered = Mustache.render ( template, get_basket () );
-            $( '#template' ).html ( rendered );
-            if ( $('.basket-body').hasScrollBar () )
-            {
-                $('.column-titles').addClass('fix-overflow');
-                $('.basket-body').niceScroll({autohidemode: false,cursorcolor:"#ffffff",cursorborder:"1px solid #D0D0D0",cursorborderradius: "0",background: "#ffffff"});
-            }
-            else
-            {
-                $('.column-titles').removeClass('fix-overflow');
-            }
+        // Wait for the DOM to be ready
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get a reference to the submit button and the form
+            var submitButton = document.getElementById("submitButton");
+            var form = document.getElementById("myForm");
 
-            $('.card-expiration').datepicker({
-                format: "mm/yyyy",
-                startView: "months",
-                minViewMode: "months"
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function () {
+                // Trigger the form submission when the button is clicked
+                event.preventDefault();
+                form.submit();
             });
         });
+
+
+        // $( document ).ready ( function ()
+        // {
+        //     console.log ( 'ready!' );
+        //     $('[data-toggle="tooltip"]').tooltip();
+        //     var template = $( '#template' ).html ();
+        //     Mustache.parse ( template );
+        //     var rendered = Mustache.render ( template, get_basket () );
+        //     $( '#template' ).html ( rendered );
+        //     if ( $('.basket-body').hasScrollBar () )
+        //     {
+        //         $('.column-titles').addClass('fix-overflow');
+        //         $('.basket-body').niceScroll({autohidemode: false,cursorcolor:"#ffffff",cursorborder:"1px solid #D0D0D0",cursorborderradius: "0",background: "#ffffff"});
+        //     }
+        //     else
+        //     {
+        //         $('.column-titles').removeClass('fix-overflow');
+        //     }
+        //
+        //     $('.card-expiration').datepicker({
+        //         format: "mm/yyyy",
+        //         startView: "months",
+        //         minViewMode: "months"
+        //     });
+        // });
 
         function get_basket ()
         {
@@ -436,12 +462,12 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
             /*color: white;*/
         /*}*/
 
-        /*button.confirm :hover*/
-        /*{*/
-            /*background: white !important;*/
-            /*!*border-color: #00b300;*!*/
-            /*color: #1E262D;*/
-        /*}*/
+        button.confirm :hover
+        {
+            background: white !important;
+            /*border-color: #00b300;*/
+            color: #1E262D!important;
+        }
 
         /*.confirm a:hover{*/
             /*background: white !important;*/

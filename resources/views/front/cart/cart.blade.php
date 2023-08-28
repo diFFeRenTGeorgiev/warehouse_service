@@ -83,7 +83,7 @@
                                             </div>
                                             {{--<div class="col-xs-6 col-sm-2">--}}
                                                 <div class="checkout-custom-cart-item-inner checkout-custom-cart-item-inner-price">
-                                                    <p class="checkout-custom-cart-item-price">{{$cartProductDetailsArr['quantity']*$cartProductDetailsArr['price']}} bgn</p><!-- /.checkout-custom-cart-item-qty -->
+                                                    <p class="checkout-custom-cart-item-price">{{number_format($cartProductDetailsArr['quantity']*$cartProductDetailsArr['price'],2)}} bgn</p><!-- /.checkout-custom-cart-item-qty -->
                                                 </div>
                                             {{--</div>--}}
                                         </div>
@@ -103,7 +103,7 @@
                                 <p>{{trans('Общо:')}}</p>
                             </div>
 
-                            <p>{{$cartData['products_total_amount']}}BGN</p>
+                            <p>{{number_format($cartData['products_total_amount'],2)}}BGN</p>
                         </div>
 
                         <div class="checkout-custom-btn-wrapper">

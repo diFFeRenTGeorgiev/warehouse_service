@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\CartManager;
 use App\Models\CartProduct;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -88,7 +90,31 @@ class CartController extends Controller
     }
 
     public function saveOrder(Request $request){
-        return view('front.cart.thank_you_page');
+
+        $rules = [
+            'names' => 'required|string|max:30',
+            'email' => 'required|string|max:30',
+            'address' => 'string|max:30',
+            'phone' => 'numeric|required',
+
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails()){
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $cart = CartManager::getCartData();
+        $order = new Order();
+        $order->payment_amount = $cart['products_total_amount'];
+        $order->city = $request->address;
+        $order->save();
+        $order->order_number = 10000 + $order->id;
+        $order->save();
+        return view('front.cart.thank_you_page',['orderNumber' => $order->order_number]);
     }
 
 }

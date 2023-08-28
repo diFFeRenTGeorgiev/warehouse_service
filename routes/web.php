@@ -44,7 +44,7 @@ Route::prefix('/cart')->group(function () {
     Route::post('/cart/add-product', 'CartController@addProduct')->name('cart.add_product');
     Route::get('/', 'CartController@index')->name('cart.index');
     Route::get('/checkout-view', 'CartController@checkoutView')->name('checkView');
-    Route::get('/finish-order', 'CartController@saveOrder')->name('saveOrder');
+    Route::post('/finish-order', 'CartController@saveOrder')->name('saveOrder');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/products')->group(function () {
