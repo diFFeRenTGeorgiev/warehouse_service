@@ -1,7 +1,7 @@
 @extends('front.components.layout')
 @section('front_body')
     <section class="sectiontop">
-        <h1 class="head">Mclaughlin firniture!</h1>
+        <h1 class="head">Mclaughlin furniture!</h1>
         <div class="maincontent">
             <p>Благодарим ви, че пазарувахте от нас. Ще се свържем с вас за допълнително уточнение във връзка с доставката.</p>
         </div>
@@ -44,9 +44,9 @@
 
         body{
             background: #bdc3c7;
-            /*background: -moz-linear-gradient(45deg,#117c8e 0,#6bc691 100%);*/
-            /*background: -webkit-linear-gradient(45deg,#117c8e 0,#6bc691 100%);*/
-            /*background: linear-gradient(45deg,#117c8e 0,#6bc691 100%);*/
+            background: -moz-linear-gradient(45deg,#117c8e 0,#6bc691 100%);
+            background: -webkit-linear-gradient(45deg,#117c8e 0,#6bc691 100%);
+            background: linear-gradient(45deg,#117c8e 0,#6bc691 100%);
         }
         .sectiontop {
             text-align:center;

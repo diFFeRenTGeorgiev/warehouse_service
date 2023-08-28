@@ -33,7 +33,9 @@
         <!-- end:: Content -->
     </div>
     @section('footer')
+        <div id="footer-fot" style="clear: both;"></div>
         @include('front.components.footer')
+        {{--</div>--}}
     @show
 </div>
 </body>

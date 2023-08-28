@@ -275,7 +275,7 @@
         width: 100%;
     }
     body {
-        overflow: hidden;
+        /*overflow: hidden;*/
         font-family: 'Poppins', sans-serif;
         background-color: var(--app-bg);
         -webkit-font-smoothing: antialiased;

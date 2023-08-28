@@ -469,11 +469,11 @@
     body, html {
         margin: 0;
         padding: 0;
-        height: 100%;
+        /*height: 100%;*/
         width: 100%;
     }
     body {
-        overflow: hidden;
+        /*overflow: hidden;*/
         font-family: 'Poppins', sans-serif;
         background-color: var(--app-bg);
         -webkit-font-smoothing: antialiased;
@@ -482,7 +482,7 @@
     .app-container {
         border-radius: 4px;
         width: 100%;
-        height: 100vh;
+        /*height: 100vh;*/
         /*max-height: 100%;*/
         /*max-width: 1280px;*/
         display: flex;

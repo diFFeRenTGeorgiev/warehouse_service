@@ -41,7 +41,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-8 align-right description"><div class="dive"></div></div>
-                                            <div class="col-4 align-center"><span class="very emphasized footerTitle">Общо:</span><span class="total footerTitle" style="float: right;margin-right: 31px;
+                                            <div class="col-4 align-left" style="margin-left: 5%;"><span class="very emphasized footerTitle">Общо:</span><span class="total footerTitle" style="float: right;margin-right: 31px;
 font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span></div>
                                         </div>
                                         <hr>
@@ -89,7 +89,7 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
                                     </div>
                                     <div class="col-12 panel-footer creditcard-footer">
                                         <div class="row">
-                                            <div class="col-12 align-right"><button class="cancel">Отказ</button>&nbsp;<button class="confirm"><a href="{{route('saveOrder')}}" >Потвърди</a></button></div>
+                                            <div class="col-12 align-right"><button class="cancel"><a href="{{route('cart.index')}}" >назад</a></button>&nbsp;<button class="confirm"><a href="{{route('saveOrder')}}" >Потвърди</a></button></div>
                                         </div>
                                     </div>
 
@@ -423,18 +423,18 @@ font-size: 20px;">{{number_format($cart['products_total_amount'],2)}}лв</span>
             cursor: pointer;
         }
 
-        button.cancel
-        {
-            background: white;
-            color: #1E262D;
-        }
+        /*button.cancel*/
+        /*{*/
+            /*background: white;*/
+            /*color: #1E262D;*/
+        /*}*/
 
-        button.cancel:hover
-        {
-            background: #1E262D;
-            /*border-color: #ff0000;*/
-            color: white;
-        }
+        /*button.cancel:hover*/
+        /*{*/
+            /*background: #1E262D;*/
+            /*!*border-color: #ff0000;*!*/
+            /*color: white;*/
+        /*}*/
 
         /*button.confirm :hover*/
         /*{*/
