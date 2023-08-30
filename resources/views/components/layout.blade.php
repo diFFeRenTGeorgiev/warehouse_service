@@ -53,7 +53,7 @@
         </div>
         <div id="footer-fot">
             @section('footer')
-                @include('front.components.footer')
+                @include('components.footer')
             @show
         </div>
     </div>

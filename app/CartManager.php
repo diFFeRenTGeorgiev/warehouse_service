@@ -404,7 +404,7 @@ class CartManager
     {
         $cart = self::getCartWithProducts();
         if(!empty($cart)) {
-            CartProducts::where('cart_id', $cart->id)->delete();
+            CartProduct::where('cart_id', $cart->id)->delete();
         }
         self::clearCache();
     }

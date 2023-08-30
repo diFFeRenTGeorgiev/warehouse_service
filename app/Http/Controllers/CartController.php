@@ -6,7 +6,9 @@ use App\CartManager;
 use App\Models\CartProduct;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
@@ -90,7 +92,7 @@ class CartController extends Controller
     }
 
     public function saveOrder(Request $request){
-
+//dd(auth()->user());
         $rules = [
             'names' => 'required|string|max:30',
             'email' => 'required|string|max:30',
@@ -111,9 +113,13 @@ class CartController extends Controller
         $order = new Order();
         $order->payment_amount = $cart['products_total_amount'];
         $order->city = $request->address;
+        $order->user_id = auth()->user()->id;
+        $order->status = 'pending';
         $order->save();
         $order->order_number = 10000 + $order->id;
         $order->save();
+
+        CartManager::emptyCart();
         return view('front.cart.thank_you_page',['orderNumber' => $order->order_number]);
     }
 

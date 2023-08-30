@@ -17,8 +17,15 @@ use Illuminate\Support\Facades\Route;
 //    dd('Welcome to admin user routes.');
 //
 //});
+Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('index');
     })->name('admin_page');
-Route::get('add-product/', 'Admin\ProductController@addProduct')->name('addProduct');
-Route::post('create-product/', 'Admin\ProductController@createProduct')->name('create_product');
+    Route::get('add-product/', 'Admin\ProductController@addProduct')->name('addProduct');
+    Route::post('create-product/', 'Admin\ProductController@createProduct')->name('create_product');
+
+    Route::prefix('/accounts')->group(function () {
+     Route::get('/', 'Admin\UserController@accounts')->name('accounts');
+     Route::post('/update-role', 'Admin\UserController@updateRole')->name('updateRole');
+    });
+    });

@@ -49,6 +49,10 @@ Route::prefix('/cart')->group(function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/products')->group(function () {
 Route::get('/{id?}', 'ProductController@show')->name('product');
+
 });
 
+Route::get('/about-us',function (){
+    return view('front.components.about_us');
+})->name('aboutUs');
 

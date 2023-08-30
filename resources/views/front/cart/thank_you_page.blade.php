@@ -3,8 +3,12 @@
     <section class="sectiontop">
         <h1 class="head">Mclaughlin furniture!</h1>
         <div class="maincontent">
+            <h3>Вашата поръчка е с номер {{$orderNumber}}</h3>
+        </div>
+        <div class="maincontent">
             <p>Благодарим ви, че пазарувахте от нас. Ще се свържем с вас за допълнително уточнение във връзка с доставката.</p>
         </div>
+
         <div class="footer">
             Имате въпроси? <a href="">Свържете се с нас</a>
             <br><br>

@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('accounts')}}">
                     <i class="zmdi zmdi-calendar"></i> Акаунти
                 </a>
             </li>

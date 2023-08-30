@@ -49,4 +49,8 @@ class Role extends Model
     {
         $this->permissions()->detach();
     }
+
+    public function users(){
+        return $this->hasOne(User::class,'role_id');
+    }
 }

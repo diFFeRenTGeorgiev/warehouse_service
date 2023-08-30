@@ -66,9 +66,7 @@
             <li class="dropdown">
                 <a href="">За нас</a>
                 <ul>
-                    <li><a href="#">About Version</a></li>
-                    <li><a href="#">About Version</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{route('aboutUs')}}">About Version</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </li>

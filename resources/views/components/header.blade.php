@@ -355,32 +355,32 @@
     {{--}--}}
 
 {{--</style>--}}
-<div class="header">
-    <a href="#" class="logo">McLaughlin warehouse</a>
+<div class="header" style="margin-left: 0.2%; width:102%;">
+    <a href="{{route('front.index')}}" class="logo" style="text-align: center;">McLaughlin warehouse</a>
     <div class="header-right">
-        <a class="active" href="#">Home</a>
+        <a class="active" href="#" style="padding: 1px;">Admin</a>
 
-        <a  data-toggle="modal" data-target="#login" id="logBtn" href="#">Login</a>
-        <a href="#" data-toggle="modal" data-target="#myModal">Register</a>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+        {{--<a  data-toggle="modal" data-target="#login" id="logBtn" href="#">Login</a>--}}
+        {{--<a href="#" data-toggle="modal" data-target="#myModal">Register</a>--}}
+    {{--</div>--}}
+    {{--<!-- Modal -->--}}
+    {{--<div class="modal fade" id="myModal" role="dialog">--}}
 
-        <div class="modal-dialog">
+        {{--<div class="modal-dialog">--}}
 
-            <!-- Modal content-->
+            {{--<!-- Modal content-->--}}
             {{--@include('auth.register_form')--}}
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="login" role="dialog">
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<!-- Modal -->--}}
+    {{--<div class="modal fade" id="login" role="dialog">--}}
 
-        <div class="modal-dialog">
+        {{--<div class="modal-dialog">--}}
 
-            <!-- Modal content-->
+            {{--<!-- Modal content-->--}}
             {{--@include('auth.login_form')--}}
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
 <script>
     // $(document).ready(function() {

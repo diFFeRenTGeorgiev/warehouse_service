@@ -95,9 +95,14 @@ class User extends Authenticatable
     $user->roles //returns collection of user roles; type object(Illuminate\Database\Eloquent\Collection)
     $user->roles() // belongsToMany ralationship
      */
+//    public function roles()
+//    {
+//        return $this->belongsToMany(Role::class,'role_id'); //returns relationship object
+//    }
+
     public function roles()
     {
-        return $this->belongsToMany(Role::class); //returns relationship object
+        return $this->belongsTo(Role::class,'role_id');
     }
 
     /**

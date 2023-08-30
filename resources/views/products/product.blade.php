@@ -35,11 +35,11 @@
                 <!--price-->
                 <div class="block-price clearfix">
                     <div class="price-new clearfix">
-                        <span class="price-new-dollar">{{$product->promotional_price}}BGN</span>
+                        <span class="price-new-dollar">{{number_format($product->promotional_price,2)}}BGN</span>
                         {{--<span class="price-new-cent">90</span>--}}
                     </div>
                     <div class="price-old clearfix">
-                        <span class="price-old-dollar">{{$product->regular_price}}BGN</span>
+                        <span class="price-old-dollar">{{number_format($product->regular_price,2)}}BGN</span>
                         {{--<span class="price-old-cent">&#8228;90</span>--}}
                     </div>
                 </div>
