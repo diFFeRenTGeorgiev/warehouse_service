@@ -113,7 +113,7 @@ class CartController extends Controller
         $order = new Order();
         $order->payment_amount = $cart['products_total_amount'];
         $order->city = $request->address;
-        $order->user_id = auth()->user()->id;
+        $order->user_id = !empty(auth()->user()->id)?auth()->user()->id:null;
         $order->status = 'pending';
         $order->save();
         $order->order_number = 10000 + $order->id;
