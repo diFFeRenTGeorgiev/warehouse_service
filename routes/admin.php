@@ -22,7 +22,9 @@ Route::prefix('/admin')->group(function () {
         return view('index');
     })->name('admin_page');
     Route::get('add-product/', 'Admin\ProductController@addProduct')->name('addProduct');
+//    Route::get('add-product/', 'Admin\ProductController@editProduct')->name('editProd');
     Route::post('create-product/', 'Admin\ProductController@createProduct')->name('create_product');
+    Route::post('edit-product/', 'Admin\ProductController@editProduct')->name('edit_product');
 
     Route::prefix('/accounts')->group(function () {
      Route::get('/', 'Admin\UserController@accounts')->name('accounts');

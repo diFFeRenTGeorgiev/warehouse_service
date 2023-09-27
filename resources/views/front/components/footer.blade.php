@@ -16,7 +16,7 @@
     {{--<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">--}}
     <div class="footer-middle">
         <div class="container p-4">
-            <div class="row">
+            <div class="row" style="display: flex; justify-content: center;">
 
                 <div class="col-md-3 col-sm-6">
                     <!--Column1-->
@@ -48,24 +48,23 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <h4>Follow Us</h4>
-                    <ul class="social-network social-circle">
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
+                {{--<div class="col-md-3">--}}
+                    {{--<h4>Follow Us</h4>--}}
+                    {{--<ul class="social-network social-circle">--}}
+                        {{--<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>--}}
+                        {{--<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
                 <div class="col-md-3 col-sm-6">
                     <!--Column1-->
                     <div class="footer-pad">
                         <h4>Лоялна програма</h4>
                         <ul class="list-unstyled">
                             <li><a href="#"></a></li>
-                            <li><a href="#">Payment Center</a></li>
-                            <li><a href="#">Contact Directory</a></li>
+                            <li><a href="#">Център за обслужване</a></li>
                             <li><a href="#">Forms</a></li>
-                            <li><a href="#">News and Updates</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Новини</a></li>
+                            <li><a href="#">Често задавани въпроси</a></li>
                         </ul>
                     </div>
                 </div>

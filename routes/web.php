@@ -20,6 +20,7 @@ Route::get('tables/',function () {
     return view('stores.table');
 })->name('web.index.createTable');
 Route::get('products/', 'ProductController@showProducts')->name('tab_all_products');
+//Route::get('products/', 'ProductController@searchFilter')->name('search_filter');
 Route::get('add_product/',function(){
     return view('products.add_product_form');
 })->name('new_product_form');

@@ -132,7 +132,7 @@ class CartManager
         }
         $cart->save();
         if (Auth::check()==false) {
-            Cookie::queue('cart_id', $cart->id, 60*24*30); //1 month
+            Cookie::queue('cart_id', $cart->id, 60); //1 hour
         }
         $cart = Cart::where('id', $cart->id)->with('cartProducts')->first();
         return $cart;

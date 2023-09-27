@@ -37,38 +37,38 @@
                 <ul class="mega-dropdown">
                     <li class="row">
                         <ul class="mega-col">
-                            <li><a href="#">Дивани</a></li>
-                            <li><a href="#">Канапета</a></li>
-                            <li><a href="#">Секции</a></li>
-                            <li><a href="#">Маси</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 1])}}">Дивани</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 2])}}">Канапета</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 5])}}">Секции</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 6])}}">Маси</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Легла</a></li>
-                            <li><a href="#">Гардероби</a></li>
-                            <li><a href="#">Скринове</a></li>
-                            <li><a href="#">Матраци</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 8])}}">Спални</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 9])}}">Гардероби</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 7])}}">Скринове</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 11])}}">Матраци</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Кухни</a></li>
-                            <li><a href="#">Модулни кухни</a></li>
-                            <li><a href="#">Трапезни маси</a></li>
-                            <li><a href="#">Столове</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 12])}}">Кухни</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 19])}}">Модулни кухни</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 18])}}">Трапезни маси</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 17])}}">Столове</a></li>
                         </ul>
                         <ul class="mega-col">
-                            <li><a href="#">Офис столове</a></li>
-                            <li><a href="#">Бюра</a></li>
-                            <li><a href="#">Шкафове</a></li>
-                            <li><a href="#">Мека мебел</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 13])}}">Офис столове</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 16])}}">Бюра</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 15])}}">Шкафове</a></li>
+                            <li><a href="{{route('tab_all_products',['category_id' => 14])}}">Мека мебел</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="">За нас</a>
-                <ul>
-                    <li><a href="{{route('aboutUs')}}">About Version</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
+                <a href="{{route('aboutUs')}}">За нас</a>
+                {{--<ul>--}}
+                    {{--<li><a href="{{route('aboutUs')}}">About Version</a></li>--}}
+                    {{--<li><a href="#">Contact Us</a></li>--}}
+                {{--</ul>--}}
             </li>
             <li>
                 <a href="">Контакти</a>

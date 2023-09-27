@@ -35,11 +35,11 @@
                 <!--price-->
                 <div class="block-price clearfix">
                     <div class="price-new clearfix">
-                        <span class="price-new-dollar">{{number_format($product->promotional_price,2)}}BGN</span>
+                        <span class="price-new-dollar">{{Auth::check()?number_format($product->promotional_price,2):number_format($product->regular_price,2)}}BGN</span>
                         {{--<span class="price-new-cent">90</span>--}}
                     </div>
                     <div class="price-old clearfix">
-                        <span class="price-old-dollar">{{number_format($product->regular_price,2)}}BGN</span>
+                        <span class="price-old-dollar">{{Auth::check()?number_format($product->regular_price,2):number_format($product->promotional_price,2)}}BGN</span>
                         {{--<span class="price-old-cent">&#8228;90</span>--}}
                     </div>
                 </div>
@@ -93,10 +93,6 @@
             <!--LINKS-->
             <div class="block-footer clearfix">
                 <div class="block-links">
-                    <div class="send">
-                        <img src="http://www.free-icons-download.net/images/share-icon-20724.png">
-                        <span>Send to a friend</span>
-                    </div>
                     <div class="wishlist">
                         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/23243-200.png">
                         <span>Добави в любими</span>
@@ -104,9 +100,9 @@
                 </div>
                 <!--SOCIAL-->
                 <div class="social">
-                    <a href="#"><img src="http://www.iconsdb.com/icons/download/black/facebook-7-256.gif" alt="sdf"></a>
-                    <a href="#"><img src="http://www.iconsdb.com/icons/download/black/twitter-4-512.gif"></a>
-                    <a href="#"><img src="http://www.iconsdb.com/icons/download/black/google-plus-4-512.jpg"></a>
+                    <a href="#"><img src="http://www.nataliemorgan.co.nz/images/Facebook.png" alt="sdf"></a>
+                    <a href="#"><img src="http://www.nataliemorgan.co.nz/images/GooglePlus.png"></a>
+                    <a href="#"><img src="http://www.nataliemorgan.co.nz/images/Instagram.png"></a>
                     <a href="#"><img src="http://www.nataliemorgan.co.nz/images/Pinterest.png"></a>
                 </div>
             </div>
@@ -117,6 +113,16 @@
 
 @section('css')
 <style>
+    /*@media screen and (max-width: 1600px) {*/
+        /*.clearfix {*/
+            /*width: 98%;*/
+            /*padding-left: 12% !important;*/
+        /*}*/
+        /*.product{*/
+            /*top: 5%;*/
+        /*left: 20%;*/
+        /*}*/
+    /*}*/
     /*PRODUCT INFORMATION*/
     .product {
         float: right;

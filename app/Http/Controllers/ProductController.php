@@ -9,19 +9,25 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function showProducts(){
-       $products = DB::select('SELECT products.*,types.type_name,
+    public function showProducts(Request $request){
+        $categoryId = $request->category_id?$request->category_id:null;
+        $where = '';
+        if($categoryId != null) {
+            $where ='WHERE products.type_id = '.$categoryId;
+        }
+
+       $products = DB::select("SELECT products.*,types.type_name,
           json_agg(product_files.name) product_card_img FROM products
           LEFT JOIN types on types.id = products.type_id
-          inner JOIN product_files on product_files.product_id = products.id
+          inner JOIN product_files on product_files.product_id = products.id {$where}
           group by products.id,products.type_id,products.name,products.description,
           products.is_enabled,products.out_of_stock_days,products.attribute_id,products.warranty,
           products.regular_price,products.promotional_price,products.discount,products.quantity,products.created_at,
           products.updated_at,types.type_name
           order by products.id desc
-         ');
+         ");
 
-//        dd($products);
+
         return view('front.all_products',['products' => $products]);
     }
 
@@ -47,25 +53,12 @@ class ProductController extends Controller
     }
 
     public function show($productId){
-//
+
         $product = Product::with('attributes')
             ->with('types')
             ->with('productFiles')
             ->find($productId);
 
-
-//        $product = DB::select("SELECT products.*,attributes.name AS attribute_name, attributes.value,types.type_name,
-//         json_agg(product_files.name) product_card_img
-//            FROM products
-//            INNER JOIN attributes ON attributes.id = products.attribute_id
-//            INNER JOIN types ON types.id = products.type_id
-//            INNER JOIN product_files ON product_files.product_id = products.id
-//            WHERE products.id = '{$productId}'
-//            GROUP BY products.id,products.type_id,products.name,products.description,
-//          products.is_enabled,products.out_of_stock_days,products.attribute_id,products.warranty,
-//          products.regular_price,products.promotional_price,products.discount,products.quantity,products.created_at,
-//          products.updated_at,attributes.name,attributes.value,types.type_name");
-//        dd($product->name);
         return view('products.product',[
             'product'=> $product,
             'type' => $product->types,
@@ -162,5 +155,30 @@ class ProductController extends Controller
          return view('products.favorites',[
             'products'=> $products
         ]);
+    }
+
+    public function searchFilter(Request $request){
+        $category_id = $request->category_id;
+
+//        $products = Product::with('attributes')
+//            ->with('types')
+//            ->with('productFiles')
+//            ->where('type_id',$category_id)
+//            ->get();
+
+        $products = DB::select("SELECT products.*,types.type_name,
+          json_agg(product_files.name) product_card_img FROM products
+          LEFT JOIN types on types.id = products.type_id
+          inner JOIN product_files on product_files.product_id = products.id
+          where products.type_id = {$category_id}
+          group by products.id,products.type_id,products.name,products.description,
+          products.is_enabled,products.out_of_stock_days,products.attribute_id,products.warranty,
+          products.regular_price,products.promotional_price,products.discount,products.quantity,products.created_at,
+          products.updated_at,types.type_name
+          order by products.id desc
+         ");
+
+        return view('products.searchByCategory',['products' => $products]);
+//        dd($products);
     }
 }

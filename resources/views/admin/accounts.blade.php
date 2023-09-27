@@ -6,8 +6,8 @@
 <table class="table-fill">
     <thead>
     <tr>
-        <th class="text-left">Потребител</th>
         <th class="text-left">Имейл</th>
+        <th class="text-left">Потребител</th>
         <th class="text-left">Достъп</th>
     </tr>
     </thead>

@@ -42,6 +42,11 @@
 @yield('js')
 
 <style>
+    /*@media  (max-width: 1600px) {*/
+        /*#grid-container {*/
+            /*width: 98%*/
+        /*}*/
+    /*}*/
 .container{
     width:103%;
 }

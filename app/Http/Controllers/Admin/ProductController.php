@@ -13,7 +13,25 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function addProduct(){
+    public function addProduct(Request $request){
+
+        $productId = $request->product_id?$request->product_id:null;
+
+        if($productId != null) {
+            $product = Product::with('attributes')
+                ->with('types')
+                ->with('productFiles')
+                ->find($productId);
+
+            $types = Type::all();
+            $attributes = Attribute::all();
+            $data = ['types' => $types,
+                'attributes' => $attributes];
+
+
+        return view('products.add_product_form',['data' => $data, 'product' => $product]);
+        }
+
         $types = Type::all();
         $attributes = Attribute::all();
         $data = ['types' => $types,
@@ -22,7 +40,7 @@ class ProductController extends Controller
     }
 
     public function createProduct(Request $request){
-//dd($request);
+
         $product = new Product();
         $product->name = $request->product_name;
         $product->type_id = $request->product_type;
@@ -46,5 +64,9 @@ class ProductController extends Controller
             $prod_files->save();
         }
         return redirect()->route('tab_all_products');
+    }
+
+    public function editProduct(Request $request){
+        dd($request);
     }
 }

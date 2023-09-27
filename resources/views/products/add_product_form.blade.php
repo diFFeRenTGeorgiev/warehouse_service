@@ -24,21 +24,21 @@
             {{--</div>--}}
         </fieldset>
     </div>
-    <form id="product_form" action="{{ route('create_product') }}" method="POST" enctype="multipart/form-data">
+    <form id="product_form" action="{{!isset($product)?route('create_product'):route('edit_product') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div id="form" class="form-wrapper">
             <label class="text">
                 <span>Име на продукта</span>
                 <div class="input-wrapper">
-                    <input type="text" name="product_name"/>
+                    <input type="text" name="product_name" value="{{isset($product)?$product->name:''}}"/>
                 </div>
             </label>
-
+                <input type="hidden" value="{{isset($product)?$product->id:''}}" name="productId"/>
             <label class="dropdown">
                 <span>Тип</span>
                 <div class="input-wrapper">
                     <select size="1" name="product_type">
-                        <option>-- Моля изберете --</option>
+                        <option>{{isset($product)?$product->types->type_name:'-- Моля изберете --'}}</option>
 
                         @foreach($data['types'] as $type)
                             <option value="{{$type->id}}">{{$type->type_name}}</option>
@@ -51,6 +51,7 @@
                 <span>Атрибути</span>
                 <div class="input-wrapper">
                     <select class="multiple" size="3" name="attributtes">
+                        <option>{{isset($product)?$product->attributes->value:'-- Моля изберете --'}}</option>
                         @foreach($data['attributes'] as $attribute)
                             <option value="{{$attribute->id}}">{{$attribute->name}} {{$attribute->value}}</option>
                         @endforeach
@@ -61,7 +62,7 @@
             <label class="text">
                 <span>Описание</span>
                 <div class="input-wrapper">
-                    <textarea name="description">Write, some text here  </textarea>
+                    <textarea name="description">{{isset($product)?$product->description:'Write, some text here'}}  </textarea>
                 </div>
             </label>
             <label for="myfile">
@@ -118,7 +119,7 @@
                         <span class="label">Количество</span>
                         <div class="input-wrapper">
                             <label class="number" for="qtty">
-                                <input type="number" id="typeNumber" class="form-control" name="quantity"/>
+                                <input type="number" id="typeNumber" class="form-control" name="quantity" value="{{isset($product)?$product->quantity:''}}"/>
                             </label>
                         </div>
                     </div>
@@ -126,7 +127,7 @@
                         <span class="label">Гаранция</span>
                         <div class="input-wrapper">
                             <label class="number" for="warranty">
-                                <input type="number" id="warranty" class="form-control" name="warranty"/>
+                                <input type="number" id="warranty" class="form-control" name="warranty" value="{{isset($product)?$product->warranty:''}}"/>
                             </label>
                         </div>
                     </div>
@@ -134,7 +135,7 @@
                         <span class="label"> Регулярна Цена </span>
                         <div class="input-wrapper">
                             <label class="number" for="regPrice">
-                                <input type="number" step="0.01" id="regular_price" class="form-control" name="regular_price"/>
+                                <input type="number" step="0.01" id="regular_price" class="form-control" name="regular_price" value="{{isset($product)?$product->regular_price:''}}"/>
                             </label>
                         </div>
                     </div>
@@ -142,7 +143,7 @@
                         <span class="label">Промо цена</span>
                         <div class="input-wrapper">
                             <label class="number" for="promo">
-                                <input type="number" id="promo_price" step="0.01" class="form-control" name="promo_price"/>
+                                <input type="number" id="promo_price" step="0.01" class="form-control" name="promo_price" value="{{isset($product)?$product->promotional_price:''}}"/>
                             </label>
                         </div>
                     </div>
@@ -150,7 +151,7 @@
                         <span class="label">Отстъпка</span>
                         <div class="input-wrapper">
                             <label class="number" for="discount">
-                                <input type="number" id="discount" step="0.01" class="form-control" name="discount"/>
+                                <input type="number" id="discount" step="0.01" class="form-control" name="discount" value="{{isset($product)?$product->discount:''}}"/>
                             </label>
                         </div>
                     </div>
@@ -162,7 +163,7 @@
                     <span class="label">Доставка бр дни</span>
                     <div class="input-wrapper">
                         <label class="number" for="delivery">
-                            <input type="number" id="delivery" step="0.01" class="form-control" name="delivery"/>
+                            <input type="number" id="delivery" step="0.01" class="form-control" name="delivery" value="{{isset($product)?$product->out_of_stock_days:''}}"/>
                         </label>
                     </div>
                 </div>

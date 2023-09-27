@@ -3,437 +3,445 @@
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
-<div class="app-container">
-    <div class="app-content">
-        <div class="app-content-header">
-            <h1 class="app-content-headerText">Products</h1>
-            <button class="mode-switch" title="Switch Theme" type="button">
-                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                    <defs></defs>
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                </svg>
-            </button>
-            @if(Helpers::is_admin())
-                <a href="{{route('addProduct')}}" class="btn btn-xs btn-danger app-content-headerButton" id="adminBtn" role="button" style="border-radius:5px;padding:5px;">Add Product</a>
-            @endif
-        </div>
-        <div class="app-content-actions">
-            <input class="search-bar" placeholder="Search..." name="filter" type="text">
-            <div class="app-content-actions-wrapper">
-                <div class="filter-button-wrapper">
-                    <button class="action-button filter jsFilter"><span>Filter</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
-                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
-                    <div class="filter-menu">
-                        <label>Category</label>
-                        <select>
-                            <option>All Categories</option>
-                            <option>Furniture</option>                     <option>Decoration</option>
-                            <option>Kitchen</option>
-                            <option>Bathroom</option>
-                        </select>
-                        <label>Status</label>
-                        <select>
-                            <option>All Status</option>
-                            <option>Active</option>
-                            <option>Disabled</option>
-                        </select>
-                        <div class="filter-menu-buttons">
-                            <button class="filter-button reset">
-                                Reset
-                            </button>
-                            <button class="filter-button apply">
-                                Apply
-                            </button>
+    <div class="app-container">
+        <div class="app-content">
+            <div class="app-content-header">
+                <h1 class="app-content-headerText">Products</h1>
+                <button class="mode-switch" title="Switch Theme" type="button">
+                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                        <defs></defs>
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+                </button>
+                @if(Helpers::is_admin())
+                    <a href="{{route('addProduct')}}" class="btn btn-xs btn-danger app-content-headerButton" id="adminBtn" role="button" style="border-radius:5px;padding:5px;">Add Product</a>
+                @endif
+            </div>
+            <div class="app-content-actions">
+                <input class="search-bar" placeholder="Search..." name="filter" type="text">
+                <div class="app-content-actions-wrapper">
+                    <div class="filter-button-wrapper">
+                        <button class="action-button filter jsFilter"><span>Filter</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+                        <div class="filter-menu">
+                            <label>Category</label>
+                            <select>
+                                <option>All Categories</option>
+                                <option>Furniture</option>                     <option>Decoration</option>
+                                <option>Kitchen</option>
+                                <option>Bathroom</option>
+                            </select>
+                            <label>Status</label>
+                            <select>
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Disabled</option>
+                            </select>
+                            <div class="filter-menu-buttons">
+                                <button class="filter-button reset">
+                                    Reset
+                                </button>
+                                <button class="filter-button apply">
+                                    Apply
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button class="action-button list active" title="List View" id="buttonList">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                </button>
-                <button class="action-button grid"  id="grid" title="Grid View" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                </button>
-            </div>
-        </div>
-        <div class="products-area-wrapper gridView">
-            <div class="products-header">
-                <div class="product-cell image">
-                    Items
-                    <button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                    <button class="action-button list active" title="List View" id="buttonList">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    </button>
+                    <button class="action-button grid"  id="grid" title="Grid View" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     </button>
                 </div>
-                <div class="product-cell category">Category<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                <div class="product-cell status-cell">Status<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                <div class="product-cell sales">Sales<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                <div class="product-cell stock">Stock<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
-                <div class="product-cell price">Price<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-                    </button></div>
             </div>
-            @foreach($products as $product)
-                @include('products.product_card',[$product])
-            @endforeach
-            {{--<div class="products-row">--}}
+            <div class="products-area-wrapper gridView">
+                <div class="products-header">
+                    <div class="product-cell image">
+                        Items
+                        <button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button>
+                    </div>
+                    <div class="product-cell category">Category<button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button></div>
+                    <div class="product-cell status-cell">Status<button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button></div>
+                    <div class="product-cell sales">Sales<button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button></div>
+                    <div class="product-cell stock">Stock<button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button></div>
+                    <div class="product-cell price">Price<button class="sort-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+                        </button></div>
+                </div>
+                @foreach($products as $product)
+                    @include('products.product_card',[$product])
+                @endforeach
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8a2l0Y2hlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Lou</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8a2l0Y2hlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Lou</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Kitchen</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status disabled">Disabled</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status disabled">Disabled</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>6</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$710</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Yellow</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Yellow</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>61</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>56</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$360</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YmVkcm9vbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Dreamy</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YmVkcm9vbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Dreamy</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Bedroom</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status disabled">Disabled</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status disabled">Disabled</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>41</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>66</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$260</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Boheme</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Boheme</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$350</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Sky</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Sky</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Bathroom</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status disabled">Disabled</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status disabled">Disabled</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>22</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>44</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$160</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Midnight</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Midnight</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>23</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>45</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$340</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Boheme</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Boheme</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$350</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Palm</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Palm</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>24</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$60</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Forest</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Forest</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Living Room</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>41</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>16</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$270</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Sand</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Sand</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Living Room</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status disabled">Disabled</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status disabled">Disabled</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>52</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>16</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$230</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1533779283484-8ad4940aa3a8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Autumn</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1533779283484-8ad4940aa3a8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Autumn</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>21</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$252</div>--}}
-            {{--</div>--}}
-            {{--<div class="products-row">--}}
+                {{--</div>--}}
+                {{--<div class="products-row">--}}
                 {{--<button class="cell-more-button">--}}
-                    {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
+                {{--<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>--}}
                 {{--</button>--}}
                 {{--<div class="product-cell image">--}}
-                    {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
-                    {{--<span>Boheme</span>--}}
+                {{--<img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="product">--}}
+                {{--<span>Boheme</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>--}}
                 {{--<div class="product-cell status-cell">--}}
-                    {{--<span class="cell-label">Status:</span>--}}
-                    {{--<span class="status active">Active</span>--}}
+                {{--<span class="cell-label">Status:</span>--}}
+                {{--<span class="status active">Active</span>--}}
                 {{--</div>--}}
                 {{--<div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>--}}
                 {{--<div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>--}}
                 {{--<div class="product-cell price"><span class="cell-label">Price:</span>$350</div>--}}
-            {{--</div>--}}
+                {{--</div>--}}
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @section('js')
-<script>
-    $(document).ready(function(){
-        $(".search-bar").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#prodRow .product-cell #prodName").each(function() {
-                var text = $(this).text().toLowerCase();
-                var row = $(this).closest('.products-row');
-                if (text.indexOf(value) > -1) {
-                    row.show();
-                } else {
-                    row.hide();
-                }
+    <script>
+        $(document).ready(function(){
+            $(".search-bar").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#prodRow .product-cell #prodName").each(function() {
+                    var text = $(this).text().toLowerCase();
+                    var row = $(this).closest('.products-row');
+                    if (text.indexOf(value) > -1) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                });
             });
         });
-    });
+        // $(document).ready(function(){
+        //     $(".search-bar").on("keyup", function() {
+        //         console.log($(this).val().toLowerCase());
+        //         var value = $(this).val().toLowerCase();
+        //         $("#prodRow").filter(function() {
+        //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        //         });
+        //     });
+        // });
+        function addOrRemoveFavorite(productId)
+        {
+            var btn = document.getElementById("favorite_product_btn_"+productId);
+            if(btn==undefined) {
+                return;
+            }
+            if(btn.dataset.isFavorite==1) {
+                removeFromFavorites(productId);
+            }
+            else {
+                addToFavorites(productId);
 
-    function addOrRemoveFavorite(productId)
-    {
-        var btn = document.getElementById("favorite_product_btn_"+productId);
-        if(btn==undefined) {
-            return;
+            }
         }
-        if(btn.dataset.isFavorite==1) {
-            removeFromFavorites(productId);
-        }
-        else {
-            addToFavorites(productId);
 
-        }
-    }
+        function removeFromFavorites(productId)
+        {
+            var url = "{{route('ajax.removeFavorite')}}";
+            var data = {
+                "product_id": productId,
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify(data),
+            })
+                .then(function (data) {
 
-    function removeFromFavorites(productId)
-    {
-        var url = "{{route('ajax.removeFavorite')}}";
-        var data = {
-            "product_id": productId,
-        };
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify(data),
-        })
-            .then(function (data) {
-
-                if($('#favorite-products-total')) {
-                    if(($('#favorite-products-total').text()*1)>0) {
-                        $('#favorite-products-total').text(($('#favorite-products-total').text()*1)-1);
-                        if(($('#favorite-products-total').text()*1)==0) {
-                            $('#favorite-products-total').css('visibility','hidden');
+                    if($('#favorite-products-total')) {
+                        if(($('#favorite-products-total').text()*1)>0) {
+                            $('#favorite-products-total').text(($('#favorite-products-total').text()*1)-1);
+                            if(($('#favorite-products-total').text()*1)==0) {
+                                $('#favorite-products-total').css('visibility','hidden');
+                            }
                         }
                     }
-                }
-                var btn = document.getElementById("favorite_product_btn_"+productId);
-                if(btn!=undefined) {
-                    btn.dataset.isFavorite=0;
-                    var color="white"; //default color for not in favorites
-                    if(btn.dataset.notFavoriteColor!=undefined) {
-                        color=btn.dataset.notFavoriteColor;
+                    var btn = document.getElementById("favorite_product_btn_"+productId);
+                    if(btn!=undefined) {
+                        btn.dataset.isFavorite=0;
+                        var color="white"; //default color for not in favorites
+                        if(btn.dataset.notFavoriteColor!=undefined) {
+                            color=btn.dataset.notFavoriteColor;
+                        }
+                        btn.style.color = color;
+                        btn.style.textShadow = "-2px 0 #4d4d4f, 0 2px #4d4d4f, 2px 0 #4d4d4f, 0 -2px #4d4d4f";
+                        if (window.location.href.indexOf("/favorite-products") > -1) {
+                            $(btn).closest("li").hide();
+                        }
                     }
-                    btn.style.color = color;
-                    btn.style.textShadow = "-2px 0 #4d4d4f, 0 2px #4d4d4f, 2px 0 #4d4d4f, 0 -2px #4d4d4f";
-                    if (window.location.href.indexOf("/favorite-products") > -1) {
-                        $(btn).closest("li").hide();
-                    }
-                }
-        });
-    }
+                });
+        }
 
 
-    function addToFavorites(productId)
-    {
-        var url = "{{ route('ajax.ajaxRequest.post') }}";
+        function addToFavorites(productId)
+        {
+            var url = "{{ route('ajax.ajaxRequest.post') }}";
 
-        var data = {
-            "product_id": productId,
-        };
+            var data = {
+                "product_id": productId,
+            };
 
 // Send the AJAX POST request
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify(data),
-        })
-        .then(function (data) {
-            if ($('#favorite-products-total')) {
-                $('#favorite-products-total').css('visibility', 'visible');
-                $('#favorite-products-total').text(($('#favorite-products-total').text() * 1) + 1);
-            }
-            var btn = document.getElementById("favorite_product_btn_" + productId);
-            if (btn != undefined) {
-                btn.dataset.isFavorite = 1;
-                btn.style.color = "#cb1523";
-                btn.style.textShadow = "none";
-            }
-        })
-    }
-    @foreach(App\FavoriteProductsManager::getIds() as $items)
-    var btn = document.getElementById("favorite_product_btn_{{$items}}");
-    if (btn != undefined) {
-        console.log(btn);
-        btn.dataset.isFavorite = 1;
-        btn.style.color = "#cb1523";
-        btn.style.textShadow = "none";
-    }
-    @endforeach
-    function showModal() {
-        $('#myModal').modal('show');
-        $("#myModal").modal({backdrop: true});
-    }
-    document.querySelector(".jsFilter").addEventListener("click", function () {
-        document.querySelector(".filter-menu").classList.toggle("active");
-    });
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify(data),
+            })
+                .then(function (data) {
+                    if ($('#favorite-products-total')) {
+                        $('#favorite-products-total').css('visibility', 'visible');
+                        $('#favorite-products-total').text(($('#favorite-products-total').text() * 1) + 1);
+                    }
+                    var btn = document.getElementById("favorite_product_btn_" + productId);
+                    if (btn != undefined) {
+                        btn.dataset.isFavorite = 1;
+                        btn.style.color = "#cb1523";
+                        btn.style.textShadow = "none";
+                    }
+                })
+        }
+                @foreach(App\FavoriteProductsManager::getIds() as $items)
+        var btn = document.getElementById("favorite_product_btn_{{$items}}");
+        if (btn != undefined) {
+            console.log(btn);
+            btn.dataset.isFavorite = 1;
+            btn.style.color = "#cb1523";
+            btn.style.textShadow = "none";
+        }
+        @endforeach
+        function showModal() {
+            $('#myModal').modal('show');
+            $("#myModal").modal({backdrop: true});
+        }
+        document.querySelector(".jsFilter").addEventListener("click", function () {
+            document.querySelector(".filter-menu").classList.toggle("active");
+        });
 
-    document.querySelector(".grid").addEventListener("click", function () {
-        document.querySelector(".list").classList.remove("active");
-        document.querySelector(".grid").classList.add("active");
-        document.querySelector(".products-area-wrapper").classList.add("gridView");
-        document
-            .querySelector(".products-area-wrapper")
-            .classList.remove("tableView");
-    });
+        document.querySelector(".grid").addEventListener("click", function () {
+            document.querySelector(".list").classList.remove("active");
+            document.querySelector(".grid").classList.add("active");
+            document.querySelector(".products-area-wrapper").classList.add("gridView");
+            document
+                .querySelector(".products-area-wrapper")
+                .classList.remove("tableView");
+        });
 
-    document.querySelector(".list").addEventListener("click", function () {
-        document.querySelector(".list").classList.add("active");
-        document.querySelector(".grid").classList.remove("active");
-        document.querySelector(".products-area-wrapper").classList.remove("gridView");
-        document.querySelector(".products-area-wrapper").classList.add("tableView");
-    });
+        document.querySelector(".list").addEventListener("click", function () {
+            document.querySelector(".list").classList.add("active");
+            document.querySelector(".grid").classList.remove("active");
+            document.querySelector(".products-area-wrapper").classList.remove("gridView");
+            document.querySelector(".products-area-wrapper").classList.add("tableView");
+        });
 
-    var modeSwitch = document.querySelector('.mode-switch');
-    modeSwitch.addEventListener('click', function () {
-        console.log(12);
-        document.documentElement.classList.toggle('light');
-        modeSwitch.classList.toggle('active');
-    });
-</script>
+        var modeSwitch = document.querySelector('.mode-switch');
+        modeSwitch.addEventListener('click', function () {
+            console.log(12);
+            document.documentElement.classList.toggle('light');
+            modeSwitch.classList.toggle('active');
+        });
+    </script>
 @endsection
 <style>
     .fa-heart{
@@ -867,10 +875,10 @@
         margin-right: 6px;
     }
     /*@media screen and (max-width: 1600px) {*/
-        /*.app-container {*/
-            /*width: 98%;*/
-            /*padding-left: 2%;*/
-        /*}*/
+    /*.app-container {*/
+    /*width: 98%;*/
+    /*padding-left: 2%;*/
+    /*}*/
     /*}*/
     @media screen and (max-width: 780px) {
         .tableView .product-cell {

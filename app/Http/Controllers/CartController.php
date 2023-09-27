@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
-    public function index()
-    {
-        //list all products in the cart
-        $cartData = CartManager::getCartData();
-//        dd($cartData);
-        return view('front.cart.cart', ['cartData' => $cartData, 'showShareProductList' => 'cart_products']);
-    }
 
     public function addProduct(Request $request)
     {
@@ -63,6 +56,14 @@ class CartController extends Controller
         return response()->json($resultArr);
     }
 
+    public function index()
+    {
+        //list all products in the cart
+        $cartData = CartManager::getCartData();
+
+        return view('front.cart.cart', ['cartData' => $cartData, 'showShareProductList' => 'cart_products']);
+    }
+
     public function changeProductQuantity(Request $request)
     {
         $resultArr = [];
@@ -92,7 +93,7 @@ class CartController extends Controller
     }
 
     public function saveOrder(Request $request){
-//dd(auth()->user());
+
         $rules = [
             'names' => 'required|string|max:30',
             'email' => 'required|string|max:30',
@@ -109,6 +110,7 @@ class CartController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
         $cart = CartManager::getCartData();
         $order = new Order();
         $order->payment_amount = $cart['products_total_amount'];

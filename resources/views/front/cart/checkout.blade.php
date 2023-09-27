@@ -15,7 +15,7 @@
                                                 <span class="description">Общ преглед</span><br><span class="emphasized">Вашата количка</span>
                                             </div>
                                             <div class="col-2 order-number align-right" style="font-size:11px;">
-                                                <span class="description">order #</span><br><span class="emphasized titleHead" style="margin-right: 25px;">Количество</span><span class="emphasized titleHead" style="margin-right: 20px;">Цена</span>
+                                                <span class="description"></span><br><span class="emphasized titleHead" style="margin-right: 25px;">Количество</span><span class="emphasized titleHead" style="margin-right: 20px;"> Ед.цена</span>
                                             </div>
                                         </div>
                                         <div class="row column-titles padding-top-10">

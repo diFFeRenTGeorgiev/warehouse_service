@@ -4,7 +4,7 @@
 <div class="tab">
     <button class="tablinks" onclick="openForm(event, 'Registration')">Регистрация</button>
     <button class="tablinks" onclick="openForm(event, 'Login')">Вход</button>
-    <button class="tablinks" onclick="openForm(event, 'ForgotPass')">Забравена парола</button>
+    {{--<button class="tablinks" onclick="openForm(event, 'ForgotPass')">Забравена парола</button>--}}
 </div>
 <div id="Registration" class="tabcontent">
     @include('auth.register_form')
@@ -51,6 +51,7 @@
         padding: 14px 16px;
         transition: 0.3s;
         font-size: 17px;
+        width: 50%;
     }
 
     /* Change background color of buttons on hover */
