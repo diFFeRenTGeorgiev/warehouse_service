@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\CartManager;
+use App\Mail\OrderCreated;
 use App\Models\CartProduct;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
@@ -93,7 +95,7 @@ class CartController extends Controller
     }
 
     public function saveOrder(Request $request){
-
+//        dd($request->get('email'));
         $rules = [
             'names' => 'required|string|max:30',
             'email' => 'required|string|max:30',
@@ -120,6 +122,8 @@ class CartController extends Controller
         $order->save();
         $order->order_number = 10000 + $order->id;
         $order->save();
+
+        Mail::to($request->get('email'))->send(new OrderCreated($order->order_number));
 
         CartManager::emptyCart();
         return view('front.cart.thank_you_page',['orderNumber' => $order->order_number]);
